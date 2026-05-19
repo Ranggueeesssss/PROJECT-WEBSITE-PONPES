@@ -11,8 +11,8 @@ require_once __DIR__ . '/koneksi.php';
 // --- AUTO-SYNC: Masukkan santri yang 'Lolos' pendaftaran ke tabel induk santri ---
 // Menggunakan single query untuk performa yang jauh lebih baik (menghindari N+1 Query problem)
 $syncQuery = "
-    INSERT INTO data_santri (pendaftaran_id, nama_lengkap, jenjang, nomor_hp, status_santri)
-    SELECT p.id, p.nama_lengkap, p.jenjang_pendaftaran, p.nomor_handphone, 'Baru'
+    INSERT INTO data_santri (pendaftaran_id, nama_lengkap, jenjang, tanggal_lahir, nomor_hp, alamat, status_santri)
+    SELECT p.id, p.nama_lengkap, p.jenjang_pendaftaran, p.tanggal_lahir, p.nomor_handphone, p.alamat_lengkap, 'Baru'
     FROM pendaftaran p
     LEFT JOIN data_santri s ON p.id = s.pendaftaran_id
     WHERE p.status = 'Lolos' AND s.id IS NULL
@@ -254,8 +254,9 @@ if ($resSantri) {
                                     <th style="width: 60px; text-align: center;">No</th>
                                     <th>Nama Santri</th>
                                     <th>Status</th>
+                                    <th>Tanggal Lahir</th>
                                     <th>Jenjang</th>
-                                    <th>No. HP</th>
+                                    <th style="min-width: 200px;">Kontak & Alamat</th>
                                     <!-- Dynamic Columns -->
                                     <?php foreach($customCols as $col): ?>
                                     <th>
@@ -288,8 +289,25 @@ if ($resSantri) {
                                                 <?php echo $s['status_santri']; ?>
                                             </span>
                                         </td>
+                                        <td style="color: #4b5563; font-weight: 500;">
+                                            <?php 
+                                                if (!empty($s['tanggal_lahir'])) {
+                                                    $date = new DateTime($s['tanggal_lahir']);
+                                                    echo $date->format('d M Y');
+                                                } else {
+                                                    echo '<span style="color: #9ca3af; font-style: italic;">-</span>';
+                                                }
+                                            ?>
+                                        </td>
                                         <td><span class="jenjang-badge"><?php echo htmlspecialchars($s['jenjang']); ?></span></td>
-                                        <td style="font-family: monospace; font-weight: 600; color: #475569;"><?php echo htmlspecialchars($s['nomor_hp'] ?: '-'); ?></td>
+                                        <td style="max-width: 250px;">
+                                            <div style="font-family: monospace; font-weight: 600; color: #475569; margin-bottom: 4px;">
+                                                <i class="fas fa-phone-alt" style="font-size: 0.75rem; margin-right: 4px; color: #9ca3af;"></i> <?php echo htmlspecialchars($s['nomor_hp'] ?: '-'); ?>
+                                            </div>
+                                            <div style="font-size: 0.75rem; color: #6b7280; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;" title="<?php echo htmlspecialchars($s['alamat'] ?: 'Alamat belum diisi'); ?>">
+                                                <i class="fas fa-map-marker-alt" style="font-size: 0.75rem; margin-right: 4px; color: #9ca3af;"></i> <?php echo htmlspecialchars($s['alamat'] ?: 'Alamat belum diisi'); ?>
+                                            </div>
+                                        </td>
                                         
                                         <!-- Dynamic Values -->
                                         <?php foreach($customCols as $col): ?>
