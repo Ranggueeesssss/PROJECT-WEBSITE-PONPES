@@ -1,0 +1,583 @@
+/* =========================================================================
+   FORM PENDAFTARAN CSS (Modern Ponpes Theme)
+   ========================================================================= */
+
+.form-wrapper {
+    background-color: var(--cream);
+    background-image: radial-gradient(var(--green-mist) 1px, transparent 1px);
+    background-size: 20px 20px;
+    padding: 60px 20px;
+    min-height: calc(100vh - 150px);
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    z-index: 1;
+}
+
+.form-container {
+    max-width: 850px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Stepper Indicator */
+.form-stepper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    gap: 20px;
+    align-items: center;
+}
+
+.step-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gray-mid);
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.step-indicator.active {
+    color: var(--green-primary);
+}
+
+.step-number {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: var(--white);
+    border: 2px solid var(--gray-mid);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.step-indicator.active .step-number {
+    background-color: var(--green-primary);
+    color: var(--white);
+    border-color: var(--green-primary);
+    box-shadow: 0 0 15px rgba(74, 124, 89, 0.4);
+}
+
+.step-line {
+    height: 2px;
+    width: 50px;
+    background-color: var(--gray-mid);
+    border-radius: 2px;
+}
+
+/* Header Card */
+.modern-header-card {
+    background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-deep) 100%);
+    border-radius: 20px;
+    padding: 50px 30px;
+    text-align: center;
+    color: var(--white);
+    margin-bottom: -40px;
+    position: relative;
+    box-shadow: var(--shadow-lg);
+    z-index: 2;
+    overflow: hidden;
+}
+
+.modern-header-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 60%);
+    transform: rotate(30deg);
+}
+
+.modern-header-card i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: var(--green-soft);
+    animation: slowZoom 3s infinite alternate ease-in-out;
+}
+
+.modern-header-card h1 {
+    font-family: 'Amiri', serif;
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+    position: relative;
+    z-index: 1;
+}
+
+.modern-header-card p {
+    font-size: 1rem;
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
+}
+
+/* Main Form Card */
+.modern-form-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 60px 40px 40px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(74, 124, 89, 0.1);
+}
+
+.req-text {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    margin-bottom: 25px;
+    display: block;
+    text-align: right;
+    font-style: italic;
+}
+
+/* Form Groups & Inputs */
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.input-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.input-group.full-width {
+    grid-column: span 2;
+}
+
+.input-label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.req {
+    color: #e74c3c;
+    margin-left: 3px;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 18px;
+    color: var(--green-primary);
+    font-size: 1.1rem;
+    transition: var(--transition);
+}
+
+.modern-input {
+    width: 100%;
+    padding: 14px 20px 14px 45px;
+    border: 2px solid var(--gray-light);
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: var(--text-dark);
+    background-color: var(--gray-light);
+    transition: var(--transition);
+    outline: none;
+}
+
+.modern-input:focus {
+    border-color: var(--green-primary);
+    background-color: var(--white);
+    box-shadow: 0 0 0 4px rgba(74, 124, 89, 0.1);
+}
+
+.modern-input:focus + .input-icon,
+.modern-input:not(:placeholder-shown) + .input-icon {
+    color: var(--green-dark);
+}
+
+/* Error state added by JS */
+.modern-input.error-border {
+    border-color: #e74c3c !important;
+    background-color: #fdf2f2;
+}
+
+/* Custom Radio & Checkbox Cards */
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.option-card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 2px solid var(--gray-light);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+    background-color: var(--white);
+}
+
+.option-card:hover {
+    border-color: var(--green-soft);
+    background-color: var(--green-foam);
+}
+
+.option-card input[type="radio"],
+.option-card input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-radio,
+.custom-checkbox {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--gray-mid);
+    margin-right: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.custom-radio {
+    border-radius: 50%;
+}
+
+.custom-checkbox {
+    border-radius: 6px;
+}
+
+.custom-radio::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--green-primary);
+    transform: scale(0);
+    transition: var(--transition);
+}
+
+.custom-checkbox::after {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--white);
+    font-size: 12px;
+    transform: scale(0);
+    transition: var(--transition);
+}
+
+.option-card input:checked ~ .custom-radio {
+    border-color: var(--green-primary);
+}
+
+.option-card input:checked ~ .custom-radio::after {
+    transform: scale(1);
+}
+
+.option-card input:checked ~ .custom-checkbox {
+    background-color: var(--green-primary);
+    border-color: var(--green-primary);
+}
+
+.option-card input:checked ~ .custom-checkbox::after {
+    transform: scale(1);
+}
+
+.option-card input:checked ~ .option-text {
+    color: var(--green-dark);
+    font-weight: 600;
+}
+
+.option-text {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    transition: var(--transition);
+}
+
+.lainnya-input-wrapper {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.lainnya-input {
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    border-bottom: 2px solid var(--gray-mid);
+    background: transparent;
+    outline: none;
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: var(--transition);
+    opacity: 0.5;
+}
+
+.lainnya-input:focus {
+    border-bottom-color: var(--green-primary);
+}
+
+.lainnya-input:not(:disabled) {
+    opacity: 1;
+}
+
+/* File Upload modern */
+.file-upload-card {
+    display: block;
+    border: 2px dashed var(--green-soft);
+    border-radius: 15px;
+    padding: 30px 20px;
+    text-align: center;
+    background-color: var(--green-foam);
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.file-upload-card:hover {
+    border-color: var(--green-primary);
+    background-color: #e4f3e9;
+}
+
+.file-upload-card i {
+    font-size: 2.5rem;
+    color: var(--green-primary);
+    margin-bottom: 15px;
+}
+
+.file-upload-title {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.file-upload-desc {
+    font-size: 0.8rem;
+    color: var(--text-soft);
+    margin-bottom: 15px;
+}
+
+.file-input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.file-name-display {
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--white);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    box-shadow: var(--shadow-sm);
+    max-width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Pastikan span ini tampil di atas overlay .file-input yang position:absolute */
+    position: relative;
+    z-index: 2;
+    pointer-events: none; /* klik tetap diteruskan ke file-input di bawahnya */
+}
+
+.file-name-display.has-file {
+    background: var(--green-primary);
+    color: var(--white);
+}
+
+/* Step Navigation */
+.form-step {
+    display: none;
+    animation: fadeUp 0.5s ease forwards;
+}
+
+.form-step.active {
+    display: block;
+}
+
+/* Buttons */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 1px solid var(--gray-light);
+}
+
+.btn-modern {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    font-family: inherit;
+}
+
+.btn-next {
+    background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-dark) 100%);
+    color: var(--white);
+    box-shadow: 0 6px 20px rgba(74, 124, 89, 0.3);
+    margin-left: auto;
+}
+
+.btn-next:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(74, 124, 89, 0.4);
+    background: linear-gradient(135deg, var(--green-light) 0%, var(--green-primary) 100%);
+}
+
+.btn-prev {
+    background: var(--gray-light);
+    color: var(--text-dark);
+}
+
+.btn-prev:hover {
+    background: #e2e8e4;
+    color: var(--green-deep);
+}
+
+.btn-submit {
+    background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+    color: var(--white);
+    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.3);
+    margin-left: auto;
+}
+
+.btn-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(46, 204, 113, 0.4);
+}
+
+/* Alert Box */
+.alert-box {
+    padding: 20px 25px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    text-align: center;
+    background: var(--white);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.5s ease forwards;
+}
+
+.alert-box::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+}
+
+.alert-box.success {
+    color: var(--green-deep);
+}
+.alert-box.success::before {
+    background-color: var(--green-primary);
+}
+
+.alert-box.error {
+    color: #c0392b;
+}
+.alert-box.error::before {
+    background-color: #e74c3c;
+}
+
+.alert-box p {
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.btn-kembali-home {
+    display: inline-block;
+    padding: 10px 24px;
+    background: var(--green-primary);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition);
+}
+
+.btn-kembali-home:hover {
+    background: var(--green-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Section Title inside Step 2 */
+.section-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section-header h2 {
+    font-family: 'Amiri', serif;
+    color: var(--green-deep);
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.section-header p {
+    color: var(--text-soft);
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .input-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .input-group.full-width {
+        grid-column: span 1;
+    }
+
+    .modern-header-card {
+        padding: 40px 20px;
+    }
+
+    .modern-header-card h1 {
+        font-size: 1.8rem;
+    }
+
+    .modern-form-card {
+        padding: 50px 20px 30px;
+    }
+
+    .options-grid {
+        grid-template-columns: 1fr;
+    }
+}

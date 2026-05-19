@@ -1,0 +1,451 @@
+/* ================================================================
+   PRESTASI.CSS — Ponpes Al-Barokah An-Nur Khumairoh
+   Styles khusus halaman Prestasi Santri
+   Requires: base.css, navbar.css, header.css, footer.css
+   ================================================================ */
+
+/* ================================================================
+   PAGE HERO
+   ================================================================ */
+.page-hero {
+  background    : linear-gradient(135deg, var(--green-deep) 0%, var(--green-dark) 50%, #3a6b4e 100%);
+  padding       : 56px 80px 52px;
+  position      : relative;
+  overflow      : hidden;
+}
+
+.page-hero::before {
+  content          : '';
+  position         : absolute;
+  inset            : 0;
+  background-image : radial-gradient(circle, rgba(149,200,168,.10) 1px, transparent 1px);
+  background-size  : 28px 28px;
+  pointer-events   : none;
+}
+
+.page-hero::after {
+  content       : '';
+  position      : absolute;
+  right         : -80px; top: -80px;
+  width         : 320px; height: 320px;
+  border-radius : 50%;
+  background    : radial-gradient(circle, rgba(149,200,168,.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.page-hero__inner { position: relative; z-index: 1; }
+
+/* ── Breadcrumb ──────────────────────────────────────────────── */
+.breadcrumb {
+  display      : flex;
+  align-items  : center;
+  gap          : 8px;
+  margin-bottom: 20px;
+}
+
+.breadcrumb a,
+.breadcrumb span { font-size: .75rem; color: rgba(255,255,255,.65); transition: color var(--transition); }
+.breadcrumb a:hover  { color: var(--green-soft); }
+.breadcrumb .sep     { color: rgba(255,255,255,.35); font-size: .65rem; }
+.breadcrumb .current { color: var(--green-soft); font-weight: 600; }
+
+.page-hero__title {
+  font-family  : 'Amiri', serif;
+  font-size    : clamp(2.2rem, 5vw, 3.2rem);
+  font-weight  : 700;
+  color        : var(--white);
+  line-height  : 1.1;
+  margin-bottom: 8px;
+  text-shadow  : 0 2px 16px rgba(0,0,0,.15);
+}
+
+.page-hero__sub {
+  font-size     : .88rem;
+  color         : var(--green-soft);
+  font-weight   : 500;
+  letter-spacing: .06em;
+}
+
+.page-hero__deco { display: flex; align-items: center; gap: 6px; margin-top: 16px; }
+
+.page-hero__deco-line {
+  width: 60px; height: 3px;
+  background: linear-gradient(90deg, var(--green-soft), var(--green-accent));
+  border-radius: 2px;
+}
+
+.page-hero__deco-dots { display: flex; gap: 5px; }
+.page-hero__deco-dots span {
+  width: 6px; height: 6px;
+  border-radius: 50%; background: var(--green-soft);
+  display: block; opacity: .7;
+}
+
+/* ── Stats di hero ───────────────────────────────────────────── */
+.hero-stats {
+  display         : flex;
+  gap             : 0;
+  margin-top      : 36px;
+  background      : rgba(255,255,255,.07);
+  border-radius   : 14px;
+  border          : 1px solid rgba(255,255,255,.12);
+  overflow        : hidden;
+  backdrop-filter : blur(6px);
+  width           : fit-content;
+}
+
+.hero-stat {
+  padding    : 16px 32px;
+  text-align : center;
+  color      : var(--white);
+  position   : relative;
+}
+
+.hero-stat + .hero-stat::before {
+  content    : '';
+  position   : absolute;
+  left       : 0; top: 20%; bottom: 20%;
+  width      : 1px;
+  background : rgba(255,255,255,.18);
+}
+
+.hero-stat__number {
+  display        : block;
+  font-size      : 1.7rem;
+  font-weight    : 800;
+  letter-spacing : -.02em;
+  background     : linear-gradient(135deg, #fff 60%, var(--green-soft));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-stat__label {
+  font-size     : .68rem;
+  color         : rgba(255,255,255,.70);
+  text-transform: uppercase;
+  letter-spacing: .10em;
+  margin-top    : 2px;
+  display       : block;
+}
+
+/* ================================================================
+   WRAPPER UTAMA
+   ================================================================ */
+.prestasi-wrapper {
+  padding    : 56px 80px 72px;
+  background : linear-gradient(160deg, var(--cream) 0%, var(--green-foam) 100%);
+  position   : relative;
+  overflow   : hidden;
+}
+
+.prestasi-wrapper::before {
+  content       : '';
+  position      : absolute;
+  right         : -80px; bottom: -80px;
+  width         : 320px; height: 320px;
+  border-radius : 50%;
+  background    : radial-gradient(circle, rgba(149,200,168,.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* ================================================================
+   SECTION HEADER (judul sub-section)
+   ================================================================ */
+.section-header {
+  display         : flex;
+  align-items     : center;
+  justify-content : space-between;
+  margin-bottom   : 28px;
+  gap             : 16px;
+}
+
+.section-header h2 {
+  font-family : 'Amiri', serif;
+  font-size   : 1.6rem;
+  font-weight : 700;
+  color       : var(--green-deep);
+  display     : flex;
+  align-items : center;
+  gap         : 10px;
+}
+
+.section-header h2::before {
+  content       : '';
+  display       : block;
+  width         : 5px; height: 26px;
+  background    : linear-gradient(to bottom, var(--green-primary), var(--green-accent));
+  border-radius : 3px;
+  flex-shrink   : 0;
+}
+
+/* ================================================================
+   HIGHLIGHT BAR — Daftar Prestasi Tercapai
+   ================================================================ */
+.highlight-bar {
+  background    : linear-gradient(135deg, var(--green-deep) 0%, var(--green-dark) 60%, #3a6b4e 100%);
+  border-radius : 20px;
+  padding       : 40px 48px;
+  margin-bottom : 52px;
+  display       : grid;
+  grid-template-columns: 1fr 1fr;
+  gap           : 48px;
+  align-items   : center;
+  position      : relative;
+  overflow      : hidden;
+}
+
+.highlight-bar::before {
+  content          : '';
+  position         : absolute;
+  inset            : 0;
+  background-image : radial-gradient(circle, rgba(149,200,168,.08) 1px, transparent 1px);
+  background-size  : 24px 24px;
+  pointer-events   : none;
+}
+
+.highlight-bar::after {
+  content       : '';
+  position      : absolute;
+  right         : -60px; top: -60px;
+  width         : 240px; height: 240px;
+  border-radius : 50%;
+  background    : radial-gradient(circle, rgba(149,200,168,.10) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.highlight-bar__left  { position: relative; z-index: 1; }
+.highlight-bar__right { position: relative; z-index: 1; }
+
+.highlight-bar__eyebrow {
+  font-size     : .68rem;
+  font-weight   : 700;
+  color         : var(--green-accent);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  margin-bottom : 10px;
+}
+
+.highlight-bar__title {
+  font-family  : 'Amiri', serif;
+  font-size    : 1.7rem;
+  font-weight  : 700;
+  color        : var(--white);
+  line-height  : 1.25;
+  margin-bottom: 12px;
+}
+
+.highlight-bar__title span { color: var(--green-soft); }
+
+.highlight-bar__sub {
+  font-size  : .82rem;
+  color      : rgba(255,255,255,.70);
+  line-height: 1.75;
+}
+
+/* ── Daftar item prestasi ────────────────────────────────────── */
+.prestasi-list { display: flex; flex-direction: column; gap: 10px; }
+
+.prestasi-list__item {
+  display      : flex;
+  align-items  : flex-start;
+  gap          : 12px;
+  padding      : 12px 16px;
+  background   : rgba(255,255,255,.07);
+  border       : 1px solid rgba(149,200,168,.15);
+  border-radius: 10px;
+  transition   : background var(--transition), transform var(--transition);
+}
+
+.prestasi-list__item:hover {
+  background : rgba(255,255,255,.12);
+  transform  : translateX(4px);
+}
+
+.prestasi-list__num {
+  width           : 22px; height: 22px;
+  border-radius   : 50%;
+  background      : linear-gradient(135deg, var(--green-primary), var(--green-dark));
+  color           : var(--white);
+  font-size       : .65rem;
+  font-weight     : 800;
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  flex-shrink     : 0;
+  margin-top      : 1px;
+}
+
+.prestasi-list__text { font-size: .80rem; color: rgba(255,255,255,.85); line-height: 1.5; flex: 1; }
+
+.prestasi-list__text .highlight { color: var(--green-soft); font-weight: 600; }
+
+/* ================================================================
+   LAYOUT: KONTEN UTAMA + SIDEBAR
+   ================================================================ */
+.prestasi-layout {
+  display               : grid;
+  grid-template-columns : 1fr 290px;
+  gap                   : 36px;
+  align-items           : start;
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────── */
+.sidebar { display: flex; flex-direction: column; gap: 24px; }
+
+.sidebar-widget {
+  background    : var(--white);
+  border-radius : 16px;
+  border        : 1px solid var(--green-mist);
+  box-shadow    : var(--shadow-sm);
+  overflow      : hidden;
+}
+
+.sidebar-widget__head {
+  background : linear-gradient(135deg, var(--green-primary), var(--green-dark));
+  padding    : 14px 20px;
+  display    : flex;
+  align-items: center;
+  gap        : 10px;
+}
+
+.sidebar-widget__head h3 {
+  font-size: .85rem; font-weight: 700; color: var(--white); letter-spacing: .04em;
+}
+
+.sidebar-widget__head i { color: var(--green-soft); font-size: .9rem; }
+
+.sidebar-widget__body { padding: 18px 20px; }
+
+/* Podium widget */
+.podium-list { display: flex; flex-direction: column; gap: 10px; }
+
+.podium-item {
+  display      : flex;
+  align-items  : center;
+  gap          : 12px;
+  padding      : 10px 14px;
+  border-radius: 10px;
+  background   : var(--gray-light);
+  border       : 1px solid var(--green-mist);
+  transition   : background var(--transition);
+}
+
+.podium-item:hover { background: var(--green-foam); }
+
+.podium-item__medal { font-size: 1.2rem; flex-shrink: 0; width: 28px; text-align: center; }
+
+.podium-item__info  { flex: 1; }
+
+.podium-item__title {
+  font-size  : .76rem; font-weight: 600; color: var(--text-dark);
+  line-height: 1.35; margin-bottom: 3px;
+}
+
+.podium-item__sub { font-size: .65rem; color: var(--gray-mid); }
+
+/* Statistik widget */
+.stat-grid {
+  display               : grid;
+  grid-template-columns : 1fr 1fr;
+  gap                   : 10px;
+}
+
+.stat-item {
+  background    : linear-gradient(145deg, var(--green-foam), var(--white));
+  border        : 1px solid var(--green-mist);
+  border-radius : 12px;
+  padding       : 14px 12px;
+  text-align    : center;
+  transition    : transform var(--transition);
+}
+
+.stat-item:hover { transform: translateY(-2px); }
+
+.stat-item__number {
+  font-size: 1.4rem; font-weight: 800; color: var(--green-primary);
+  display: block; line-height: 1; margin-bottom: 4px;
+}
+
+.stat-item__label {
+  font-size: .65rem; color: var(--text-soft);
+  text-transform: uppercase; letter-spacing: .06em;
+}
+
+/* ================================================================
+   TIMELINE PERJALANAN PRESTASI
+   ================================================================ */
+.timeline-section { margin-bottom: 0; }
+
+.timeline { position: relative; padding-left: 28px; }
+
+/* Garis vertikal */
+.timeline::before {
+  content       : '';
+  position      : absolute;
+  left          : 8px; top: 4px; bottom: 4px;
+  width         : 2px;
+  background    : linear-gradient(to bottom, var(--green-primary), var(--green-accent), var(--green-mist));
+  border-radius : 2px;
+}
+
+.timeline-item { position: relative; padding: 0 0 28px 24px; }
+.timeline-item:last-child { padding-bottom: 0; }
+
+/* Titik pada garis timeline */
+.timeline-item::before {
+  content       : '';
+  position      : absolute;
+  left          : -24px; top: 6px;
+  width         : 14px; height: 14px;
+  border-radius : 50%;
+  background    : linear-gradient(135deg, var(--green-primary), var(--green-dark));
+  border        : 3px solid var(--white);
+  box-shadow    : 0 0 0 2px var(--green-primary);
+  z-index       : 1;
+}
+
+.timeline-item__year {
+  font-size     : .68rem; font-weight: 700; color: var(--green-primary);
+  text-transform: uppercase; letter-spacing: .10em; margin-bottom: 6px;
+}
+
+.timeline-item__card {
+  background    : var(--white);
+  border-radius : 12px;
+  padding       : 16px 20px;
+  border        : 1px solid var(--green-mist);
+  box-shadow    : var(--shadow-sm);
+  transition    : transform var(--transition), box-shadow var(--transition);
+}
+
+.timeline-item__card:hover { transform: translateX(4px); box-shadow: var(--shadow-md); }
+
+.timeline-item__card h4 {
+  font-size: .88rem; font-weight: 700; color: var(--text-dark);
+  margin-bottom: 5px; line-height: 1.4;
+}
+
+.timeline-item__card p { font-size: .76rem; color: var(--text-soft); line-height: 1.65; }
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width: 1100px) {
+  .prestasi-layout { grid-template-columns: 1fr; }
+  .sidebar         { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+}
+
+@media (max-width: 900px) {
+  .prestasi-wrapper { padding: 40px 32px 60px; }
+  .page-hero        { padding: 40px 32px 36px; }
+  .highlight-bar    { grid-template-columns: 1fr; gap: 28px; padding: 32px 28px; }
+  .hero-stats       { flex-wrap: wrap; }
+}
+
+@media (max-width: 600px) {
+  .prestasi-wrapper { padding: 32px 20px 48px; }
+  .page-hero        { padding: 32px 20px 28px; }
+  .sidebar          { grid-template-columns: 1fr; }
+  .stat-grid        { grid-template-columns: repeat(2, 1fr); }
+}

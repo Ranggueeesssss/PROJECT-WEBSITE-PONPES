@@ -1,0 +1,308 @@
+/* ================================================================
+   PENGUMUMAN.CSS — Styling untuk Pengumuman Santri Baru
+   ================================================================ */
+
+.pengumuman-section {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px dashed var(--green-mist);
+}
+
+.pengumuman-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: 0 15px 35px rgba(74, 124, 89, 0.08);
+    border: 1px solid var(--green-mist);
+    position: relative;
+    overflow: hidden;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.pengumuman-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, var(--green-primary), var(--green-accent));
+}
+
+/* Header */
+.pengumuman-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.pengumuman-icon-wrapper {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pengumuman-icon {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--green-primary), var(--green-dark));
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 8px 20px rgba(74, 124, 89, 0.3);
+}
+
+.pulse-ring {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(125, 201, 138, 0.4);
+    z-index: 1;
+    animation: pulse 2s infinite ease-out;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.8); opacity: 1; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+.pengumuman-title {
+    font-family: 'Amiri', serif;
+    font-size: 2rem;
+    color: var(--green-deep);
+    margin-bottom: 12px;
+}
+
+.pengumuman-desc {
+    font-size: 0.95rem;
+    color: var(--text-soft);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* Form */
+.pengumuman-form {
+    background: #f8fcf9;
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid rgba(74, 124, 89, 0.1);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--green-primary);
+    font-size: 1.1rem;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 14px 16px 14px 45px;
+    border: 1px solid #d1e2d6;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    background: var(--white);
+    transition: all 0.3s;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: var(--green-primary);
+    box-shadow: 0 0 0 4px rgba(74, 124, 89, 0.1);
+}
+
+.input-wrapper input:focus + .input-icon {
+    opacity: 1;
+}
+
+.form-action {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-cek-pengumuman {
+    display: inline-flex;
+    align-items: center;
+    background: var(--green-primary);
+    border: none;
+    border-radius: 30px;
+    padding: 8px 8px 8px 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(74, 124, 89, 0.25);
+}
+
+.btn-cek-pengumuman:hover {
+    background: var(--green-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(74, 124, 89, 0.35);
+}
+
+.btn-cek-pengumuman .btn-text {
+    color: var(--white);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-right: 16px;
+}
+
+.btn-icon-circle {
+    width: 38px;
+    height: 38px;
+    background: var(--white);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--green-primary);
+    font-size: 1rem;
+    transition: transform 0.3s;
+}
+
+.btn-cek-pengumuman:hover .btn-icon-circle {
+    transform: translateX(3px);
+}
+
+/* Result Area */
+.pengumuman-result {
+    margin-top: 30px;
+    transition: all 0.4s ease;
+}
+
+.pengumuman-result.hidden {
+    display: none;
+}
+
+.result-card {
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    animation: slideUp 0.5s ease forwards;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Lolos */
+.result-card.success {
+    background: #eafff0;
+    border: 1px solid #7dc98a;
+}
+.result-card.success .status-icon {
+    color: #27ae60;
+    background: #d4f7e2;
+}
+.result-card.success .status-title {
+    color: #1e8449;
+}
+
+/* Tidak Lolos / Tidak Ditemukan */
+.result-card.failed {
+    background: #fff5f5;
+    border: 1px solid #fcb6b6;
+}
+.result-card.failed .status-icon {
+    color: #e74c3c;
+    background: #fde8e8;
+}
+.result-card.failed .status-title {
+    color: #c0392b;
+}
+
+.status-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.status-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.status-detail {
+    font-size: 1rem;
+    color: var(--text-dark);
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.status-detail strong {
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+/* Loader */
+.loader {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(74, 124, 89, 0.2);
+    border-top-color: var(--green-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .pengumuman-card {
+        padding: 30px 20px;
+    }
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    .pengumuman-title {
+        font-size: 1.6rem;
+    }
+}

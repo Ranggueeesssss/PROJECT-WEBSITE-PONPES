@@ -1,0 +1,249 @@
+/* css/dashboard.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f6f9;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #1a8f4c;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 40px;
+    height: 100%;
+}
+
+.sidebar-profile {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.sidebar-profile .profile-icon {
+    width: 60px;
+    height: 60px;
+    border: 1px solid white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    font-size: 30px;
+}
+
+.sidebar-profile p {
+    font-weight: 500;
+    font-size: 1.1rem;
+    text-transform: capitalize;
+}
+
+.sidebar-nav {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+
+.sidebar-nav a:hover, .sidebar-nav a.active {
+    background-color: #14703a;
+}
+
+.sidebar-nav a.logout-btn {
+    margin-top: 50px;
+    background-color: #c0392b;
+}
+
+.sidebar-nav a.logout-btn:hover {
+    background-color: #a5281b;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #eaeaea;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+    border-bottom: 3px solid #1a1a1a;
+    padding-bottom: 20px;
+}
+
+.dashboard-header .logo-placeholder {
+    width: 70px;
+    height: 70px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+}
+
+.dashboard-header .logo-placeholder i {
+    color: #1a8f4c;
+    font-size: 60px;
+}
+
+.dashboard-header h1 {
+    color: #79c546;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.dashboard-widgets {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.widget {
+    background-color: #cfcfcf;
+    border: 2px solid #000;
+    border-radius: 20px;
+    padding: 30px;
+    flex: 1;
+    min-width: 350px;
+}
+
+.widget h2 {
+    color: #1a8f4c;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+/* Widget Berita */
+.btn-tambah {
+    background-color: #79c546;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-bottom: 25px;
+    transition: background 0.3s;
+    font-size: 1rem;
+}
+
+.btn-tambah:hover {
+    background-color: #65a83a;
+}
+
+.berita-list-title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.berita-card {
+    background-color: #b5b5b5;
+    border-radius: 20px;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.berita-image {
+    width: 160px;
+    height: 110px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    background-image: url('https://via.placeholder.com/160x110');
+    background-size: cover;
+    background-position: center;
+}
+
+.berita-info {
+    flex: 1;
+}
+
+.berita-info h4 {
+    font-size: 0.95rem;
+    color: #000;
+    line-height: 1.5;
+    font-weight: 600;
+}
+
+.berita-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-action {
+    background-color: white;
+    border: 1px solid #000;
+    padding: 6px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: background 0.3s;
+}
+.btn-action:hover {
+    background-color: #eee;
+}
+
+/* Widget Login */
+.login-subtitle {
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.login-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #e0e0e0;
+    border: 2px solid #000;
+}
+
+.login-table th {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 12px;
+    border: 1px solid #000;
+    font-weight: 500;
+}
+
+.login-table td {
+    padding: 12px;
+    border: 1px solid #000;
+    text-align: center;
+}
+
+.login-table td .btn-action {
+    margin: 2px;
+}

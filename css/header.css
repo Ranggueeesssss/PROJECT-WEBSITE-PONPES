@@ -1,0 +1,246 @@
+/* ================================================================
+   HEADER.CSS — Ponpes Al-Barokah An-Nur Khumairoh
+   Styles untuk Main Header (Baris 2): logo, nav, hamburger
+   Requires: base.css
+   ================================================================ */
+
+/* ── Site Header Wrapper ───────────────────────────────────────── */
+.site-header {
+  position   : sticky;
+  top        : 0;
+  z-index    : 200;
+  box-shadow : 0 4px 28px rgba(30, 61, 43, .16);
+  transition : box-shadow .3s ease;
+}
+
+.site-header.scrolled {
+  box-shadow : 0 6px 32px rgba(30, 61, 43, .22);
+}
+
+/* ================================================================
+   BARIS 2 — MAIN HEADER (logo + nav)
+   ================================================================ */
+header {
+  background      : linear-gradient(135deg, #ffffff 0%, var(--green-foam) 100%);
+  padding         : 0 48px;
+  display         : flex;
+  align-items     : center;
+  justify-content : space-between;
+  height          : 76px;
+  border-bottom   : 3px solid var(--green-primary);
+  position        : relative;
+}
+
+/* Shimmer dekoratif pojok kanan */
+header::before {
+  content        : '';
+  position       : absolute;
+  right          : 0;
+  top            : 0;
+  width          : 280px;
+  height         : 100%;
+  background     : linear-gradient(120deg, transparent 40%, rgba(149,200,168,.10) 100%);
+  pointer-events : none;
+}
+
+/* ── Logo ──────────────────────────────────────────────────────── */
+.logo {
+  display     : flex;
+  align-items : center;
+  gap         : 14px;
+  flex-shrink : 0;
+}
+
+.logo__icon {
+  width           : 56px;
+  height          : 56px;
+  border-radius   : 50%;
+  display         : flex;
+  align-items     : center;
+  justify-content : center;
+  box-shadow      : 0 4px 14px rgba(45,90,61,.15);
+  flex-shrink     : 0;
+  transition      : transform var(--transition);
+  background      : var(--white);
+  overflow        : hidden;
+  border          : 1px solid rgba(149,200,168,.3);
+}
+
+.logo__icon:hover { transform: scale(1.05); }
+
+.logo__icon img { width: 100%; height: 100%; object-fit: contain; }
+
+/* Garis divider vertikal antara ikon dan teks */
+.logo__divider {
+  width         : 2px;
+  height        : 38px;
+  background    : linear-gradient(to bottom, transparent, var(--green-primary), transparent);
+  border-radius : 2px;
+}
+
+.logo__text { line-height: 1.2; }
+
+.logo__name {
+  display        : block;
+  font-weight    : 800;
+  font-size      : .88rem;
+  color          : var(--green-dark);
+  text-transform : uppercase;
+  letter-spacing : .05em;
+}
+
+/* ── Navigation Links ──────────────────────────────────────────── */
+nav ul {
+  display     : flex;
+  align-items : center;
+  gap         : 2px;
+}
+
+nav ul li { position: relative; }
+
+nav ul li a {
+  display         : flex;
+  align-items     : center;
+  padding         : 8px 14px;
+  font-size       : .80rem;
+  font-weight     : 500;
+  color           : var(--text-mid);
+  border-radius   : 6px;
+  transition      : color var(--transition), background var(--transition);
+  white-space     : nowrap;
+}
+
+/* Garis bawah animasi hover */
+nav ul li a::after {
+  content       : '';
+  position      : absolute;
+  bottom        : -3px;
+  left          : 50%;
+  transform     : translateX(-50%) scaleX(0);
+  width         : 70%;
+  height        : 3px;
+  background    : linear-gradient(90deg, var(--green-primary), var(--green-accent));
+  border-radius : 2px 2px 0 0;
+  transition    : transform .25s ease;
+}
+
+nav ul li a:hover        { color: var(--green-dark); background: rgba(74,124,89,.08); }
+nav ul li a:hover::after { transform: translateX(-50%) scaleX(1); }
+
+nav ul li a.active {
+  background  : linear-gradient(135deg, var(--green-primary) 0%, var(--green-dark) 100%);
+  color       : var(--white);
+  font-weight : 600;
+  box-shadow  : 0 4px 12px rgba(45,90,61,.25);
+}
+
+nav ul li a.active::after { display: none; }
+
+/* ── Hamburger ─────────────────────────────────────────────────── */
+.hamburger {
+  display        : none;
+  flex-direction : column;
+  gap            : 5px;
+  cursor         : pointer;
+  padding        : 6px;
+  border         : none;
+  background     : transparent;
+}
+
+.hamburger span {
+  display       : block;
+  width         : 24px;
+  height        : 2.5px;
+  background    : var(--green-primary);
+  border-radius : 2px;
+  transition    : transform var(--transition), opacity var(--transition);
+}
+
+/* Animasi ikon × saat menu terbuka */
+.hamburger.active span:nth-child(1) { transform: translateY(7.5px) rotate( 45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+/* ================================================================
+   RESPONSIVE — Nav slide-down (mobile)
+   ================================================================ */
+@media (max-width: 1024px) {
+  header { padding: 0 20px; }
+
+  /* Nav tersembunyi → slide-down */
+  nav {
+    display        : block;
+    position       : absolute;
+    top            : 118px; /* tinggi topbar(42) + header(76) */
+    left           : 0;
+    right          : 0;
+    background     : linear-gradient(160deg, #ffffff 0%, var(--green-foam) 100%);
+    box-shadow     : 0 12px 32px rgba(45,90,61,.14);
+    border-top     : 3px solid var(--green-primary);
+    z-index        : 190;
+    max-height     : 0;
+    overflow       : hidden;
+    opacity        : 0;
+    pointer-events : none;
+    transition     : max-height .4s cubic-bezier(.4,0,.2,1), opacity .3s ease;
+  }
+
+  nav.open {
+    max-height     : 520px;
+    opacity        : 1;
+    pointer-events : all;
+  }
+
+  nav ul { flex-direction: column; gap: 0; padding: 8px 0 12px; }
+
+  nav ul li a {
+    border-radius : 0;
+    padding       : 13px 28px 13px 24px;
+    border-bottom : 1px solid rgba(74,124,89,.08);
+    font-size     : .90rem;
+  }
+
+  /* Ikon panah kecil di kiri item */
+  nav ul li a::before {
+    content     : '›';
+    font-size   : 1.1rem;
+    color       : var(--green-primary);
+    font-weight : 700;
+    flex-shrink : 0;
+    transition  : transform var(--transition);
+  }
+
+  nav ul li a:hover::before { transform: translateX(4px); }
+  nav ul li a::after        { display: none; }
+
+  nav ul li a.active {
+    background   : rgba(74,124,89,.08);
+    color        : var(--green-dark);
+    border-left  : 4px solid var(--green-primary);
+    padding-left : 20px;
+  }
+
+  .hamburger { display: flex; }
+}
+
+/* ── Mobile nav (≤600px) ────────────────────────────────────── */
+@media (max-width: 600px) {
+  header               { padding: 0 16px; height: 66px; }
+  .logo__icon          { width: 46px; height: 46px; }
+  .logo__name          { font-size: .78rem; }
+
+  nav                  { top: 108px; /* topbar(42) + header(66) */ }
+
+  nav ul li a {
+    padding   : 12px 22px 12px 20px;
+    font-size : .86rem;
+  }
+}
+
+/* ── Extra small nav (≤400px) ───────────────────────────────── */
+@media (max-width: 400px) {
+  header               { padding: 0 12px; height: 60px; }
+  .logo__divider       { display: none; }
+  .logo__name          { font-size: .72rem; }
+  nav                  { top: 102px; /* topbar(42) + header(60) */ }
+}

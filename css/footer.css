@@ -1,0 +1,32 @@
+/* ================================================================
+   FOOTER.CSS — Ponpes Al-Barokah An-Nur Khumairoh
+   Styles untuk Footer — dipakai di semua halaman
+   Requires: base.css
+   ================================================================ */
+
+footer {
+  background : linear-gradient(135deg, var(--green-deep) 0%, var(--green-dark) 100%);
+  color      : rgba(255, 255, 255, .65);
+  text-align : center;
+  padding    : 22px 40px;
+  font-size  : .78rem;
+  position   : relative;
+}
+
+/* Garis aksen tipis di atas footer */
+footer::before {
+  content    : '';
+  position   : absolute;
+  top        : 0;
+  left       : 0;
+  right      : 0;
+  height     : 3px;
+  background : linear-gradient(90deg, transparent, var(--green-soft), transparent);
+}
+
+footer span { color: var(--green-soft); font-weight: 600; }
+
+/* Responsive */
+@media (max-width: 600px) {
+  footer { padding: 18px 20px; font-size: .72rem; }
+}

@@ -1,0 +1,514 @@
+/* ================================================================
+   LOGIN.CSS — Ponpes Al-Barokah An-Nur Khumairoh
+   Split-screen layout: Panel Visual (kiri) + Form (kanan)
+   Requires: base.css
+   ================================================================ */
+
+/* ── Body ──────────────────────────────────────────────────────── */
+body.page-login {
+  min-height: 100vh;
+  background: var(--green-deep);
+  overflow: hidden;
+}
+
+/* ── Layout Utama: Split 50/50 ─────────────────────────────────── */
+.login-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+/* ================================================================
+   PANEL KIRI — Visual / Branding
+   ================================================================ */
+.lp-visual {
+  position: relative;
+  background: url('../Picture/whatsAppimageponpes.jpeg') center / cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 48px;
+  overflow: hidden;
+}
+
+.lp-visual__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg,
+      rgba(17, 40, 28, .92) 0%,
+      rgba(30, 61, 43, .82) 50%,
+      rgba(45, 90, 61, .65) 100%);
+  z-index: 0;
+}
+
+/* Semua konten di atas overlay */
+.lp-visual__brand,
+.lp-visual__center,
+.lp-visual__stats {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Brand (logo + nama) ───────────────────────────────────────── */
+.lp-visual__brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.lp-visual__logo {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--white);
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid rgba(149, 200, 168, .40);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .25);
+}
+
+.lp-visual__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.lp-visual__pondok {
+  font-size: .82rem;
+  font-weight: 800;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  line-height: 1.2;
+}
+
+.lp-visual__pondok-sub {
+  font-size: .72rem;
+  color: rgba(149, 200, 168, .85);
+  font-weight: 500;
+  margin-top: 1px;
+}
+
+/* ── Konten Tengah ─────────────────────────────────────────────── */
+.lp-visual__center {
+  max-width: 440px;
+  margin: auto 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.lp-visual__tag {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 8px;
+  background: rgba(149, 200, 168, .25);
+  border: 1px solid rgba(149, 200, 168, .45);
+  color: #a8e5be;
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+.lp-visual__tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green-accent);
+  flex-shrink: 0;
+}
+
+.lp-visual__headline {
+  font-family: 'Amiri', serif;
+  font-size: clamp(2.8rem, 4vw, 4rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 24px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, .5);
+}
+
+.lp-visual__desc {
+  font-size: .95rem;
+  color: rgba(255, 255, 255, .95);
+  line-height: 1.8;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, .4);
+}
+
+/* ================================================================
+   PANEL KANAN — Form Login
+   ================================================================ */
+.lp-form-panel {
+  background: linear-gradient(160deg, #ffffff 0%, var(--green-foam) 100%);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 36px 60px;
+  justify-content: center;
+}
+
+/* Tombol kembali sudut atas */
+.lp-back {
+  position: absolute;
+  top: 32px;
+  right: 40px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--text-soft);
+  border: 1.5px solid var(--green-mist);
+  padding: 7px 16px;
+  border-radius: 20px;
+  transition: all var(--transition);
+  background: var(--white);
+}
+
+.lp-back:hover {
+  color: var(--green-dark);
+  border-color: var(--green-soft);
+  background: var(--green-foam);
+  transform: translateX(-3px);
+}
+
+/* Form wrap */
+.lp-form-wrap {
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+/* ── Heading ───────────────────────────────────────────────────── */
+.lp-form__title {
+  font-family: 'Amiri', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--green-deep);
+  margin-bottom: 6px;
+}
+
+.lp-form__subtitle {
+  font-size: .80rem;
+  color: var(--text-soft);
+  margin-bottom: 32px;
+}
+
+/* ── Form Fields ───────────────────────────────────────────────── */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--text-mid);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 7px;
+}
+
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrap input {
+  width: 100%;
+  padding: 13px 46px 13px 44px;
+  border: 1.5px solid var(--green-mist);
+  border-radius: 12px;
+  font-size: .88rem;
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-dark);
+  background: rgba(244, 248, 245, .8);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+.input-wrap input:focus {
+  border-color: var(--green-primary);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(74, 124, 89, .10);
+}
+
+.input-wrap input::placeholder {
+  color: var(--gray-mid);
+}
+
+/* Ikon kiri */
+.input-icon--left {
+  position: absolute;
+  left: 14px;
+  color: var(--gray-mid);
+  font-size: .90rem;
+  transition: color var(--transition);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.input-wrap:focus-within .input-icon--left {
+  color: var(--green-primary);
+}
+
+/* Ikon kanan (toggle password) */
+.input-icon {
+  position: absolute;
+  right: 14px;
+  color: var(--gray-mid);
+  font-size: .90rem;
+  transition: color var(--transition);
+  pointer-events: none;
+}
+
+.toggle-pw {
+  pointer-events: all;
+}
+
+.toggle-pw:hover {
+  color: var(--green-dark);
+}
+
+/* ── Baris show pw + forgot ────────────────────────────────────── */
+.show-pw-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.show-pw-row label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .78rem;
+  color: var(--text-soft);
+  cursor: pointer;
+  user-select: none;
+}
+
+.show-pw-row input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--green-primary);
+  cursor: pointer;
+}
+
+.forgot-link {
+  font-size: .78rem;
+  color: var(--green-primary);
+  font-weight: 600;
+  transition: color var(--transition);
+}
+
+.forgot-link:hover {
+  color: var(--green-dark);
+  text-decoration: underline;
+}
+
+/* ── Login Button ──────────────────────────────────────────────── */
+.btn-login {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--green-primary) 0%, var(--green-dark) 100%);
+  color: var(--white);
+  border: none;
+  border-radius: 12px;
+  font-size: .92rem;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(45, 90, 61, .32);
+  transition: all var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.btn-login:hover {
+  background: linear-gradient(135deg, var(--green-light) 0%, var(--green-primary) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(45, 90, 61, .40);
+}
+
+.btn-login:active {
+  transform: translateY(0);
+}
+
+.btn-login:disabled {
+  opacity: .75;
+  cursor: not-allowed;
+}
+
+/* ── Security Note ─────────────────────────────────────────────── */
+.security-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: .70rem;
+  color: var(--text-soft);
+}
+
+.security-note i {
+  color: var(--green-accent);
+}
+
+/* ================================================================
+   LOGIN ALERT
+   ================================================================ */
+.login-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: .82rem;
+  font-weight: 500;
+  margin-bottom: 18px;
+  line-height: 1.5;
+  border: 1.5px solid transparent;
+  animation: alertIn .3s ease both;
+}
+
+.login-alert--error {
+  background: #fff5f5;
+  border-color: #f5c6c6;
+  color: #c0392b;
+}
+
+.login-alert--success {
+  background: #f0faf4;
+  border-color: #a8dabb;
+  color: #1e7e4a;
+}
+
+.login-alert--info {
+  background: #f0f6ff;
+  border-color: #a8c4e8;
+  color: #1a4f8a;
+}
+
+/* ================================================================
+   KEYFRAMES
+   ================================================================ */
+@keyframes alertIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  20% {
+    transform: translateX(-8px);
+  }
+
+  40% {
+    transform: translateX(8px);
+  }
+
+  60% {
+    transform: translateX(-5px);
+  }
+
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width: 860px) {
+  .login-page {
+    grid-template-columns: 1fr;
+  }
+
+  .lp-visual {
+    min-height: 280px;
+    padding: 32px 32px;
+    align-items: center;
+  }
+
+  .lp-visual__headline {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .lp-visual__desc {
+    display: none;
+  }
+
+  .lp-visual__center {
+    text-align: center;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lp-visual__tag {
+    align-self: center;
+  }
+
+  .lp-visual__brand {
+    justify-content: center;
+  }
+
+  .lp-form-panel {
+    padding: 48px 32px;
+    justify-content: flex-start;
+  }
+
+  .lp-form-wrap {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .lp-visual {
+    min-height: 220px;
+    padding: 24px 20px;
+    align-items: center;
+  }
+
+  .lp-visual__stats {
+    padding: 12px 16px;
+  }
+
+  .lp-visual__brand {
+    justify-content: center;
+  }
+
+  .lp-form-panel {
+    padding: 36px 20px;
+  }
+
+  .lp-back {
+    top: 20px;
+    right: 20px;
+  }
+}

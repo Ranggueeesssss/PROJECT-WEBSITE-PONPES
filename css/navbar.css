@@ -1,0 +1,73 @@
+/* ================================================================
+   NAVBAR.CSS — Ponpes Al-Barokah An-Nur Khumairoh
+   Styles untuk Top Bar (Baris 1): info kontak, search, login
+   Requires: base.css
+   ================================================================ */
+
+/* ================================================================
+   BARIS 1 — TOP BAR (hijau gelap)
+   ================================================================ */
+.topbar {
+  background      : linear-gradient(90deg, var(--green-deep) 0%, var(--green-dark) 60%, #3a6b4e 100%);
+  padding         : 0 48px;
+  height          : 42px;
+  display         : flex;
+  align-items     : center;
+  justify-content : space-between;
+  border-bottom   : 1px solid rgba(255, 255, 255, .08);
+}
+
+/* Kiri — info kontak */
+.topbar__info {
+  display     : flex;
+  align-items : center;
+  gap         : 22px;
+}
+
+.topbar__info-item {
+  display     : flex;
+  align-items : center;
+  gap         : 7px;
+  color       : rgba(255, 255, 255, .80);
+  font-size   : .72rem;
+}
+
+.topbar__info-item i {
+  color     : var(--green-accent);
+  font-size : .75rem;
+}
+
+/* Kanan — login only */
+.topbar__right {
+  display     : flex;
+  align-items : center;
+  gap         : 16px;
+}
+
+.topbar__login {
+  display       : flex;
+  align-items   : center;
+  gap           : 7px;
+  color         : rgba(255, 255, 255, .85);
+  font-size     : .75rem;
+  font-weight   : 500;
+  padding       : 4px 12px;
+  border        : 1px solid rgba(255, 255, 255, .25);
+  border-radius : 20px;
+  cursor        : pointer;
+  transition    : all var(--transition);
+}
+
+.topbar__login i         { color: var(--green-accent); font-size: .75rem; }
+.topbar__login:hover     { background: rgba(255,255,255,.15); color: var(--white); border-color: var(--green-accent); }
+.topbar__login.is-active { background: rgba(149,200,168,.20); border-color: var(--green-accent); }
+
+@media (max-width: 1024px) {
+  .topbar       { padding: 0 20px; }
+  .topbar__info { display: none;   }
+}
+
+@media (max-width: 600px) {
+  .topbar               { padding: 0 16px; }
+  .topbar__search input { width: 120px;    }
+}
