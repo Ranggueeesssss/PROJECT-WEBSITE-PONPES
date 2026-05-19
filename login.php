@@ -10,7 +10,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_role'])) {
     switch ($_SESSION['user_role']) {
         case 'admin': header('Location: dashboard.php'); exit;
         case 'guru':  header('Location: dashboard.php'); exit;
-        default:      header('Location: Home.html');     exit;
+        default:      header('Location: Home.php');     exit;
     }
 }
 ?>
