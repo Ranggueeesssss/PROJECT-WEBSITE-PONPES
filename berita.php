@@ -31,7 +31,7 @@ if ($result && $result->num_rows > 0) {
 </head>
 <body>
 
-<div id="site-header-placeholder"></div>
+<?php include 'includes/header.php'; ?>
 
 <div class="page-hero">
   <div class="page-hero__inner">
@@ -129,14 +129,14 @@ if ($result && $result->num_rows > 0) {
 @media (max-width: 768px) { #modalContent { padding: 20px !important; } }
 </style>
 
-<div id="site-footer-placeholder"></div>
+<?php include 'includes/footer.php'; ?>
 
 <!-- Data Dinamis PHP -->
 <script>
     var ARTICLES = <?php echo json_encode($beritaList); ?>;
 </script>
 
-<script src="js/components.js"></script>
+
 <script src="js/navbar.js"></script>
 <script src="js/berita.js"></script>
 

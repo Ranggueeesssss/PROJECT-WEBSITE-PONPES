@@ -1,4 +1,6 @@
-
+<?php
+// Halaman informasi.php
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -22,7 +24,7 @@
 <body>
 
 <!-- SITE HEADER — di-inject oleh components.js -->
-<div id="site-header-placeholder"></div>
+<?php include 'includes/header.php'; ?>
 
 
 <!-- PAGE HERO -->
@@ -199,13 +201,13 @@
             <h3>Tautan Cepat</h3>
           </div>
           <div class="sidebar-widget__body">
-            <a href="prestasi.html" class="sidebar-btn">
+            <a href="prestasi.php" class="sidebar-btn">
               <i class="fas fa-trophy"></i> Prestasi Santri
             </a>
-            <a href="berita.html" class="sidebar-btn">
+            <a href="berita.php" class="sidebar-btn">
               <i class="fas fa-newspaper"></i> Berita Terbaru
             </a>
-            <a href="galeri.html" class="sidebar-btn">
+            <a href="galeri.php" class="sidebar-btn">
               <i class="fas fa-images"></i> Galeri Foto
             </a>
           </div>
@@ -256,7 +258,7 @@
               Tahun Ajaran <strong style="color:var(--green-primary);">2026/2027</strong>
               segera dibuka. Daftarkan putra-putri Anda sekarang.
             </p>
-            <a href="Home.html#pendaftaran" class="sidebar-btn">
+            <a href="pendaftaran.php" class="sidebar-btn">
               <i class="fas fa-file-alt"></i> Panduan Pendaftaran
             </a>
           </div>
@@ -272,11 +274,11 @@
 
 
 <!-- FOOTER — di-inject oleh components.js -->
-<div id="site-footer-placeholder"></div>
+<?php include 'includes/footer.php'; ?>
 
 
 <!-- Scripts -->
-<script src="js/components.js"></script>   <!-- Inject navbar + footer         -->
+
 <script src="js/navbar.js"></script>        <!-- Hamburger, scroll, active link -->
 <script src="js/informasi.js"></script>     <!-- Scroll reveal                  -->
 

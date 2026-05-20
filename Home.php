@@ -19,7 +19,7 @@
 </head>
 <body>
 
-<div id="site-header-placeholder"></div>
+<?php include 'includes/header.php'; ?>
 
 <section class="hero" aria-label="Banner utama">
   <div class="hero__bg" aria-hidden="true"></div>
@@ -74,7 +74,7 @@
       Dengan kurikulum terintegrasi antara ilmu agama dan ilmu umum, para santri dibimbing
       oleh pengajar berpengalaman dalam lingkungan yang kondusif dan Islami.
     </p>
-    <a href="informasi.php" class="btn-primary">
+    <a href="Informasi.php" class="btn-primary">
       <i class="fas fa-arrow-right" aria-hidden="true"></i> Selengkapnya
     </a>
   </div>
@@ -243,9 +243,9 @@
   </div>
 </section>
 
-<div id="site-footer-placeholder"></div>
+<?php include 'includes/footer.php'; ?>
 
-<script src="js/components.js"></script>
+
 <script src="js/navbar.js"></script>
 <script src="js/home.js"></script>
 

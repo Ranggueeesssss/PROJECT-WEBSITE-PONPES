@@ -41,7 +41,7 @@ if ($result && $result->num_rows > 0) {
 <body>
 
 <!-- SITE HEADER -->
-<div id="site-header-placeholder"></div>
+<?php include 'includes/header.php'; ?>
 
 <!-- PAGE HERO -->
 <div class="page-hero">
@@ -146,10 +146,10 @@ if ($result && $result->num_rows > 0) {
 </main>
 
 <!-- FOOTER -->
-<div id="site-footer-placeholder"></div>
+<?php include 'includes/footer.php'; ?>
 
 <!-- Scripts -->
-<script src="js/components.js"></script>
+
 <script src="js/navbar.js"></script>
 <script src="js/pengajar.js"></script>
 

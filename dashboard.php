@@ -53,10 +53,9 @@ if ($usersResult && $usersResult->num_rows > 0) {
 
 // 2. Data Berita
 $berita = [];
-$beritaResult = $conn->query("SELECT id, judul, tanggal, featured FROM berita ORDER BY id DESC LIMIT 5");
+$beritaResult = $conn->query("SELECT id, judul, tanggal, kategori FROM berita ORDER BY id DESC LIMIT 5");
 if ($beritaResult) {
     while($row = $beritaResult->fetch_assoc()) {
-        $row['status'] = $row['featured'] ? 'Unggulan' : 'Aktif';
         $berita[] = $row;
     }
 }
@@ -280,7 +279,6 @@ if ($pesanResult) {
                                 <span class="card-icon"><i class="fas fa-user-check"></i></span>
                                 Validasi Pendaftaran Terbaru
                             </h2>
-                            <a href="#" class="card-header-link">Lihat Semua <i class="fas fa-arrow-right" style="font-size:0.65rem;"></i></a>
                         </div>
                         <div class="table-responsive">
                             <table class="table">
@@ -335,7 +333,6 @@ if ($pesanResult) {
                                 <span class="card-icon"><i class="fas fa-newspaper"></i></span>
                                 Kelola Berita Terbaru
                             </h2>
-                            <a href="#" class="card-header-link">Kelola Semua <i class="fas fa-arrow-right" style="font-size:0.65rem;"></i></a>
                         </div>
                         <div class="table-responsive">
                             <table class="table">
@@ -343,7 +340,7 @@ if ($pesanResult) {
                                     <tr>
                                         <th>Judul Berita</th>
                                         <th>Tanggal</th>
-                                        <th>Status</th>
+                                        <th>Kategori</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -355,19 +352,16 @@ if ($pesanResult) {
                                         </td>
                                         <td style="color:var(--dash-text-light);font-size:0.82rem;white-space:nowrap;">
                                             <i class="fas fa-calendar-alt" style="margin-right:4px;color:var(--gold-400);"></i>
-                                            <?php echo $b['tanggal']; ?>
+                                            <?php echo htmlspecialchars($b['tanggal']); ?>
                                         </td>
                                         <td>
-                                            <?php if ($b['status'] === 'Aktif'): ?>
-                                                <span class="status-badge status-active">Aktif</span>
-                                            <?php else: ?>
-                                                <span class="status-badge status-pending">Draft</span>
-                                            <?php endif; ?>
+                                            <span class="status-badge" style="background:var(--green-50); color:var(--green-600); border:1px solid var(--green-100);">
+                                                <?php echo htmlspecialchars($b['kategori']); ?>
+                                            </span>
                                         </td>
                                         <td>
                                             <div class="action-btns">
-                                                <button class="action-btn" title="Edit"><i class="fas fa-pen"></i></button>
-                                                <button class="action-btn delete" title="Hapus"><i class="fas fa-trash"></i></button>
+                                                <a href="data_berita.php" class="action-btn" title="Edit & Update Berita" style="color:var(--dash-primary);background:var(--dash-primary-light);"><i class="fas fa-search"></i></a>
                                             </div>
                                         </td>
                                     </tr>

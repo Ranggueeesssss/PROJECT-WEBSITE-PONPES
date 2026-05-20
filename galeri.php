@@ -35,7 +35,7 @@ if ($result && $result->num_rows > 0) {
 <body>
 
 <!-- SITE HEADER — di-inject oleh components.js -->
-<div id="site-header-placeholder"></div>
+<?php include 'includes/header.php'; ?>
 
 
 <!-- PAGE HERO -->
@@ -110,7 +110,7 @@ if ($result && $result->num_rows > 0) {
 
 
 <!-- FOOTER — di-inject oleh components.js -->
-<div id="site-footer-placeholder"></div>
+<?php include 'includes/footer.php'; ?>
 
 <!-- Data Dinamis PHP -->
 <script>
@@ -118,7 +118,7 @@ if ($result && $result->num_rows > 0) {
 </script>
 
 <!-- Scripts -->
-<script src="js/components.js"></script>  
+
 <script src="js/navbar.js"></script>       
 <script src="js/galeri.js"></script>       
 

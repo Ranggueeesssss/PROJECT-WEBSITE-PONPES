@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
 
 <!-- Header dari komponen js -->
-<div id="site-header-placeholder"></div>
+<?php include 'includes/header.php'; ?>
 
 <!-- MAIN FORM -->
 <main class="form-wrapper">
@@ -372,10 +372,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </main>
 
 <!-- Footer -->
-<div id="site-footer-placeholder"></div>
+<?php include 'includes/footer.php'; ?>
 
 <!-- Scripts -->
-<script src="js/components.js"></script>
+
 <script src="js/navbar.js"></script>
 <script src="js/form-pendaftaran.js?v=3"></script>
 

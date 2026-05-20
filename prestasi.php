@@ -41,7 +41,7 @@ foreach($prestasiList as $p) {
 </head>
 <body>
 
-<div id="site-header-placeholder"></div>
+<?php include 'includes/header.php'; ?>
 
 <div class="page-hero">
   <div class="page-hero__inner">
@@ -170,14 +170,14 @@ foreach($prestasiList as $p) {
 
 </main>
 
-<div id="site-footer-placeholder"></div>
+<?php include 'includes/footer.php'; ?>
 
 <!-- Data Dinamis PHP -->
 <script>
     var PRESTASI = <?php echo json_encode($prestasiList); ?>;
 </script>
 
-<script src="js/components.js"></script>
+
 <script src="js/navbar.js"></script>
 <script src="js/prestasi.js"></script>
 
