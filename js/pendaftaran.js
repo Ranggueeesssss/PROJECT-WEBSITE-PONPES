@@ -1,10 +1,8 @@
-/* ================================================================
-   PENDAFTARAN JS — Ponpes Al-Barokah An-Nur Khumairoh
-   ================================================================ */
+/* PENDAFTARAN JS — Ponpes Al-Barokah An-Nur Khumairoh */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* ── 1. Animasi Fade-Up pada Scroll & Load ── */
+    /* 1. Animasi Fade-Up pada Scroll & Load */
     const fadeElements = document.querySelectorAll('.fade-up-element');
 
     const observerOptions = {
@@ -34,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, 100);
 
-    /* ── 2. Interaksi Tombol Form Pendaftaran ── */
+    /* 2. Interaksi Tombol Form Pendaftaran */
     const btnForm = document.getElementById('btnFormPend');
     if (btnForm) {
         btnForm.addEventListener('click', (e) => {

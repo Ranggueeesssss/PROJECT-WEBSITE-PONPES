@@ -1,16 +1,12 @@
-/* ================================================================
-   INFORMASI.JS — Ponpes Al-Barokah An-Nur Khumairoh
+﻿/* INFORMASI.JS — Ponpes Al-Barokah An-Nur Khumairoh
    Script khusus halaman Informasi
-   Requires: navbar.js (di-load via components.js)
-   ================================================================ */
+   Requires: navbar.js (di-load via components.js) */
 
 (function () {
   'use strict';
 
-  /* ================================================================
-     SCROLL REVEAL
-     Kartu kurikulum dan item jenjang muncul saat di-scroll
-     ================================================================ */
+  /* SCROLL REVEAL
+     Kartu kurikulum dan item jenjang muncul saat di-scroll */
   function setupReveal() {
     var els = document.querySelectorAll(
       '.kurikulum-card, .jenjang-list li, .info-note, .sidebar-widget'
@@ -42,9 +38,7 @@
     });
   }
 
-  /* ================================================================
-     INIT
-     ================================================================ */
+  /* INIT */
   function init() {
     setupReveal();
   }

@@ -1,12 +1,8 @@
-/* ================================================================
-   HOME.CSS — Ponpes Al-Barokah An-Nur Khumairoh
+/* HOME.CSS — Ponpes Al-Barokah An-Nur Khumairoh
    Styles khusus halaman Home (index.html)
-   Requires: base.css, navbar.css
-   ================================================================ */
+   Requires: base.css, navbar.css */
 
-/* ================================================================
-   HERO SECTION
-   ================================================================ */
+/* HERO SECTION */
 .hero {
   position   : relative;
   min-height : calc(100vh - 118px); /* fill viewport minus topbar+header */
@@ -135,9 +131,7 @@
   box-shadow : 0 14px 32px rgba(45,90,61,.50);
 }
 
-/* ================================================================
-   STATS STRIP
-   ================================================================ */
+/* STATS STRIP */
 .stats {
   background : linear-gradient(90deg, var(--green-dark) 0%, var(--green-primary) 50%, var(--green-dark) 100%);
   display    : flex;
@@ -200,9 +194,7 @@
   margin-top    : 2px;
 }
 
-/* ================================================================
-   ABOUT SECTION
-   ================================================================ */
+/* ABOUT SECTION */
 .about {
   padding    : 90px 80px;
   display    : flex;
@@ -248,9 +240,7 @@
 
 .about__content { flex: 1; position: relative; z-index: 1; }
 
-/* ================================================================
-   VISI & MISI SECTION — Redesigned
-   ================================================================ */
+/* VISI & MISI SECTION — Redesigned */
 .visi-misi {
   padding    : 80px 80px 0;
   background : linear-gradient(160deg, var(--green-foam) 0%, var(--cream) 60%, var(--green-mist) 100%);
@@ -272,7 +262,7 @@
   z-index       : 0;
 }
 
-/* ── Heading ─────────────────────────────────────────────────── */
+/* Heading */
 .visi-misi__heading {
   margin-bottom : 48px;
   position      : relative;
@@ -325,7 +315,7 @@
 .vm-deco__dots span:nth-child(2) { background: var(--green-light); }
 .vm-deco__dots span:nth-child(3) { background: var(--green-soft);  }
 
-/* ── Layout Utama: Gambar kiri + Kartu kanan ─────────────────── */
+/* Layout Utama: Gambar kiri + Kartu kanan */
 .vm-main-layout {
   display               : grid;
   grid-template-columns : 1fr 1.15fr;
@@ -336,7 +326,7 @@
   margin-bottom         : 60px;
 }
 
-/* ── Kolom Gambar ────────────────────────────────────────────── */
+/* Kolom Gambar */
 .vm-image-col {
   display        : flex;
   flex-direction : column;
@@ -430,7 +420,7 @@
   font-style : normal;
 }
 
-/* ── Kolom Kartu ─────────────────────────────────────────────── */
+/* Kolom Kartu */
 .vm-cards-col {
   display        : flex;
   flex-direction : column;
@@ -562,9 +552,7 @@
 
 
 
-/* ================================================================
-   PENDAFTARAN SANTRI BARU SECTION
-   ================================================================ */
+/* PENDAFTARAN SANTRI BARU SECTION */
 .pendaftaran {
   display               : grid;
   grid-template-columns : 1fr 1fr;
@@ -574,7 +562,7 @@
   gap                   : 32px;
 }
 
-/* ── Kiri: Visual / Flyer ────────────────────────────────────── */
+/* Kiri: Visual / Flyer */
 .pendaftaran__visual {
   position   : relative;
   background : linear-gradient(160deg, var(--green-deep) 0%, var(--green-dark) 60%, #3a6b4e 100%);
@@ -686,7 +674,7 @@
 .pend-box__contact span        { display: flex; align-items: center; gap: 8px; font-size: .78rem; color: rgba(255,255,255,.80); }
 .pend-box__contact i           { color: var(--green-accent); font-size: .75rem; }
 
-/* ── Kanan: CTA ──────────────────────────────────────────────── */
+/* Kanan: CTA */
 .pendaftaran__cta {
   padding         : 24px 16px;
   display         : flex;
@@ -791,11 +779,9 @@
 .pendaftaran__contact strong { display: block; margin-bottom: 2px; color: var(--text-dark); }
 .pendaftaran__contact .phone { font-size: 1.1rem; font-weight: 700; color: var(--green-primary); }
 
-/* ================================================================
-   RESPONSIVE — HOME (Hybrid: Desktop → Tablet → Mobile)
-   ================================================================ */
+/* RESPONSIVE — HOME (Hybrid: Desktop → Tablet → Mobile) */
 
-/* ── Tablet landscape (≤1280px) ─────────────────────────────── */
+/* Tablet landscape (≤1280px) */
 @media (max-width: 1280px) {
   .hero__content       { padding: 60px 56px; }
   .about               { padding: 72px 56px; gap: 48px; }
@@ -803,7 +789,7 @@
   .pendaftaran         { padding: 56px 56px 80px; }
 }
 
-/* ── Tablet portrait (≤1024px) ──────────────────────────────── */
+/* Tablet portrait (≤1024px) */
 @media (max-width: 1024px) {
   /* Hero */
   .hero                { min-height: 520px; }
@@ -822,7 +808,7 @@
   .pendaftaran         { padding: 48px 36px 72px; }
 }
 
-/* ── Phablet / Large phone (≤860px) ─────────────────────────── */
+/* Phablet / Large phone (≤860px) */
 @media (max-width: 860px) {
   /* Hero */
   .hero                { min-height: 480px; }
@@ -875,7 +861,7 @@
   .pendaftaran__cta-title { font-size: clamp(1.8rem, 6vw, 2.4rem); }
 }
 
-/* ── Mobile (≤600px) ────────────────────────────────────────── */
+/* Mobile (≤600px) */
 @media (max-width: 600px) {
   /* Hero */
   .hero                { min-height: 420px; }
@@ -923,7 +909,7 @@
   .pend-btn            { padding: 11px 16px; font-size: .82rem; }
 }
 
-/* ── Extra small (≤400px) ───────────────────────────────────── */
+/* Extra small (≤400px) */
 @media (max-width: 400px) {
   .hero__title         { font-size: 1.7rem; }
   /* Stats tetap 2 kolom even di HP kecil */

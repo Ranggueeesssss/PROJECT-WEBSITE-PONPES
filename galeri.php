@@ -25,7 +25,7 @@ if ($result && $result->num_rows > 0) {
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-  <!-- ── Stylesheets (urut: umum → spesifik) ── -->
+  <!-- Stylesheets (urut: umum → spesifik) -->
   <link rel="stylesheet" href="css/base.css"    />  
   <link rel="stylesheet" href="css/navbar.css"  />  
   <link rel="stylesheet" href="css/header.css"  />  
@@ -34,15 +34,11 @@ if ($result && $result->num_rows > 0) {
 </head>
 <body>
 
-<!-- ============================================================
-     SITE HEADER — di-inject oleh components.js
-=========================================================== -->
+<!-- SITE HEADER — di-inject oleh components.js -->
 <div id="site-header-placeholder"></div>
 
 
-<!-- ============================================================
-     PAGE HERO
-=========================================================== -->
+<!-- PAGE HERO -->
 <div class="page-hero">
   <div class="page-hero__inner">
 
@@ -67,9 +63,7 @@ if ($result && $result->num_rows > 0) {
 </div><!-- /page-hero -->
 
 
-<!-- ============================================================
-     GALERI WRAPPER
-=========================================================== -->
+<!-- GALERI WRAPPER -->
 <main class="galeri-wrapper">
 
   <!-- Toolbar: filter + jumlah foto -->
@@ -115,17 +109,15 @@ if ($result && $result->num_rows > 0) {
 </main><!-- /galeri-wrapper -->
 
 
-<!-- ============================================================
-     FOOTER — di-inject oleh components.js
-=========================================================== -->
+<!-- FOOTER — di-inject oleh components.js -->
 <div id="site-footer-placeholder"></div>
 
-<!-- ── Data Dinamis PHP ── -->
+<!-- Data Dinamis PHP -->
 <script>
     var FOTO = <?php echo json_encode($fotoList); ?>;
 </script>
 
-<!-- ── Scripts ── -->
+<!-- Scripts -->
 <script src="js/components.js"></script>  
 <script src="js/navbar.js"></script>       
 <script src="js/galeri.js"></script>       

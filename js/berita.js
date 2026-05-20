@@ -1,28 +1,20 @@
-/* ================================================================
-   BERITA.JS — Ponpes Al-Barokah An-Nur Khumairoh
+﻿/* BERITA.JS — Ponpes Al-Barokah An-Nur Khumairoh
    Script khusus halaman Berita
-   Requires: navbar.js (sudah di-load sebelumnya)
-   ================================================================ */
+   Requires: navbar.js (sudah di-load sebelumnya) */
 
 (function () {
   'use strict';
 
-  /* ================================================================
-     DATA ARTIKEL (simulasi — ganti dengan fetch API / CMS)
-     ================================================================ */
+  /* DATA ARTIKEL (simulasi — ganti dengan fetch API / CMS) */
     // Array ARTICLES sekarang di-inject langsung dari database melalui berita.php
 
-  /* ================================================================
-     STATE
-     ================================================================ */
+  /* STATE */
   let currentKategori = 'Semua';
   let currentPage     = 1;
   let currentSearch   = '';
   const PER_PAGE      = 6;
 
-  /* ================================================================
-     FILTER & SEARCH
-     ================================================================ */
+  /* FILTER & SEARCH */
   function getFiltered() {
     return ARTICLES.filter(function (a) {
       const matchKat    = currentKategori === 'Semua' || a.kategori === currentKategori;
@@ -38,9 +30,7 @@
     return list.slice(start, start + PER_PAGE);
   }
 
-  /* ================================================================
-     RENDER
-     ================================================================ */
+  /* RENDER */
 
   /* Buat HTML gambar atau placeholder */
   function imgHTML(src, alt, cls) {
@@ -175,9 +165,7 @@
     });
   }
 
-  /* ================================================================
-     MODAL BERITA
-     ================================================================ */
+  /* MODAL BERITA */
   const modal = document.getElementById('beritaModal');
   const modalContent = document.getElementById('modalContent');
   const closeBtn = document.getElementById('closeModalBtn');
@@ -237,9 +225,7 @@
     }).join('');
   }
 
-  /* ================================================================
-     EVENT LISTENERS
-     ================================================================ */
+  /* EVENT LISTENERS */
 
   /* Filter kategori (tabs + chips sidebar) */
   function setupFilters() {
@@ -298,9 +284,7 @@
     });
   }
 
-  /* ================================================================
-     INIT
-     ================================================================ */
+  /* INIT */
   function init() {
     renderFeatured();
     renderGrid();

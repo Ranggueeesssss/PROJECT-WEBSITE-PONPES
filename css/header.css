@@ -1,10 +1,8 @@
-/* ================================================================
-   HEADER.CSS — Ponpes Al-Barokah An-Nur Khumairoh
+/* HEADER.CSS — Ponpes Al-Barokah An-Nur Khumairoh
    Styles untuk Main Header (Baris 2): logo, nav, hamburger
-   Requires: base.css
-   ================================================================ */
+   Requires: base.css */
 
-/* ── Site Header Wrapper ───────────────────────────────────────── */
+/* Site Header Wrapper */
 .site-header {
   position   : sticky;
   top        : 0;
@@ -17,9 +15,7 @@
   box-shadow : 0 6px 32px rgba(30, 61, 43, .22);
 }
 
-/* ================================================================
-   BARIS 2 — MAIN HEADER (logo + nav)
-   ================================================================ */
+/* BARIS 2 — MAIN HEADER (logo + nav) */
 header {
   background      : linear-gradient(135deg, #ffffff 0%, var(--green-foam) 100%);
   padding         : 0 48px;
@@ -43,7 +39,7 @@ header::before {
   pointer-events : none;
 }
 
-/* ── Logo ──────────────────────────────────────────────────────── */
+/* Logo */
 .logo {
   display     : flex;
   align-items : center;
@@ -89,7 +85,7 @@ header::before {
   letter-spacing : .05em;
 }
 
-/* ── Navigation Links ──────────────────────────────────────────── */
+/* Navigation Links */
 nav ul {
   display     : flex;
   align-items : center;
@@ -136,7 +132,7 @@ nav ul li a.active {
 
 nav ul li a.active::after { display: none; }
 
-/* ── Hamburger ─────────────────────────────────────────────────── */
+/* Hamburger */
 .hamburger {
   display        : none;
   flex-direction : column;
@@ -161,9 +157,7 @@ nav ul li a.active::after { display: none; }
 .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .hamburger.active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
-/* ================================================================
-   RESPONSIVE — Nav slide-down (mobile)
-   ================================================================ */
+/* RESPONSIVE — Nav slide-down (mobile) */
 @media (max-width: 1024px) {
   header { padding: 0 20px; }
 
@@ -223,7 +217,7 @@ nav ul li a.active::after { display: none; }
   .hamburger { display: flex; }
 }
 
-/* ── Mobile nav (≤600px) ────────────────────────────────────── */
+/* Mobile nav (≤600px) */
 @media (max-width: 600px) {
   header               { padding: 0 16px; height: 66px; }
   .logo__icon          { width: 46px; height: 46px; }
@@ -237,7 +231,7 @@ nav ul li a.active::after { display: none; }
   }
 }
 
-/* ── Extra small nav (≤400px) ───────────────────────────────── */
+/* Extra small nav (≤400px) */
 @media (max-width: 400px) {
   header               { padding: 0 12px; height: 60px; }
   .logo__divider       { display: none; }

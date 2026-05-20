@@ -11,7 +11,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-  <!-- ── Stylesheets ── -->
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="css/base.css"    />  
   <link rel="stylesheet" href="css/navbar.css"  />  
   <link rel="stylesheet" href="css/header.css"  />  
@@ -20,14 +20,10 @@
 </head>
 <body>
 
-<!-- ============================================================
-     SITE HEADER
-============================================================ -->
+<!-- SITE HEADER -->
 <div id="site-header-placeholder"></div>
 
-<!-- ============================================================
-     PAGE HERO
-============================================================ -->
+<!-- PAGE HERO -->
 <div class="page-hero">
   <div class="page-hero__inner">
     <!-- Breadcrumb -->
@@ -49,9 +45,7 @@
   </div>
 </div>
 
-<!-- ============================================================
-     MAIN CONTENT
-============================================================ -->
+<!-- MAIN CONTENT -->
 <main class="pend-main">
   <div class="pend-container">
     
@@ -62,7 +56,7 @@
         </p>
     </div>
 
-    <!-- ── DUA KOLOM: INFORMASI & PANDUAN ── -->
+    <!-- DUA KOLOM: INFORMASI & PANDUAN -->
     <div class="pend-grid">
         
         <!-- KOLOM KIRI: SYARAT & INFO (Brosur) -->
@@ -210,12 +204,10 @@
   </div>
 </main>
 
-<!-- ============================================================
-     FOOTER
-============================================================ -->
+<!-- FOOTER -->
 <div id="site-footer-placeholder"></div>
 
-<!-- ── Scripts ── -->
+<!-- Scripts -->
 <script src="js/components.js"></script>
 <script src="js/navbar.js"></script>
 <script src="js/pendaftaran.js"></script>

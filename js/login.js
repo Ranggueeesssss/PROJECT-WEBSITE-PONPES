@@ -1,13 +1,11 @@
-/* ================================================================
-   LOGIN.JS — Ponpes Al-Barokah An-Nur Khumairoh
+/* LOGIN.JS — Ponpes Al-Barokah An-Nur Khumairoh
    Script khusus halaman Login (login.php)
-   Menggunakan Fetch API untuk autentikasi ke proses_login.php
-   ================================================================ */
+   Menggunakan Fetch API untuk autentikasi ke proses_login.php */
 
 (function () {
   'use strict';
 
-  /* ── Selector Cache ──────────────────────────────────────────── */
+  /* Selector Cache */
   const usernameInput = document.getElementById('username');
   const passwordInput = document.getElementById('password');
   const showPwCheck   = document.getElementById('showPwCheck');
@@ -16,7 +14,7 @@
   const loginCard     = document.querySelector('.login-card');
   const loginAlert    = document.getElementById('login-alert');
 
-  /* ── 1. Toggle Kata Sandi ────────────────────────────────────── */
+  /* 1. Toggle Kata Sandi */
   function syncPasswordVisibility() {
     const visible      = showPwCheck.checked;
     passwordInput.type = visible ? 'text' : 'password';
@@ -37,7 +35,7 @@
     });
   }
 
-  /* ── 2. Tampilkan Pesan Alert ────────────────────────────────── */
+  /* 2. Tampilkan Pesan Alert */
   /**
    * @param {string} pesan   - Teks pesan yang ditampilkan
    * @param {string} tipe    - 'error' | 'success' | 'info'
@@ -66,7 +64,7 @@
     }
   }
 
-  /* ── 3. Animasi Shake ────────────────────────────────────────── */
+  /* 3. Animasi Shake */
   function shakeCard() {
     if (!loginCard) return;
     loginCard.style.animation = 'none';
@@ -74,7 +72,7 @@
     loginCard.style.animation  = 'shake .4s ease';
   }
 
-  /* ── 4. Validasi Sisi Klien ──────────────────────────────────── */
+  /* 4. Validasi Sisi Klien */
   function validate() {
     const user = usernameInput ? usernameInput.value.trim() : '';
     const pass = passwordInput ? passwordInput.value.trim() : '';
@@ -96,7 +94,7 @@
     return true;
   }
 
-  /* ── 5. Set State Loading pada Tombol ───────────────────────── */
+  /* 5. Set State Loading pada Tombol */
   function setLoading(isLoading) {
     if (!loginBtn) return;
     if (isLoading) {
@@ -110,7 +108,7 @@
     }
   }
 
-  /* ── 6. Handle Login (Fetch ke proses_login.php) ────────────── */
+  /* 6. Handle Login (Fetch ke proses_login.php) */
   function handleLogin() {
     if (!validate()) return;
 
@@ -133,7 +131,7 @@
       })
       .then(function (data) {
         if (data.status === 'success') {
-          /* ── Login Berhasil ── */
+          /* Login Berhasil */
           loginBtn.innerHTML = '<i class="fas fa-check" style="margin-right:8px;"></i>Berhasil Masuk!';
           loginBtn.style.background = 'linear-gradient(135deg, #2d7a50, #1e5235)';
           showAlert(data.pesan, 'success');
@@ -144,7 +142,7 @@
           }, 1200);
 
         } else {
-          /* ── Login Gagal ── */
+          /* Login Gagal */
           setLoading(false);
           shakeCard();
           showAlert(data.pesan || 'Login gagal. Coba lagi.', 'error');
@@ -168,7 +166,7 @@
       });
   }
 
-  /* ── 7. Event Listeners ──────────────────────────────────────── */
+  /* 7. Event Listeners */
   if (loginBtn) {
     loginBtn.addEventListener('click', handleLogin);
   }
@@ -180,7 +178,7 @@
     }
   });
 
-  /* ── 8. Input Focus Effect ───────────────────────────────────── */
+  /* 8. Input Focus Effect */
   document.querySelectorAll('.input-wrap input').forEach(function (input) {
     input.addEventListener('focus', function () {
       var label = this.closest('.form-group');

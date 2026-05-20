@@ -1,7 +1,5 @@
-document.addEventListener('DOMContentLoaded', function() {
-    /* ====================================================
-       Fungsi Jadwal Pengumuman
-       ==================================================== */
+﻿document.addEventListener('DOMContentLoaded', function() {
+    /* Fungsi Jadwal Pengumuman */
     const formSchedule = document.getElementById('formJadwalPengumuman');
     const btnSave = document.getElementById('btnSaveSchedule');
     const inputJadwal = document.getElementById('inputJadwal');
@@ -72,9 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-/* ====================================================
-   Fungsi Modal dan Validasi data_pendaftaran
-   ==================================================== */
+/* Fungsi Modal dan Validasi data_pendaftaran */
 const detailModal = document.getElementById('detailModal');
 
 // Form Validasi

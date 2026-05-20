@@ -1,11 +1,7 @@
-/* ================================================================
-   PENDAFTARAN.CSS — Ponpes Al-Barokah An-Nur Khumairoh
-   Styles khusus halaman Pendaftaran Santri Baru
-   ================================================================ */
+﻿/* PENDAFTARAN.CSS — Ponpes Al-Barokah An-Nur Khumairoh
+   Styles khusus halaman Pendaftaran Santri Baru */
 
-/* ================================================================
-   PAGE HERO
-   ================================================================ */
+/* PAGE HERO */
 .page-hero {
   background    : linear-gradient(135deg, var(--green-deep) 0%, var(--green-dark) 50%, #3a6b4e 100%);
   padding       : 56px 80px 52px;
@@ -71,9 +67,7 @@
 .page-hero__deco-dots { display: flex; gap: 5px; }
 .page-hero__deco-dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--green-soft); display: block; opacity: .7; }
 
-/* ================================================================
-   MAIN CONTENT & INTRO
-   ================================================================ */
+/* MAIN CONTENT & INTRO */
 .pend-main {
   padding    : 60px 80px 80px;
   background : linear-gradient(160deg, var(--cream) 0%, var(--green-foam) 100%);
@@ -90,18 +84,14 @@
 .text-center { text-align: center; }
 .mx-auto { margin-left: auto; margin-right: auto; }
 
-/* ================================================================
-   GRID LAYOUT
-   ================================================================ */
+/* GRID LAYOUT */
 .pend-grid {
   display: grid;
   grid-template-columns: 350px 1fr;
   gap: 40px;
 }
 
-/* ================================================================
-   KOLOM KIRI: INFO CARDS (SIDEBAR)
-   ================================================================ */
+/* KOLOM KIRI: INFO CARDS (SIDEBAR) */
 .pend-info-sidebar {
   display: flex;
   flex-direction: column;
@@ -263,9 +253,7 @@
 .contact-list li a { color: var(--green-primary); font-weight: 600; transition: color 0.3s; }
 .contact-list li a:hover { color: var(--green-dark); }
 
-/* ================================================================
-   KOLOM KANAN: ALUR & TOMBOL
-   ================================================================ */
+/* KOLOM KANAN: ALUR & TOMBOL */
 .pend-guide-main {
   display: flex;
   flex-direction: column;
@@ -422,9 +410,7 @@
   box-shadow: 0 8px 20px rgba(74, 124, 89, 0.4);
 }
 
-/* ================================================================
-   ANIMATION
-   ================================================================ */
+/* ANIMATION */
 .fade-up-element {
   opacity: 0;
   transform: translateY(30px);
@@ -436,9 +422,7 @@
   transform: translateY(0);
 }
 
-/* ================================================================
-   RESPONSIVE
-   ================================================================ */
+/* RESPONSIVE */
 @media (max-width: 1024px) {
   .pend-main { padding: 40px 40px 60px; }
   .page-hero { padding: 40px 40px 36px; }

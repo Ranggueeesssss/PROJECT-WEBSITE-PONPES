@@ -1,11 +1,7 @@
-/* ================================================================
-   PENGAJAR.CSS — Ponpes Al-Barokah An-Nur Khumairoh
-   Styles khusus halaman Pimpinan & Pengajar
-   ================================================================ */
+﻿/* PENGAJAR.CSS — Ponpes Al-Barokah An-Nur Khumairoh
+   Styles khusus halaman Pimpinan & Pengajar */
 
-/* ================================================================
-   PAGE HERO
-   ================================================================ */
+/* PAGE HERO */
 .page-hero {
   background    : linear-gradient(135deg, var(--green-deep) 0%, var(--green-dark) 50%, #3a6b4e 100%);
   padding       : 56px 80px 52px;
@@ -81,9 +77,7 @@
   background: var(--green-soft); display: block; opacity: .7;
 }
 
-/* ================================================================
-   MAIN CONTENT & INTRO
-   ================================================================ */
+/* MAIN CONTENT & INTRO */
 .pengajar-main {
   padding    : 60px 80px 80px;
   background : linear-gradient(160deg, var(--cream) 0%, var(--green-foam) 100%);
@@ -101,9 +95,7 @@
 .mx-auto { margin-left: auto; margin-right: auto; }
 .mt-5 { margin-top: 40px; }
 
-/* ================================================================
-   TABS FILTER
-   ================================================================ */
+/* TABS FILTER */
 .pengajar-tabs {
   display: flex;
   justify-content: center;
@@ -144,18 +136,14 @@
   box-shadow: 0 6px 16px rgba(45, 90, 61, 0.25);
 }
 
-/* ================================================================
-   GRID SYSTEM
-   ================================================================ */
+/* GRID SYSTEM */
 .pengajar-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 30px;
 }
 
-/* ================================================================
-   CARD STYLES (GENERAL)
-   ================================================================ */
+/* CARD STYLES (GENERAL) */
 .pengajar-card {
   perspective: 1000px;
   transition: opacity 0.4s ease, transform 0.4s ease;
@@ -246,9 +234,7 @@
   margin: 12px 0;
 }
 
-/* ================================================================
-   PIMPINAN VS GURU DIFFERENTIATION
-   ================================================================ */
+/* PIMPINAN VS GURU DIFFERENTIATION */
 
 /* --- Pimpinan Utama --- */
 .pengajar-card.pimpinan .card-inner {
@@ -314,9 +300,7 @@
   display: inline-block;
 }
 
-/* ================================================================
-   EMPTY STATE / NOT FOUND
-   ================================================================ */
+/* EMPTY STATE / NOT FOUND */
 .no-results-msg {
   text-align: center;
   padding: 50px 20px;
@@ -326,9 +310,7 @@
 .no-results-msg i { font-size: 3rem; margin-bottom: 15px; opacity: 0.5; }
 .no-results-msg p { font-size: 1.1rem; }
 
-/* ================================================================
-   ANIMATION
-   ================================================================ */
+/* ANIMATION */
 .fade-up-element {
   opacity: 0;
   transform: translateY(30px);
@@ -349,9 +331,7 @@
   animation: fadeInScale 0.4s ease forwards;
 }
 
-/* ================================================================
-   RESPONSIVE
-   ================================================================ */
+/* RESPONSIVE */
 @media (max-width: 1024px) {
   .pengajar-main { padding: 40px 40px 60px; }
   .page-hero     { padding: 40px 40px 36px; }

@@ -31,7 +31,7 @@ if ($result && $result->num_rows > 0) {
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-  <!-- ── Stylesheets ── -->
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="css/base.css"    />  
   <link rel="stylesheet" href="css/navbar.css"  />  
   <link rel="stylesheet" href="css/header.css"  />  
@@ -40,14 +40,10 @@ if ($result && $result->num_rows > 0) {
 </head>
 <body>
 
-<!-- ============================================================
-     SITE HEADER
-=========================================================== -->
+<!-- SITE HEADER -->
 <div id="site-header-placeholder"></div>
 
-<!-- ============================================================
-     PAGE HERO
-=========================================================== -->
+<!-- PAGE HERO -->
 <div class="page-hero">
   <div class="page-hero__inner">
     <!-- Breadcrumb -->
@@ -69,9 +65,7 @@ if ($result && $result->num_rows > 0) {
   </div>
 </div>
 
-<!-- ============================================================
-     MAIN CONTENT
-=========================================================== -->
+<!-- MAIN CONTENT -->
 <main class="pengajar-main">
   <div class="pengajar-container">
     
@@ -82,7 +76,7 @@ if ($result && $result->num_rows > 0) {
         </p>
     </div>
 
-    <!-- ── TAB FILTER (FITUR INTERAKTIF) ── -->
+    <!-- TAB FILTER (FITUR INTERAKTIF) -->
     <div class="pengajar-tabs fade-up-element" style="animation-delay: 0.1s;">
         <button class="tab-btn active" data-filter="all">
             <i class="fas fa-users"></i> Semua
@@ -95,10 +89,10 @@ if ($result && $result->num_rows > 0) {
         </button>
     </div>
 
-    <!-- ── GRID PENGAJAR ── -->
+    <!-- GRID PENGAJAR -->
     <div class="pengajar-grid mt-5" id="pengajarGrid">
         
-        <!-- =================== KATEGORI: PIMPINAN =================== -->
+        <!-- KATEGORI: PIMPINAN -->
         <?php foreach ($pimpinan as $p): ?>
         <div class="pengajar-card pimpinan fade-up-element" data-category="pimpinan">
             <div class="card-inner">
@@ -119,7 +113,7 @@ if ($result && $result->num_rows > 0) {
         </div>
         <?php endforeach; ?>
 
-        <!-- =================== KATEGORI: GURU =================== -->
+        <!-- KATEGORI: GURU -->
         <?php foreach ($guru as $g): ?>
         <div class="pengajar-card guru fade-up-element" data-category="guru">
             <div class="card-inner">
@@ -151,12 +145,10 @@ if ($result && $result->num_rows > 0) {
   </div>
 </main>
 
-<!-- ============================================================
-     FOOTER
-=========================================================== -->
+<!-- FOOTER -->
 <div id="site-footer-placeholder"></div>
 
-<!-- ── Scripts ── -->
+<!-- Scripts -->
 <script src="js/components.js"></script>
 <script src="js/navbar.js"></script>
 <script src="js/pengajar.js"></script>

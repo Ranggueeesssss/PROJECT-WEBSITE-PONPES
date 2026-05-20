@@ -1,8 +1,5 @@
 <?php
-// =========================================================================
-// PROSES_LOGIN.PHP — Backend Autentikasi Login
-// Endpoint ini dipanggil via AJAX dari js/login.js
-// =========================================================================
+// PROSES_LOGIN.PHP — Backend Autentikasi Login Endpoint ini dipanggil via AJAX dari js/login.js
 
 // Hanya terima metode POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -19,7 +16,7 @@ session_start();
 // Hubungkan ke database
 require_once __DIR__ . '/koneksi.php';
 
-// ── Ambil & Bersihkan Input ──────────────────────────────────────────────
+// Ambil & Bersihkan Input
 $username = isset($_POST['username']) ? trim($_POST['username']) : '';
 $password = isset($_POST['password']) ? trim($_POST['password']) : '';
 
@@ -32,7 +29,7 @@ if ($username === '' || $password === '') {
     exit;
 }
 
-// ── Query ke Database (Prepared Statement — aman dari SQL Injection) ──────
+// Query ke Database (Prepared Statement — aman dari SQL Injection)
 $stmt = $conn->prepare(
     "SELECT id, nama, username, password, role FROM user WHERE username = ? LIMIT 1"
 );
@@ -47,7 +44,7 @@ $stmt->bind_param('s', $username);
 $stmt->execute();
 $result = $stmt->get_result();
 
-// ── Cek User Ditemukan ───────────────────────────────────────────────────
+// Cek User Ditemukan
 if ($result->num_rows === 0) {
     // Username tidak ada — jangan beri tahu user mana yang salah (security)
     echo json_encode([
@@ -62,7 +59,7 @@ if ($result->num_rows === 0) {
 $user = $result->fetch_assoc();
 $stmt->close();
 
-// ── Verifikasi Password (BCrypt) ─────────────────────────────────────────
+// Verifikasi Password (BCrypt)
 if (!password_verify($password, $user['password'])) {
     echo json_encode([
         'status' => 'error',
@@ -72,7 +69,7 @@ if (!password_verify($password, $user['password'])) {
     exit;
 }
 
-// ── Login Berhasil — Simpan ke Sesi ─────────────────────────────────────
+// Login Berhasil — Simpan ke Sesi
 // Regenerasi session ID untuk mencegah Session Fixation Attack
 session_regenerate_id(true);
 
@@ -81,7 +78,7 @@ $_SESSION['user_nama'] = $user['nama'];
 $_SESSION['user_role'] = $user['role'];
 $_SESSION['login_at']  = time();
 
-// ── Tentukan Halaman Tujuan Berdasarkan Role ─────────────────────────────
+// Tentukan Halaman Tujuan Berdasarkan Role
 $redirectUrl = '';
 switch ($user['role']) {
     case 'admin':

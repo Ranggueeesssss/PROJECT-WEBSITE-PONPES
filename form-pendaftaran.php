@@ -1,7 +1,5 @@
 <?php
-// =========================================================================
 // KONEKSI DATABASE — diambil dari file koneksi terpusat
-// =========================================================================
 require_once __DIR__ . '/koneksi.php';
 
 $status_pesan = "";
@@ -27,9 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $tahu_ponpes_str = implode(", ", $tahu_ponpes_arr);
     $nama_informan   = $conn->real_escape_string($_POST['nama_informan']);
     
-    // ==========================================
     // UPLOAD FILE
-    // ==========================================
     $upload_dir = "uploads/";
     if (!is_dir($upload_dir)) {
         mkdir($upload_dir, 0777, true);

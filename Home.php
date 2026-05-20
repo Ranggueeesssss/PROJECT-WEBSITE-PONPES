@@ -80,9 +80,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════
-     VISI & MISI — Redesigned Section
-     ═══════════════════════════════════════════════════════════ -->
+<!-- VISI & MISI — Redesigned Section -->
 <section class="visi-misi" id="visi-misi" aria-label="Visi dan Misi">
 
   <!-- Gambar latar + overlay -->

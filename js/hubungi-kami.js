@@ -1,10 +1,8 @@
-/* ================================================================
-   HUBUNGI KAMI JS — Ponpes Al-Barokah An-Nur Khumairoh
-   ================================================================ */
+/* HUBUNGI KAMI JS — Ponpes Al-Barokah An-Nur Khumairoh */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* ── 1. Animasi Fade-Up pada Scroll & Load ── */
+    /* 1. Animasi Fade-Up pada Scroll & Load */
     const fadeElements = document.querySelectorAll('.fade-up-element');
 
     // Menggunakan IntersectionObserver untuk animasi saat scroll
@@ -37,10 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, 100);
 
-    /* ── 2. Handle Form Kirim Pesan ── */
+    /* 2. Handle Form Kirim Pesan */
     // Form submission is now handled natively via PHP POST request in hubungi-kami.php
 
-    /* ── 3. Interaksi Tombol Map ── */
+    /* 3. Interaksi Tombol Map */
     const btnMap = document.querySelector('.btn-map');
     if (btnMap) {
         btnMap.addEventListener('click', (e) => {
@@ -51,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* ── 4. API Jadwal Sholat (Aladhan) GET/JSON ── */
+    /* 4. API Jadwal Sholat (Aladhan) GET/JSON */
     const prayerContainer = document.getElementById('prayer-times-container');
     const prayerDateEl = document.getElementById('prayer-date');
 

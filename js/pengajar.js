@@ -1,10 +1,8 @@
-/* ================================================================
-   PENGAJAR JS — Ponpes Al-Barokah An-Nur Khumairoh
-   ================================================================ */
+/* PENGAJAR JS — Ponpes Al-Barokah An-Nur Khumairoh */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* ── 1. Animasi Fade-Up pada Scroll & Load ── */
+    /* 1. Animasi Fade-Up pada Scroll & Load */
     const fadeElements = document.querySelectorAll('.fade-up-element');
 
     const observerOptions = {
@@ -34,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, 100);
 
-    /* ── 2. Fitur Interaktif: Tab Filter Pengajar ── */
+    /* 2. Fitur Interaktif: Tab Filter Pengajar */
     const tabBtns = document.querySelectorAll('.tab-btn');
     const pengajarCards = document.querySelectorAll('.pengajar-card');
     const noResultsMsg = document.getElementById('noResultsMsg');

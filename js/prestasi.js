@@ -1,20 +1,14 @@
-/* ================================================================
-   PRESTASI.JS — Ponpes Al-Barokah An-Nur Khumairoh
+﻿/* PRESTASI.JS — Ponpes Al-Barokah An-Nur Khumairoh
    Script khusus halaman Prestasi Santri
-   Requires: navbar.js (di-load sebelumnya via components.js)
-   ================================================================ */
+   Requires: navbar.js (di-load sebelumnya via components.js) */
 
 (function () {
   'use strict';
 
-  /* ================================================================
-     DATA PRESTASI
-     ================================================================ */
+  /* DATA PRESTASI */
     // Array PRESTASI sekarang di-inject langsung dari database melalui prestasi.php
 
-  /* ================================================================
-     RENDER HIGHLIGHT LIST (Daftar dalam highlight-bar)
-     ================================================================ */
+  /* RENDER HIGHLIGHT LIST (Daftar dalam highlight-bar) */
   function renderHighlightList() {
     var el = document.getElementById('highlightList');
     if (!el) return;
@@ -29,9 +23,7 @@
     }).join('');
   }
 
-  /* ================================================================
-     RENDER SIDEBAR PODIUM (Prestasi Terbaik)
-     ================================================================ */
+  /* RENDER SIDEBAR PODIUM (Prestasi Terbaik) */
   function renderPodium() {
     var el = document.getElementById('podiumList');
     if (!el) return;
@@ -53,9 +45,7 @@
     }).join('');
   }
 
-  /* ================================================================
-     ANIMASI COUNTER — Hero Stats
-     ================================================================ */
+  /* ANIMASI COUNTER — Hero Stats */
   function animateHeroStats() {
     document.querySelectorAll('.hero-stat__number[data-target]').forEach(function (el) {
       var target = parseInt(el.dataset.target, 10);
@@ -71,9 +61,7 @@
     });
   }
 
-  /* ================================================================
-     SCROLL REVEAL — Timeline & Sidebar
-     ================================================================ */
+  /* SCROLL REVEAL — Timeline & Sidebar */
   function setupReveal() {
     var els = document.querySelectorAll('.timeline-item__card, .sidebar-widget, .highlight-bar');
     if (!('IntersectionObserver' in window) || !els.length) return;
@@ -97,9 +85,7 @@
     els.forEach(function (el) { obs.observe(el); });
   }
 
-  /* ================================================================
-     INIT
-     ================================================================ */
+  /* INIT */
   function init() {
     renderHighlightList();
     renderPodium();

@@ -1,26 +1,22 @@
-/* ================================================================
-   LOGIN.CSS — Ponpes Al-Barokah An-Nur Khumairoh
+/* LOGIN.CSS — Ponpes Al-Barokah An-Nur Khumairoh
    Split-screen layout: Panel Visual (kiri) + Form (kanan)
-   Requires: base.css
-   ================================================================ */
+   Requires: base.css */
 
-/* ── Body ──────────────────────────────────────────────────────── */
+/* Body */
 body.page-login {
   min-height: 100vh;
   background: var(--green-deep);
   overflow: hidden;
 }
 
-/* ── Layout Utama: Split 50/50 ─────────────────────────────────── */
+/* Layout Utama: Split 50/50 */
 .login-page {
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 100vh;
 }
 
-/* ================================================================
-   PANEL KIRI — Visual / Branding
-   ================================================================ */
+/* PANEL KIRI — Visual / Branding */
 .lp-visual {
   position: relative;
   background: url('../Picture/whatsAppimageponpes.jpeg') center / cover no-repeat;
@@ -48,7 +44,7 @@ body.page-login {
   z-index: 1;
 }
 
-/* ── Brand (logo + nama) ───────────────────────────────────────── */
+/* Brand (logo + nama) */
 .lp-visual__brand {
   display: flex;
   align-items: center;
@@ -88,7 +84,7 @@ body.page-login {
   margin-top: 1px;
 }
 
-/* ── Konten Tengah ─────────────────────────────────────────────── */
+/* Konten Tengah */
 .lp-visual__center {
   max-width: 440px;
   margin: auto 0;
@@ -140,9 +136,7 @@ body.page-login {
   text-shadow: 0 2px 10px rgba(0, 0, 0, .4);
 }
 
-/* ================================================================
-   PANEL KANAN — Form Login
-   ================================================================ */
+/* PANEL KANAN — Form Login */
 .lp-form-panel {
   background: linear-gradient(160deg, #ffffff 0%, var(--green-foam) 100%);
   display: flex;
@@ -184,7 +178,7 @@ body.page-login {
   margin: 0 auto;
 }
 
-/* ── Heading ───────────────────────────────────────────────────── */
+/* Heading */
 .lp-form__title {
   font-family: 'Amiri', serif;
   font-size: 2rem;
@@ -199,7 +193,7 @@ body.page-login {
   margin-bottom: 32px;
 }
 
-/* ── Form Fields ───────────────────────────────────────────────── */
+/* Form Fields */
 .form-group {
   margin-bottom: 18px;
 }
@@ -276,7 +270,7 @@ body.page-login {
   color: var(--green-dark);
 }
 
-/* ── Baris show pw + forgot ────────────────────────────────────── */
+/* Baris show pw + forgot */
 .show-pw-row {
   display: flex;
   align-items: center;
@@ -313,7 +307,7 @@ body.page-login {
   text-decoration: underline;
 }
 
-/* ── Login Button ──────────────────────────────────────────────── */
+/* Login Button */
 .btn-login {
   width: 100%;
   padding: 14px;
@@ -351,7 +345,7 @@ body.page-login {
   cursor: not-allowed;
 }
 
-/* ── Security Note ─────────────────────────────────────────────── */
+/* Security Note */
 .security-note {
   display: flex;
   align-items: center;
@@ -365,9 +359,7 @@ body.page-login {
   color: var(--green-accent);
 }
 
-/* ================================================================
-   LOGIN ALERT
-   ================================================================ */
+/* LOGIN ALERT */
 .login-alert {
   display: flex;
   align-items: flex-start;
@@ -400,9 +392,7 @@ body.page-login {
   color: #1a4f8a;
 }
 
-/* ================================================================
-   KEYFRAMES
-   ================================================================ */
+/* KEYFRAMES */
 @keyframes alertIn {
   from {
     opacity: 0;
@@ -439,9 +429,7 @@ body.page-login {
   }
 }
 
-/* ================================================================
-   RESPONSIVE
-   ================================================================ */
+/* RESPONSIVE */
 @media (max-width: 860px) {
   .login-page {
     grid-template-columns: 1fr;

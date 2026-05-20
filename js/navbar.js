@@ -1,17 +1,15 @@
-/* ================================================================
-   NAVBAR.JS — Ponpes Al-Barokah An-Nur Khumairoh
-   Shared navigation logic — dipakai di semua halaman
-   ================================================================ */
+/* NAVBAR.JS — Ponpes Al-Barokah An-Nur Khumairoh
+   Shared navigation logic — dipakai di semua halaman */
 
 (function () {
   'use strict';
 
-  /* ── Selector Cache ──────────────────────────────────────────── */
+  /* Selector Cache */
   const siteHeader = document.querySelector('.site-header');
   const nav        = document.getElementById('mainNav');
   const hamburger  = document.getElementById('hamburger');
 
-  /* ── 1. Scroll Shadow ────────────────────────────────────────── */
+  /* 1. Scroll Shadow */
   function onScroll() {
     if (!siteHeader) return;
     siteHeader.classList.toggle('scrolled', window.scrollY > 10);
@@ -20,7 +18,7 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll(); // run on load
 
-  /* ── 2. Hamburger Toggle ─────────────────────────────────────── */
+  /* 2. Hamburger Toggle */
   function openNav()  {
     nav.classList.add('open');
     hamburger.classList.add('active');
@@ -40,7 +38,7 @@
   /* Expose globally (dipakai onclick di HTML) */
   window.toggleNav = toggleNav;
 
-  /* ── 3. Tutup nav saat klik di luar ─────────────────────────── */
+  /* 3. Tutup nav saat klik di luar */
   document.addEventListener('click', function (e) {
     if (!nav || !hamburger) return;
     if (
@@ -52,7 +50,7 @@
     }
   });
 
-  /* ── 4. Tutup nav + tandai active saat klik link ─────────────── */
+  /* 4. Tutup nav + tandai active saat klik link */
   if (nav) {
     nav.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
@@ -68,7 +66,7 @@
     });
   }
 
-  /* ── 5. Auto-mark active berdasarkan URL saat ini ─────────────── */
+  /* 5. Auto-mark active berdasarkan URL saat ini */
   (function markCurrentPage() {
     if (!nav) return;
     const currentFile = window.location.pathname.split('/').pop() || 'index.html';

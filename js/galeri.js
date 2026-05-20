@@ -1,27 +1,21 @@
-/* ================================================================
-   GALERI.JS — Ponpes Al-Barokah An-Nur Khumairoh
+/* GALERI.JS — Ponpes Al-Barokah An-Nur Khumairoh
    Script khusus halaman Galeri Santri
-   Requires: navbar.js (di-load via components.js)
-   ================================================================ */
+   Requires: navbar.js (di-load via components.js) */
 
 (function () {
   'use strict';
 
-  /* ================================================================
-     DATA FOTO
+  /* DATA FOTO
      Isi field `src` dengan path gambar asli jika sudah tersedia.
-     Contoh: src: 'Picture/namafile.jpg'
-     ================================================================ */
+     Contoh: src: 'Picture/namafile.jpg' */
     // Array FOTO sekarang di-inject langsung dari database melalui galeri.php
 
-  /* ── State ─────────────────────────────────────────────────── */
+  /* State */
   var currentKat    = 'Semua';
   var currentIndex  = 0;   /* index foto aktif di lightbox */
   var filteredFoto  = [];  /* foto yang sedang tampil */
 
-  /* ================================================================
-     RENDER
-     ================================================================ */
+  /* RENDER */
 
   /* Buat HTML placeholder jika tidak ada gambar */
   function imgOrPlaceholder(foto, forLightbox) {
@@ -113,9 +107,7 @@
     });
   }
 
-  /* ================================================================
-     LIGHTBOX
-     ================================================================ */
+  /* LIGHTBOX */
   var lightboxEl  = null;
 
   function buildLightbox() {
@@ -184,9 +176,7 @@
     document.getElementById('lbTanggal').textContent  = foto.tanggal;
   }
 
-  /* ================================================================
-     FILTER
-     ================================================================ */
+  /* FILTER */
   function setupFilters() {
     document.querySelectorAll('.filter-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
@@ -200,9 +190,7 @@
     });
   }
 
-  /* ================================================================
-     KEYBOARD — tutup dengan Escape, navigasi dengan panah
-     ================================================================ */
+  /* KEYBOARD — tutup dengan Escape, navigasi dengan panah */
   function setupKeyboard() {
     document.addEventListener('keydown', function (e) {
       if (!lightboxEl || !lightboxEl.classList.contains('open')) return;
@@ -212,9 +200,7 @@
     });
   }
 
-  /* ================================================================
-     INIT
-     ================================================================ */
+  /* INIT */
   function init() {
     buildLightbox();
     renderGrid();

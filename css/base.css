@@ -1,9 +1,7 @@
-/* ================================================================
-   BASE.CSS — Ponpes Al-Barokah An-Nur Khumairoh
-   CSS Variables, Reset, Typography, Shared Utilities
-   ================================================================ */
+/* BASE.CSS — Ponpes Al-Barokah An-Nur Khumairoh
+   CSS Variables, Reset, Typography, Shared Utilities */
 
-/* ── CSS Variables ─────────────────────────────────────────────── */
+/* CSS Variables */
 :root {
   /* Hijau Soft Palette */
   --green-primary : #4a7c59;
@@ -34,7 +32,7 @@
   --transition    : .3s cubic-bezier(.4, 0, .2, 1);
 }
 
-/* ── Reset ─────────────────────────────────────────────────────── */
+/* Reset */
 *,
 *::before,
 *::after {
@@ -60,7 +58,7 @@ a  { text-decoration : none; color: inherit; }
 ul { list-style      : none; }
 img { max-width: 100%; display: block; }
 
-/* ── Shared Animations ─────────────────────────────────────────── */
+/* Shared Animations */
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(28px); }
   to   { opacity: 1; transform: translateY(0);    }
@@ -89,7 +87,7 @@ img { max-width: 100%; display: block; }
   to   { opacity: 1; transform: translateY(0)     scale(1);  }
 }
 
-/* ── Shared Utility Classes ────────────────────────────────────── */
+/* Shared Utility Classes */
 .btn-primary {
   display         : inline-flex;
   align-items     : center;

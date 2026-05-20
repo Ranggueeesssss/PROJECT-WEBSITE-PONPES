@@ -1,12 +1,8 @@
-/* ================================================================
-   INFORMASI.CSS — Ponpes Al-Barokah An-Nur Khumairoh
+/* INFORMASI.CSS — Ponpes Al-Barokah An-Nur Khumairoh
    Styles khusus halaman Informasi
-   Requires: base.css, navbar.css, header.css, footer.css
-   ================================================================ */
+   Requires: base.css, navbar.css, header.css, footer.css */
 
-/* ================================================================
-   PAGE HERO
-   ================================================================ */
+/* PAGE HERO */
 .page-hero {
   background    : linear-gradient(135deg, var(--green-deep) 0%, var(--green-dark) 50%, #3a6b4e 100%);
   padding       : 56px 80px 52px;
@@ -92,9 +88,7 @@
   opacity       : .7;
 }
 
-/* ================================================================
-   INFORMASI WRAPPER
-   ================================================================ */
+/* INFORMASI WRAPPER */
 .informasi-wrapper {
   background : linear-gradient(160deg, var(--cream) 0%, var(--green-foam) 100%);
   position   : relative;
@@ -113,9 +107,7 @@
   pointer-events: none;
 }
 
-/* ================================================================
-   SECTION KURIKULUM UNGGULAN
-   ================================================================ */
+/* SECTION KURIKULUM UNGGULAN */
 .kurikulum-section {
   padding : 64px 80px 56px;
 }
@@ -168,7 +160,7 @@
   gap                   : 20px;
 }
 
-/* ── Kartu Kurikulum (bentuk bookmark hijau) ───────────────── */
+/* Kartu Kurikulum (bentuk bookmark hijau) */
 .kurikulum-card {
   background    : linear-gradient(175deg, var(--green-primary) 0%, var(--green-dark) 100%);
   border-radius : 14px 14px 0 0;
@@ -234,9 +226,7 @@
   line-height: 1.75;
 }
 
-/* ================================================================
-   DIVIDER ANTAR SECTION
-   ================================================================ */
+/* DIVIDER ANTAR SECTION */
 .section-divider {
   height     : 3px;
   margin     : 0 80px;
@@ -244,9 +234,7 @@
   border     : none;
 }
 
-/* ================================================================
-   SECTION INFORMASI UMUM (Jenjang Pendidikan)
-   ================================================================ */
+/* SECTION INFORMASI UMUM (Jenjang Pendidikan) */
 .informasi-section {
   padding : 56px 80px 72px;
 }
@@ -259,7 +247,7 @@
   align-items           : start;
 }
 
-/* ── Konten kiri ─────────────────────────────────────────────── */
+/* Konten kiri */
 .informasi-content { }
 
 /* Sub-section header */
@@ -371,7 +359,7 @@
   flex-shrink: 0;
 }
 
-/* ── Sidebar kanan ───────────────────────────────────────────── */
+/* Sidebar kanan */
 .informasi-sidebar { display: flex; flex-direction: column; gap: 20px; }
 
 .sidebar-widget {
@@ -449,9 +437,7 @@
   flex-shrink: 0;
 }
 
-/* ================================================================
-   RESPONSIVE
-   ================================================================ */
+/* RESPONSIVE */
 @media (max-width: 1100px) {
   .kurikulum-grid   { grid-template-columns: repeat(2, 1fr); }
   .informasi-layout { grid-template-columns: 1fr; }

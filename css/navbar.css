@@ -1,12 +1,8 @@
-/* ================================================================
-   NAVBAR.CSS — Ponpes Al-Barokah An-Nur Khumairoh
+﻿/* NAVBAR.CSS — Ponpes Al-Barokah An-Nur Khumairoh
    Styles untuk Top Bar (Baris 1): info kontak, search, login
-   Requires: base.css
-   ================================================================ */
+   Requires: base.css */
 
-/* ================================================================
-   BARIS 1 — TOP BAR (hijau gelap)
-   ================================================================ */
+/* BARIS 1 — TOP BAR (hijau gelap) */
 .topbar {
   background      : linear-gradient(90deg, var(--green-deep) 0%, var(--green-dark) 60%, #3a6b4e 100%);
   padding         : 0 48px;

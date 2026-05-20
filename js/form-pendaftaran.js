@@ -1,6 +1,4 @@
-/* =========================================================================
-   FORM PENDAFTARAN JS — Interactive Form Behavior (Modern Theme)
-   ========================================================================= */
+﻿/* FORM PENDAFTARAN JS — Interactive Form Behavior (Modern Theme) */
 
 document.addEventListener('DOMContentLoaded', () => {
 

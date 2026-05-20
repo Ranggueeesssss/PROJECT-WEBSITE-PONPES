@@ -131,7 +131,7 @@ if ($result && $result->num_rows > 0) {
 
 <div id="site-footer-placeholder"></div>
 
-<!-- ── Data Dinamis PHP ── -->
+<!-- Data Dinamis PHP -->
 <script>
     var ARTICLES = <?php echo json_encode($beritaList); ?>;
 </script>

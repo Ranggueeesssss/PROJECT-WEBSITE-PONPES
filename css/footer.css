@@ -1,8 +1,6 @@
-/* ================================================================
-   FOOTER.CSS — Ponpes Al-Barokah An-Nur Khumairoh
+﻿/* FOOTER.CSS — Ponpes Al-Barokah An-Nur Khumairoh
    Styles untuk Footer — dipakai di semua halaman
-   Requires: base.css
-   ================================================================ */
+   Requires: base.css */
 
 footer {
   background : linear-gradient(135deg, var(--green-deep) 0%, var(--green-dark) 100%);

@@ -43,7 +43,7 @@ body {
     overflow-x: hidden;
 }
 
-/* ── Utilities & Layout ── */
+/* Utilities & Layout */
 .dash-wrapper {
     display: flex;
     height: 100vh;
@@ -69,7 +69,7 @@ body {
     visibility: visible;
 }
 
-/* ── Sidebar ── */
+/* Sidebar */
 .dash-sidebar {
     width: 280px;
     background-color: var(--dash-sidebar-bg);
@@ -271,7 +271,7 @@ body {
     box-shadow: 0 4px 12px rgba(231, 76, 60, 0.2);
 }
 
-/* ── Main Content ── */
+/* Main Content */
 .dash-main {
     flex: 1;
     display: flex;
@@ -282,7 +282,7 @@ body {
     min-width: 0;
 }
 
-/* ── Header ── */
+/* Header */
 .dash-header {
     height: 80px;
     background-color: var(--dash-header-bg);
@@ -375,7 +375,7 @@ body {
 }
 
 /* Profile Section Removed */
-/* ── Content Area ── */
+/* Content Area */
 .dash-content {
     padding: 35px;
     width: 100%;
@@ -383,7 +383,7 @@ body {
     min-width: 0;
 }
 
-/* ── Page Title Bar ── */
+/* Page Title Bar */
 .page-title-bar {
     display: flex;
     justify-content: space-between;
@@ -426,7 +426,7 @@ body {
     color: var(--green-600);
 }
 
-/* ── Stats Grid ── */
+/* Stats Grid */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -530,7 +530,7 @@ body {
     color: #8b5cf6;
 }
 
-/* ── Quick Actions ── */
+/* Quick Actions */
 .quick-actions {
     display: flex;
     gap: 15px;
@@ -580,7 +580,7 @@ body {
     border-color: #ccc;
 }
 
-/* ── Data Sections ── */
+/* Data Sections */
 .data-sections {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -649,7 +649,7 @@ body {
     text-decoration: underline;
 }
 
-/* ── Tables ── */
+/* Tables */
 .table-responsive {
     overflow-x: auto;
 }
@@ -762,7 +762,7 @@ table.table tbody tr:hover {
     color: white;
 }
 
-/* ── Msg Items (Right Col) ── */
+/* Msg Items (Right Col) */
 .msg-item {
     display: flex;
     align-items: flex-start;
@@ -851,7 +851,7 @@ table.table tbody tr:hover {
     border-radius: 50%;
 }
 
-/* ── User Card Items (Right Col) ── */
+/* User Card Items (Right Col) */
 .user-card-item {
     display: flex;
     align-items: center;
@@ -900,7 +900,7 @@ table.table tbody tr:hover {
     color: var(--green-600);
 }
 
-/* ── Modal Message Detail ── */
+/* Modal Message Detail */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -1023,7 +1023,7 @@ table.table tbody tr:hover {
     background: #fcfdfd;
 }
 
-/* ── Animations ── */
+/* Animations */
 .fade-in-up {
     animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     opacity: 0;
@@ -1204,7 +1204,7 @@ table.table tbody tr:hover {
     background: #15803d;
 }
 
-/* ── Additional Hybrid/Responsive Layout ── */
+/* Additional Hybrid/Responsive Layout */
 @media (max-width: 992px) {
     .dash-header {
         padding: 0 20px;

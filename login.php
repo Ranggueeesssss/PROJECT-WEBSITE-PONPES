@@ -1,8 +1,5 @@
 <?php
-// =========================================================================
-// LOGIN.PHP — Halaman Login (versi PHP)
-// Konversi dari login.html dengan tambahan proteksi sesi
-// =========================================================================
+// LOGIN.PHP — Halaman Login (versi PHP) Konversi dari login.html dengan tambahan proteksi sesi
 session_start();
 
 // Jika sudah login, redirect ke halaman sesuai role
@@ -30,7 +27,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_role'])) {
 
 <div class="login-page">
 
-  <!-- ═══ PANEL KIRI: Visual / Branding ═══ -->
+  <!-- PANEL KIRI: Visual / Branding -->
   <div class="lp-visual" aria-hidden="true">
     <div class="lp-visual__overlay"></div>
 
@@ -56,7 +53,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_role'])) {
     </div>
   </div>
 
-  <!-- ═══ PANEL KANAN: Form Login ═══ -->
+  <!-- PANEL KANAN: Form Login -->
   <div class="lp-form-panel">
 
     <!-- Tombol kembali ke beranda -->

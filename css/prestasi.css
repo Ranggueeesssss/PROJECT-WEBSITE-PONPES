@@ -1,12 +1,8 @@
-/* ================================================================
-   PRESTASI.CSS — Ponpes Al-Barokah An-Nur Khumairoh
+/* PRESTASI.CSS — Ponpes Al-Barokah An-Nur Khumairoh
    Styles khusus halaman Prestasi Santri
-   Requires: base.css, navbar.css, header.css, footer.css
-   ================================================================ */
+   Requires: base.css, navbar.css, header.css, footer.css */
 
-/* ================================================================
-   PAGE HERO
-   ================================================================ */
+/* PAGE HERO */
 .page-hero {
   background    : linear-gradient(135deg, var(--green-deep) 0%, var(--green-dark) 50%, #3a6b4e 100%);
   padding       : 56px 80px 52px;
@@ -35,7 +31,7 @@
 
 .page-hero__inner { position: relative; z-index: 1; }
 
-/* ── Breadcrumb ──────────────────────────────────────────────── */
+/* Breadcrumb */
 .breadcrumb {
   display      : flex;
   align-items  : center;
@@ -81,7 +77,7 @@
   display: block; opacity: .7;
 }
 
-/* ── Stats di hero ───────────────────────────────────────────── */
+/* Stats di hero */
 .hero-stats {
   display         : flex;
   gap             : 0;
@@ -129,9 +125,7 @@
   display       : block;
 }
 
-/* ================================================================
-   WRAPPER UTAMA
-   ================================================================ */
+/* WRAPPER UTAMA */
 .prestasi-wrapper {
   padding    : 56px 80px 72px;
   background : linear-gradient(160deg, var(--cream) 0%, var(--green-foam) 100%);
@@ -149,9 +143,7 @@
   pointer-events: none;
 }
 
-/* ================================================================
-   SECTION HEADER (judul sub-section)
-   ================================================================ */
+/* SECTION HEADER (judul sub-section) */
 .section-header {
   display         : flex;
   align-items     : center;
@@ -179,9 +171,7 @@
   flex-shrink   : 0;
 }
 
-/* ================================================================
-   HIGHLIGHT BAR — Daftar Prestasi Tercapai
-   ================================================================ */
+/* HIGHLIGHT BAR — Daftar Prestasi Tercapai */
 .highlight-bar {
   background    : linear-gradient(135deg, var(--green-deep) 0%, var(--green-dark) 60%, #3a6b4e 100%);
   border-radius : 20px;
@@ -243,7 +233,7 @@
   line-height: 1.75;
 }
 
-/* ── Daftar item prestasi ────────────────────────────────────── */
+/* Daftar item prestasi */
 .prestasi-list { display: flex; flex-direction: column; gap: 10px; }
 
 .prestasi-list__item {
@@ -280,9 +270,7 @@
 
 .prestasi-list__text .highlight { color: var(--green-soft); font-weight: 600; }
 
-/* ================================================================
-   LAYOUT: KONTEN UTAMA + SIDEBAR
-   ================================================================ */
+/* LAYOUT: KONTEN UTAMA + SIDEBAR */
 .prestasi-layout {
   display               : grid;
   grid-template-columns : 1fr 290px;
@@ -290,7 +278,7 @@
   align-items           : start;
 }
 
-/* ── Sidebar ─────────────────────────────────────────────────── */
+/* Sidebar */
 .sidebar { display: flex; flex-direction: column; gap: 24px; }
 
 .sidebar-widget {
@@ -372,9 +360,7 @@
   text-transform: uppercase; letter-spacing: .06em;
 }
 
-/* ================================================================
-   TIMELINE PERJALANAN PRESTASI
-   ================================================================ */
+/* TIMELINE PERJALANAN PRESTASI */
 .timeline-section { margin-bottom: 0; }
 
 .timeline { position: relative; padding-left: 28px; }
@@ -428,9 +414,7 @@
 
 .timeline-item__card p { font-size: .76rem; color: var(--text-soft); line-height: 1.65; }
 
-/* ================================================================
-   RESPONSIVE
-   ================================================================ */
+/* RESPONSIVE */
 @media (max-width: 1100px) {
   .prestasi-layout { grid-template-columns: 1fr; }
   .sidebar         { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }

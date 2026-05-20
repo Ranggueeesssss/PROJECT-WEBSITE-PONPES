@@ -1,12 +1,10 @@
-/* ================================================================
-   HOME.JS — Ponpes Al-Barokah An-Nur Khumairoh
-   Script khusus halaman Home (index.html)
-   ================================================================ */
+/* HOME.JS — Ponpes Al-Barokah An-Nur Khumairoh
+   Script khusus halaman Home (index.html) */
 
 (function () {
   'use strict';
 
-  /* ── Counter Animasi (Stats Strip) ──────────────────────────── */
+  /* Counter Animasi (Stats Strip) */
   function animateCounter(el) {
     const target  = parseInt(el.dataset.target, 10);
     const suffix  = el.dataset.suffix || '';
@@ -42,7 +40,7 @@
     observer.observe(statsSection);
   }
 
-  /* ── Scroll Reveal (kartu & section) ────────────────────────── */
+  /* Scroll Reveal (kartu & section) */
   const revealEls = document.querySelectorAll(
     '.vm-card, .about__image, .about__content, .stats__item'
   );

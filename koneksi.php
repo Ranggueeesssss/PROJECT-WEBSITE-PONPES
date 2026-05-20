@@ -1,14 +1,12 @@
 <?php
-// =========================================================================
 // FILE KONEKSI DATABASE — db_ponpes
-// =========================================================================
 // Sertakan file ini di semua file PHP yang membutuhkan koneksi database
 // menggunakan:
 //   require_once __DIR__ . '/koneksi.php';
 //
 // Jika file PHP kamu berada di sub-folder (misal: admin/halaman.php):
 //   require_once __DIR__ . '/../koneksi.php';
-// =========================================================================
+
 
 // --- Cegah akses langsung ke file ini melalui browser ---
 // Pola "defined sentinel": file lain harus mendefinisikan konstanta ini

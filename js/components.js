@@ -1,5 +1,4 @@
-/* ================================================================
-   COMPONENTS.JS — Ponpes Al-Barokah An-Nur Khumairoh
+﻿/* COMPONENTS.JS — Ponpes Al-Barokah An-Nur Khumairoh
    Meng-inject komponen Navbar (topbar + header) dan Footer
    ke setiap halaman secara otomatis.
 
@@ -8,17 +7,14 @@
      ... konten halaman ...
      <div id="site-footer-placeholder"></div>
      <script src="js/components.js"></script>
-     <script src="js/navbar.js"></script>
-   ================================================================ */
+     <script src="js/navbar.js"></script> */
 
 (function () {
   'use strict';
 
-  /* ================================================================
-     TEMPLATE: SITE HEADER
+  /* TEMPLATE: SITE HEADER
      Berisi topbar (baris 1) + main header (baris 2)
-     Active class diatur otomatis oleh navbar.js (markCurrentPage)
-     ================================================================ */
+     Active class diatur otomatis oleh navbar.js (markCurrentPage) */
   var SITE_HEADER = '\
 <div class="site-header" id="siteHeader">\
 \
@@ -82,17 +78,13 @@
 \
 </div>';
 
-  /* ================================================================
-     TEMPLATE: FOOTER
-     ================================================================ */
+  /* TEMPLATE: FOOTER */
   var SITE_FOOTER = '\
 <footer>\
   <p>&copy; 2026 <span>Ponpes Al-Barokah An-Nur Khumairoh</span>. Semua Hak Dilindungi.</p>\
 </footer>';
 
-  /* ================================================================
-     INJECT ke placeholder yang ada di setiap halaman
-     ================================================================ */
+  /* INJECT ke placeholder yang ada di setiap halaman */
   function inject(id, html) {
     var el = document.getElementById(id);
     if (!el) return;
@@ -105,9 +97,7 @@
   inject('site-header-placeholder', SITE_HEADER);
   inject('site-footer-placeholder', SITE_FOOTER);
 
-  /* ================================================================
-     Tandai tombol Login sebagai aktif jika berada di halaman login
-     ================================================================ */
+  /* Tandai tombol Login sebagai aktif jika berada di halaman login */
   (function markLoginActive() {
     var page = window.location.pathname.split('/').pop();
     if (page === 'login.php' || page === 'login.html') {

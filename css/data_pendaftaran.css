@@ -1,4 +1,4 @@
-/* Styling khusus widget jadwal pengumuman di dashboard pendaftaran */
+﻿/* Styling khusus widget jadwal pengumuman di dashboard pendaftaran */
 .schedule-widget {
     background: #ffffff;
     border-radius: 12px;
@@ -145,9 +145,7 @@
     }
 }
 
-/* ====================================================
-   Styling Modal dan Elemen data_pendaftaran 
-   ==================================================== */
+/* Styling Modal dan Elemen data_pendaftaran */
 .modal-box { max-width: 800px; width: 90%; }
 .modal-body { max-height: calc(100vh - 120px); overflow-y: auto; padding-bottom: 40px !important; }
 .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px; }

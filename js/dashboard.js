@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* ── 1. Sidebar Toggle ── */
+  /* 1. Sidebar Toggle */
   const toggle    = document.getElementById('sidebarToggle');
   const sidebar   = document.getElementById('dashSidebar');
   const mainEl    = document.getElementById('dashMain');
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', handleResize);
   handleResize();
 
-  /* ── 2. Dynamic Greeting ── */
+  /* 2. Dynamic Greeting */
   const greetEl = document.getElementById('greetingText');
   if (greetEl) {
     const h = new Date().getHours();
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     greetEl.textContent = g + ',';
   }
 
-  /* ── 3. Live Clock ── */
+  /* 3. Live Clock */
   const clockEl = document.getElementById('liveClock');
   const dateEl  = document.getElementById('liveDate');
   const days   = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateClock();
   setInterval(updateClock, 1000);
 
-  /* ── 4. Counter Animation ── */
+  /* 4. Counter Animation */
   function animateCounter(el, target, duration = 1200) {
     let start = 0;
     const step = target / (duration / 16);
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   counters.forEach(el => observer.observe(el));
 
-  /* ── 5. Message Modal ── */
+  /* 5. Message Modal */
   const modalOverlay = document.getElementById('msgModal');
   const modalClose   = document.getElementById('modalClose');
 
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ── 6. Delete Confirm & Global Custom Confirm ── */
+  /* 6. Delete Confirm & Global Custom Confirm */
   window.confirmCallback = null;
   const confirmOverlay = document.getElementById('customConfirm');
   
@@ -193,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ── 7. Ripple Effect ── */
+  /* 7. Ripple Effect */
   document.querySelectorAll('.btn-action, .btn-logout, .action-btn').forEach(btn => {
     btn.addEventListener('click', function(e) {
       const r = document.createElement('span');

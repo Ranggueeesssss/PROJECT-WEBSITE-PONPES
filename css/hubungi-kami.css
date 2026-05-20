@@ -1,11 +1,7 @@
-/* ================================================================
-   HUBUNGI-KAMI.CSS — Ponpes Al-Barokah An-Nur Khumairoh
-   Styles khusus halaman Hubungi Kami
-   ================================================================ */
+﻿/* HUBUNGI-KAMI.CSS — Ponpes Al-Barokah An-Nur Khumairoh
+   Styles khusus halaman Hubungi Kami */
 
-/* ================================================================
-   PAGE HERO (Sama dengan halaman Galeri / Prestasi)
-   ================================================================ */
+/* PAGE HERO (Sama dengan halaman Galeri / Prestasi) */
 .page-hero {
   background    : linear-gradient(135deg, var(--green-deep) 0%, var(--green-dark) 50%, #3a6b4e 100%);
   padding       : 56px 80px 52px;
@@ -82,9 +78,7 @@
 }
 
 
-/* ================================================================
-   CONTACT MAIN & GRID
-   ================================================================ */
+/* CONTACT MAIN & GRID */
 .contact-main {
   padding    : 60px 80px 80px;
   background : linear-gradient(160deg, var(--cream) 0%, var(--green-foam) 100%);
@@ -138,9 +132,7 @@
   line-height: 1.6;
 }
 
-/* ================================================================
-   KOLOM KIRI: INFO KONTAK
-   ================================================================ */
+/* KOLOM KIRI: INFO KONTAK */
 .contact-list {
   display: flex;
   flex-direction: column;
@@ -213,9 +205,7 @@
   transform: translateY(-3px);
 }
 
-/* ================================================================
-   KOLOM KANAN: FORM
-   ================================================================ */
+/* KOLOM KANAN: FORM */
 .form-group {
   margin-bottom: 20px;
 }
@@ -291,9 +281,7 @@
   background: linear-gradient(135deg, var(--green-light), var(--green-primary));
 }
 
-/* ================================================================
-   MAP SECTION
-   ================================================================ */
+/* MAP SECTION */
 .contact-map-section {
   padding: 30px;
 }
@@ -365,9 +353,7 @@
   color: var(--white);
 }
 
-/* ================================================================
-   JADWAL SHOLAT SECTION
-   ================================================================ */
+/* JADWAL SHOLAT SECTION */
 .prayer-times-card {
   background: var(--white);
   border-radius: 16px;
@@ -441,9 +427,7 @@
   color: var(--green-soft);
 }
 
-/* ================================================================
-   ANIMATION & UTILS
-   ================================================================ */
+/* ANIMATION & UTILS */
 .fade-up-element {
   opacity: 0;
   transform: translateY(30px);
@@ -455,9 +439,7 @@
   transform: translateY(0);
 }
 
-/* ================================================================
-   RESPONSIVE
-   ================================================================ */
+/* RESPONSIVE */
 @media (max-width: 1024px) {
   .contact-main { padding: 40px 40px 60px; }
   .page-hero    { padding: 40px 40px 36px; }

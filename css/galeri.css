@@ -1,12 +1,8 @@
-/* ================================================================
-   GALERI.CSS — Ponpes Al-Barokah An-Nur Khumairoh
+/* GALERI.CSS — Ponpes Al-Barokah An-Nur Khumairoh
    Styles khusus halaman Galeri Santri
-   Requires: base.css, navbar.css, header.css, footer.css
-   ================================================================ */
+   Requires: base.css, navbar.css, header.css, footer.css */
 
-/* ================================================================
-   PAGE HERO
-   ================================================================ */
+/* PAGE HERO */
 .page-hero {
   background    : linear-gradient(135deg, var(--green-deep) 0%, var(--green-dark) 50%, #3a6b4e 100%);
   padding       : 56px 80px 52px;
@@ -83,9 +79,7 @@
   background: var(--green-soft); display: block; opacity: .7;
 }
 
-/* ================================================================
-   GALERI WRAPPER
-   ================================================================ */
+/* GALERI WRAPPER */
 .galeri-wrapper {
   padding    : 52px 80px 72px;
   background : linear-gradient(160deg, var(--cream) 0%, var(--green-foam) 100%);
@@ -106,9 +100,7 @@
   pointer-events: none;
 }
 
-/* ================================================================
-   TOOLBAR: Filter Kategori
-   ================================================================ */
+/* TOOLBAR: Filter Kategori */
 .galeri-toolbar {
   display         : flex;
   align-items     : center;
@@ -162,16 +154,14 @@
   font-weight: 500;
 }
 
-/* ================================================================
-   GALERI GRID
-   ================================================================ */
+/* GALERI GRID */
 .galeri-grid {
   display               : grid;
   grid-template-columns : repeat(3, 1fr);
   gap                   : 20px;
 }
 
-/* ── Kartu foto ──────────────────────────────────────────────── */
+/* Kartu foto */
 .galeri-card {
   background    : var(--white);
   border-radius : 14px;
@@ -288,9 +278,7 @@
 
 .galeri-card__meta i { color: var(--green-accent); font-size: .68rem; }
 
-/* ================================================================
-   EMPTY STATE
-   ================================================================ */
+/* EMPTY STATE */
 .empty-state {
   grid-column     : 1 / -1;
   display         : flex;
@@ -306,9 +294,7 @@
 .empty-state h3 { font-size: 1rem; color: var(--text-mid); }
 .empty-state p  { font-size: .82rem; }
 
-/* ================================================================
-   LIGHTBOX / MODAL
-   ================================================================ */
+/* LIGHTBOX / MODAL */
 .lightbox {
   position        : fixed;
   inset           : 0;
@@ -450,9 +436,7 @@
 .lightbox__nav--prev    { left: -56px; }
 .lightbox__nav--next    { right: -56px; }
 
-/* ================================================================
-   RESPONSIVE
-   ================================================================ */
+/* RESPONSIVE */
 @media (max-width: 1000px) {
   .galeri-grid { grid-template-columns: repeat(2, 1fr); }
 }

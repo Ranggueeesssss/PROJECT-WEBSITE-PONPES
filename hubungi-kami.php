@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-  <!-- ── Stylesheets ── -->
+  <!-- Stylesheets -->
   <link rel="stylesheet" href="css/base.css"    />  
   <link rel="stylesheet" href="css/navbar.css"  />  
   <link rel="stylesheet" href="css/header.css"  />  
@@ -43,14 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 
-<!-- ============================================================
-     SITE HEADER — di-inject oleh components.js
-=========================================================== -->
+<!-- SITE HEADER — di-inject oleh components.js -->
 <div id="site-header-placeholder"></div>
 
-<!-- ============================================================
-     PAGE HERO
-=========================================================== -->
+<!-- PAGE HERO -->
 <div class="page-hero">
   <div class="page-hero__inner">
     <!-- Breadcrumb -->
@@ -72,9 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </div>
 </div><!-- /page-hero -->
 
-<!-- ============================================================
-     CONTACT WRAPPER
-=========================================================== -->
+<!-- CONTACT WRAPPER -->
 <main class="contact-main">
   <div class="contact-container">
     
@@ -227,12 +221,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </div>
 </main>
 
-<!-- ============================================================
-     FOOTER — di-inject oleh components.js
-=========================================================== -->
+<!-- FOOTER — di-inject oleh components.js -->
 <div id="site-footer-placeholder"></div>
 
-<!-- ── Scripts ── -->
+<!-- Scripts -->
 <script src="js/components.js"></script>
 <script src="js/navbar.js"></script>
 <script src="js/hubungi-kami.js"></script>
