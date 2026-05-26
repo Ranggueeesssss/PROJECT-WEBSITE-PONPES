@@ -32,11 +32,11 @@ if ($result && $result->num_rows > 0) {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css"    />  
-  <link rel="stylesheet" href="css/navbar.css"  />  
-  <link rel="stylesheet" href="css/header.css"  />  
-  <link rel="stylesheet" href="css/footer.css"  />  
-  <link rel="stylesheet" href="css/pengajar.css" /> 
+  <link rel="stylesheet" href="css/shared/base.css"    />  
+  <link rel="stylesheet" href="css/shared/navbar.css"  />  
+  <link rel="stylesheet" href="css/shared/header.css"  />  
+  <link rel="stylesheet" href="css/shared/footer.css"  />  
+  <link rel="stylesheet" href="css/website/pengajar.css" /> 
 </head>
 <body>
 
@@ -150,8 +150,8 @@ if ($result && $result->num_rows > 0) {
 
 <!-- Scripts -->
 
-<script src="js/navbar.js"></script>
-<script src="js/pengajar.js"></script>
+<script src="js/shared/navbar.js"></script>
+<script src="js/website/pengajar.js"></script>
 
 </body>
 </html>

@@ -19,7 +19,7 @@ body.page-login {
 /* PANEL KIRI — Visual / Branding */
 .lp-visual {
   position: relative;
-  background: url('../Picture/whatsAppimageponpes.jpeg') center / cover no-repeat;
+  background: url('../../Picture/whatsAppimageponpes.jpeg') center / cover no-repeat;
   display: flex;
   flex-direction: column;
   padding: 40px 48px;

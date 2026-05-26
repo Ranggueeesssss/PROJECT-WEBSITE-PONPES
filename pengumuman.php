@@ -12,12 +12,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css"    />  
-  <link rel="stylesheet" href="css/navbar.css"  />  
-  <link rel="stylesheet" href="css/header.css"  />  
-  <link rel="stylesheet" href="css/footer.css"  />  
-  <link rel="stylesheet" href="css/pendaftaran.css" /> 
-  <link rel="stylesheet" href="css/pengumuman.css" /> 
+  <link rel="stylesheet" href="css/shared/base.css"        />  
+  <link rel="stylesheet" href="css/shared/navbar.css"      />  
+  <link rel="stylesheet" href="css/shared/header.css"      />  
+  <link rel="stylesheet" href="css/shared/footer.css"      />  
+  <link rel="stylesheet" href="css/website/pendaftaran.css" /> 
+  <link rel="stylesheet" href="css/website/pengumuman.css" /> 
 </head>
 <body>
 
@@ -106,8 +106,8 @@
 
 <!-- Scripts -->
 
-<script src="js/navbar.js"></script>
-<script src="js/pengumuman.js"></script>
+<script src="js/shared/navbar.js"></script>
+<script src="js/website/pengumuman.js"></script>
 
 </body>
 </html>

@@ -93,7 +93,7 @@ if ($res) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kelola Galeri Foto — Dashboard Guru</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="css/dashboard_pro.css?v=3">
+    <link rel="stylesheet" href="css/dashboard/dashboard_pro.css?v=3">
     <style>
         .galeri-grid {
             display: grid;
@@ -289,7 +289,7 @@ if ($res) {
     </main>
 </div>
 
-<script src="js/dashboard.js"></script>
+<script src="js/dashboard/dashboard.js"></script>
 <script>
     const formModal = document.getElementById('formModal');
     

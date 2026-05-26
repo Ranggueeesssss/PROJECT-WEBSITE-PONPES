@@ -4,15 +4,11 @@
     <div class="topbar__info">
       <span class="topbar__info-item">
         <i class="fas fa-map-marker-alt"></i>
-        Jl. Pesantren No.1, Jember
+        Jl. Raung Klanceng Timur Kec. Ajung Kab. Jember, Jawa Timur
       </span>
       <span class="topbar__info-item">
         <i class="fas fa-phone"></i>
-        (0331) 123-4567
-      </span>
-      <span class="topbar__info-item">
-        <i class="fas fa-envelope"></i>
-        info@albarokah.sch.id
+        (0331) 421603
       </span>
     </div>
     <div class="topbar__right">

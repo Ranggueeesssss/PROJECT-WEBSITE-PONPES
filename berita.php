@@ -23,11 +23,11 @@ if ($result && $result->num_rows > 0) {
   <title>Berita — Ponpes Al-Barokah An-Nur Khumairoh</title>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="css/base.css"    />
-  <link rel="stylesheet" href="css/navbar.css"  />
-  <link rel="stylesheet" href="css/header.css"  />
-  <link rel="stylesheet" href="css/footer.css"  />
-  <link rel="stylesheet" href="css/berita.css"  />
+  <link rel="stylesheet" href="css/shared/base.css"    />
+  <link rel="stylesheet" href="css/shared/navbar.css"  />
+  <link rel="stylesheet" href="css/shared/header.css"  />
+  <link rel="stylesheet" href="css/shared/footer.css"  />
+  <link rel="stylesheet" href="css/website/berita.css"  />
 </head>
 <body>
 
@@ -137,8 +137,8 @@ if ($result && $result->num_rows > 0) {
 </script>
 
 
-<script src="js/navbar.js"></script>
-<script src="js/berita.js"></script>
+<script src="js/shared/navbar.js"></script>
+<script src="js/website/berita.js"></script>
 
 </body>
 </html>

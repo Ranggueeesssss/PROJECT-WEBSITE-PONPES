@@ -33,11 +33,11 @@ foreach($prestasiList as $p) {
   <title>Prestasi — Ponpes Al-Barokah An-Nur Khumairoh</title>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="css/base.css"      />
-  <link rel="stylesheet" href="css/navbar.css"    />
-  <link rel="stylesheet" href="css/header.css"    />
-  <link rel="stylesheet" href="css/footer.css"    />
-  <link rel="stylesheet" href="css/prestasi.css"  />
+  <link rel="stylesheet" href="css/shared/base.css"    />  
+  <link rel="stylesheet" href="css/shared/navbar.css"  />  
+  <link rel="stylesheet" href="css/shared/header.css"  />  
+  <link rel="stylesheet" href="css/shared/footer.css"  />  
+  <link rel="stylesheet" href="css/website/prestasi.css" />
 </head>
 <body>
 
@@ -154,17 +154,6 @@ foreach($prestasiList as $p) {
           </div>
         </div>
       </div>
-
-      <div class="sidebar-widget">
-        <div class="sidebar-widget__head">
-          <i class="fas fa-trophy"></i><h3>Prestasi Terbaik</h3>
-        </div>
-        <div class="sidebar-widget__body">
-          <div id="podiumList" class="podium-list">
-            <!-- Di-render oleh prestasi.js -->
-          </div>
-        </div>
-      </div>
     </aside>
   </div>
 
@@ -178,8 +167,8 @@ foreach($prestasiList as $p) {
 </script>
 
 
-<script src="js/navbar.js"></script>
-<script src="js/prestasi.js"></script>
+<script src="js/shared/navbar.js"></script>
+<script src="js/website/prestasi.js"></script>
 
 </body>
 </html>

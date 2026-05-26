@@ -20,8 +20,8 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_role'])) {
   <title>Login — Ponpes Al-Barokah An-Nur Khumairoh</title>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/login.css" />
+  <link rel="stylesheet" href="css/shared/base.css" />
+  <link rel="stylesheet" href="css/dashboard/login.css" />
 </head>
 <body class="page-login">
 
@@ -119,7 +119,7 @@ if (isset($_SESSION['user_id']) && isset($_SESSION['user_role'])) {
 
 </div><!-- /login-page -->
 
-<script src="js/login.js"></script>
+<script src="js/dashboard/login.js"></script>
 
 </body>
 </html>

@@ -40,7 +40,7 @@
 .hero__bg {
   position   : absolute;
   inset      : 0;
-  background : url('../Picture/whatsAppimageponpes.jpeg')
+  background : url('../../Picture/whatsAppimageponpes.jpeg')
                center / cover no-repeat;
   transform  : scale(1.05);
   animation  : slowZoom 14s ease-in-out infinite alternate;
@@ -224,7 +224,7 @@
   overflow      : hidden;
   box-shadow    : var(--shadow-lg);
   min-height    : 320px;
-  background    : url('../Picture/zfotoponpes.jpg')
+  background    : url('../../Picture/zfotoponpes.jpg')
                   center / cover no-repeat;
   position      : relative;
 }

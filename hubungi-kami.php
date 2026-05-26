@@ -35,11 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css"    />  
-  <link rel="stylesheet" href="css/navbar.css"  />  
-  <link rel="stylesheet" href="css/header.css"  />  
-  <link rel="stylesheet" href="css/footer.css"  />  
-  <link rel="stylesheet" href="css/hubungi-kami.css" /> 
+  <link rel="stylesheet" href="css/shared/base.css"    />  
+  <link rel="stylesheet" href="css/shared/navbar.css"  />  
+  <link rel="stylesheet" href="css/shared/header.css"  />  
+  <link rel="stylesheet" href="css/shared/footer.css"  />  
+  <link rel="stylesheet" href="css/website/hubungi-kami.css" /> 
 </head>
 <body>
 
@@ -86,21 +86,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="icon-wrap"><i class="fas fa-map-marker-alt"></i></div>
             <div class="info-content">
               <strong>Alamat Lengkap</strong>
-              <p>Gumuk Kerang - Ajung, Kec. Ajung<br>Kabupaten Jember - Jawa Timur</p>
+              <p>Jl. Raung Klanceng Timur Kec. Ajung Kab. Jember, Jawa Timur</p>
             </div>
           </li>
           <li>
             <div class="icon-wrap"><i class="fas fa-phone-alt"></i></div>
             <div class="info-content">
               <strong>Telepon / WhatsApp</strong>
-              <p>(0852) 3057 4234</p>
+              <p>(0331) 421603</p>
             </div>
           </li>
           <li>
             <div class="icon-wrap"><i class="fas fa-envelope"></i></div>
             <div class="info-content">
               <strong>Email Layanan</strong>
-              <p>info@albarokah.sch.id</p>
+              <p>@albarokah.sch.id</p>
             </div>
           </li>
         </ul>
@@ -108,8 +108,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="social-connect">
           <h3>Terhubung Bersama Kami</h3>
           <div class="social-links">
-            <a href="#" class="soc-link youtube" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
-            <a href="#" class="soc-link instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://youtube.com/@albarokahannurkhumairoh8395?si=qG6sNMztAigy0j_b" class="soc-link youtube" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/albarokahchannel?igsh=MTRkY2s5dnBudDhrdg==" class="soc-link instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="https://wa.me/6285230574234" target="_blank" class="soc-link whatsapp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
           </div>
         </div>
@@ -226,8 +226,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!-- Scripts -->
 
-<script src="js/navbar.js"></script>
-<script src="js/hubungi-kami.js"></script>
+<script src="js/shared/navbar.js"></script>
+<script src="js/website/hubungi-kami.js"></script>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-﻿/* BERITA.JS — Ponpes Al-Barokah An-Nur Khumairoh
+/* BERITA.JS — Ponpes Al-Barokah An-Nur Khumairoh
    Script khusus halaman Berita
    Requires: navbar.js (sudah di-load sebelumnya) */
 
@@ -100,11 +100,27 @@
     }
 
     if (paginated.length === 0) {
+      let emptyTitle = '';
+      let emptySub = '';
+      let emptyIcon = 'fa-newspaper';
+      
+      if (currentSearch) {
+          emptyTitle = 'Pencarian tidak ditemukan';
+          emptySub = 'Maaf, tidak ada berita yang cocok dengan kata kunci "<b>' + currentSearch + '</b>".';
+          emptyIcon = 'fa-search';
+      } else if (currentKategori !== 'Semua') {
+          emptyTitle = 'Belum Ada Publikasi';
+          emptySub = 'Saat ini belum ada berita yang diterbitkan untuk kategori <b>' + currentKategori + '</b>.';
+      } else {
+          emptyTitle = 'Belum Ada Berita';
+          emptySub = 'Belum ada berita atau artikel apapun yang dipublikasikan.';
+      }
+
       grid.innerHTML =
-        '<div class="empty-state">'
-        + '<i class="fas fa-search"></i>'
-        + '<h3>Artikel tidak ditemukan</h3>'
-        + '<p>Coba kata kunci atau kategori lain</p>'
+        '<div class="empty-state" style="padding: 40px 20px; text-align: center;">'
+        + '<i class="fas ' + emptyIcon + '" style="font-size:3rem; color:#cbd5e1; margin-bottom:15px; display:block;"></i>'
+        + '<h3 style="color:#374151; font-size:1.2rem; margin-bottom:8px;">' + emptyTitle + '</h3>'
+        + '<p style="color:#6b7280; font-size:0.95rem;">' + emptySub + '</p>'
         + '</div>';
       return;
     }

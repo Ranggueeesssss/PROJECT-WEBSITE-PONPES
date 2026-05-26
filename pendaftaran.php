@@ -12,11 +12,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css"    />  
-  <link rel="stylesheet" href="css/navbar.css"  />  
-  <link rel="stylesheet" href="css/header.css"  />  
-  <link rel="stylesheet" href="css/footer.css"  />  
-  <link rel="stylesheet" href="css/pendaftaran.css" /> 
+  <link rel="stylesheet" href="css/shared/base.css"        />
+  <link rel="stylesheet" href="css/shared/navbar.css"      />
+  <link rel="stylesheet" href="css/shared/header.css"      />
+  <link rel="stylesheet" href="css/shared/footer.css"      />
+  <link rel="stylesheet" href="css/website/pendaftaran.css" /> 
 </head>
 <body>
 
@@ -183,7 +183,7 @@
                         <div class="btn-text">Surat Pernyataan / SPJM Orang Tua</div>
                     </a>
                     
-                    <a href="#form-pendaftaran-nanti" class="btn-action btn-form" id="btnFormPend">
+                    <a href="form-pendaftaran.php" class="btn-action btn-form" id="btnFormPend">
                         <div class="btn-icon"><i class="fas fa-clipboard-check"></i></div>
                         <div class="btn-text">Form Pendaftaran Santri!</div>
                     </a>
@@ -194,13 +194,9 @@
                     </a>
                 </div>
             </div>
-
         </div>
-
     </div>
-
     </div>
-
   </div>
 </main>
 
@@ -209,8 +205,8 @@
 
 <!-- Scripts -->
 
-<script src="js/navbar.js"></script>
-<script src="js/pendaftaran.js"></script>
+<script src="js/shared/navbar.js"></script>
+<script src="js/website/pendaftaran.js"></script>
 
 </body>
 </html>

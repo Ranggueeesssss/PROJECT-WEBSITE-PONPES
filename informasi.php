@@ -1,5 +1,15 @@
 <?php
-// Halaman informasi.php
+
+// Menentukan Tahun Ajaran secara otomatis berdasarkan bulan saat ini.
+// Pendaftaran santri baru biasanya difokuskan pada awal hingga pertengahan tahun.
+$tahunSekarang = (int)date('Y');
+$bulanSekarang = (int)date('n');
+
+if ($bulanSekarang >= 8) {
+    $tahunAjaranBuka = ($tahunSekarang + 1) . '/' . ($tahunSekarang + 2);
+} else {
+    $tahunAjaranBuka = $tahunSekarang . '/' . ($tahunSekarang + 1);
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -15,11 +25,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/base.css"       />
-  <link rel="stylesheet" href="css/navbar.css"     />
-  <link rel="stylesheet" href="css/header.css"     />
-  <link rel="stylesheet" href="css/footer.css"     />
-  <link rel="stylesheet" href="css/informasi.css"  />
+  <link rel="stylesheet" href="css/shared/base.css"       />
+  <link rel="stylesheet" href="css/shared/navbar.css"     />
+  <link rel="stylesheet" href="css/shared/header.css"     />
+  <link rel="stylesheet" href="css/shared/footer.css"     />
+  <link rel="stylesheet" href="css/website/informasi.css"  />
 </head>
 <body>
 
@@ -223,15 +233,15 @@
             <div class="contact-list">
               <div class="contact-item">
                 <i class="fas fa-map-marker-alt"></i>
-                <span>Jl. Pesantren No.1, Jember, Jawa Timur</span>
+                <span>Jl. Raung Klanceng Timur Kec. Ajung Kab. Jember, Jawa Timur</span>
               </div>
               <div class="contact-item">
                 <i class="fas fa-phone"></i>
-                <span>(0331) 123-4567</span>
+                <span>(0331) 421603</span>
               </div>
               <div class="contact-item">
                 <i class="fas fa-envelope"></i>
-                <span>info@albarokah.sch.id</span>
+                <span>@albarokah.sch.id</span>
               </div>
               <div class="contact-item">
                 <i class="fab fa-whatsapp"></i>
@@ -239,7 +249,7 @@
                   <a href="https://wa.me/6285230574234" target="_blank"
                      rel="noopener noreferrer"
                      style="color:var(--green-primary); font-weight:600;">
-                    (0852) 3057 4234
+                    0852 3057 4234
                   </a>
                 </span>
               </div>
@@ -255,7 +265,7 @@
           </div>
           <div class="sidebar-widget__body">
             <p style="font-size:.78rem; color:var(--text-soft); line-height:1.7; margin-bottom:14px;">
-              Tahun Ajaran <strong style="color:var(--green-primary);">2026/2027</strong>
+              Tahun Ajaran <strong style="color:var(--green-primary);"><?php echo $tahunAjaranBuka; ?></strong>
               segera dibuka. Daftarkan putra-putri Anda sekarang.
             </p>
             <a href="pendaftaran.php" class="sidebar-btn">
@@ -279,8 +289,8 @@
 
 <!-- Scripts -->
 
-<script src="js/navbar.js"></script>        <!-- Hamburger, scroll, active link -->
-<script src="js/informasi.js"></script>     <!-- Scroll reveal                  -->
+<script src="js/shared/navbar.js"></script>        <!-- Hamburger, scroll, active link -->
+<script src="js/website/informasi.js"></script>     <!-- Scroll reveal                  -->
 
 </body>
 </html>

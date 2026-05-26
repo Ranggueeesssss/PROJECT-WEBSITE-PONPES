@@ -87,8 +87,8 @@ if ($q_users) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Kelola Login — Ponpes Al-Barokah An-Nur Khumairoh</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="css/dashboard_pro.css?v=3">
-    <link rel="stylesheet" href="css/kelola_login.css">
+    <link rel="stylesheet" href="css/dashboard/dashboard_pro.css?v=3">
+    <link rel="stylesheet" href="css/dashboard/kelola_login.css">
 </head>
 <body>
 
@@ -260,7 +260,7 @@ if ($q_users) {
     </div>
 </div>
 
-<script src="js/dashboard.js"></script>
-<script src="js/kelola_login.js"></script>
+<script src="js/dashboard/dashboard.js"></script>
+<script src="js/dashboard/kelola_login.js"></script>
 </body>
 </html>

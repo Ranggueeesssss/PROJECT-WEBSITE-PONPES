@@ -10,9 +10,10 @@ require_once __DIR__ . '/koneksi.php';
 
 // --- AUTO-SYNC: Masukkan santri yang 'Lolos' pendaftaran ke tabel induk santri ---
 // Menggunakan single query untuk performa yang jauh lebih baik (menghindari N+1 Query problem)
+$user_id_sync = (int)$_SESSION['user_id'];
 $syncQuery = "
-    INSERT INTO data_santri (pendaftaran_id, nama_lengkap, jenjang, tanggal_lahir, nomor_hp, alamat, status_santri)
-    SELECT p.id, p.nama_lengkap, p.jenjang_pendaftaran, p.tanggal_lahir, p.nomor_handphone, p.alamat_lengkap, 'Baru'
+    INSERT INTO data_santri (pendaftaran_id, user_id, nama_lengkap, jenjang, tanggal_lahir, nomor_hp, alamat, status_santri)
+    SELECT p.id, $user_id_sync, p.nama_lengkap, p.jenjang_pendaftaran, p.tanggal_lahir, p.nomor_handphone, p.alamat_lengkap, 'Baru'
     FROM pendaftaran p
     LEFT JOIN data_santri s ON p.id = s.pendaftaran_id
     WHERE p.status = 'Lolos' AND s.id IS NULL
@@ -21,6 +22,24 @@ $conn->query($syncQuery);
 
 // --- PROSES AKSI (POST) ---
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
+    // 0. Tambah Santri Manual
+    if (isset($_POST['action']) && $_POST['action'] === 'add_santri') {
+        $nama_lengkap = $conn->real_escape_string($_POST['nama_lengkap']);
+        $jenjang = $conn->real_escape_string($_POST['jenjang']);
+        $nomor_hp = $conn->real_escape_string($_POST['nomor_hp']);
+        $alamat = $conn->real_escape_string($_POST['alamat']);
+        $tanggal_lahir = !empty($_POST['tanggal_lahir']) ? $conn->real_escape_string($_POST['tanggal_lahir']) : NULL;
+        $status_santri = $conn->real_escape_string($_POST['status_santri']);
+        $user_id = (int)$_SESSION['user_id'];
+        
+        $stmtAdd = $conn->prepare("INSERT INTO data_santri (user_id, nama_lengkap, jenjang, nomor_hp, alamat, tanggal_lahir, status_santri) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmtAdd->bind_param("issssss", $user_id, $nama_lengkap, $jenjang, $nomor_hp, $alamat, $tanggal_lahir, $status_santri);
+        $stmtAdd->execute();
+        
+        header("Location: data_santri.php?status=santri_added");
+        exit;
+    }
     
     // 1. Tambah Kolom Baru
     if (isset($_POST['action']) && $_POST['action'] === 'add_column') {
@@ -61,8 +80,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         $newJson = json_encode($oldData);
-        $stmtUpdate = $conn->prepare("UPDATE data_santri SET status_santri = ?, custom_data = ? WHERE id = ?");
-        $stmtUpdate->bind_param("ssi", $status_santri, $newJson, $santri_id);
+        $user_id = (int)$_SESSION['user_id'];
+        $stmtUpdate = $conn->prepare("UPDATE data_santri SET status_santri = ?, custom_data = ?, user_id = ? WHERE id = ?");
+        $stmtUpdate->bind_param("ssii", $status_santri, $newJson, $user_id, $santri_id);
         $stmtUpdate->execute();
         
         header("Location: data_santri.php?status=data_updated");
@@ -108,12 +128,12 @@ if ($resSantri) {
     
     <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Base Styles -->
-    <link rel="stylesheet" href="css/dashboard_pro.css?v=3">
-    <!-- Module Styles -->
-    <link rel="stylesheet" href="css/data_santri.css">
+    <!-- Menggunakan dashboard_pro.css seperti file dashboard lainnya -->
+    <!-- Tidak memuat font Google lagi di file css karena terlalu berat -->
+    <!-- File css ini hanya untuk struktur utama sidebar dan navbar dashboard -->
+    <link rel="stylesheet" href="css/dashboard/dashboard_pro.css?v=3">
+    <!-- File CSS spesifik untuk data_santri -->
+    <link rel="stylesheet" href="css/dashboard/data_santri.css">
 </head>
 <body style="font-family: 'Plus Jakarta Sans', sans-serif; background: #f9fafb;">
 
@@ -191,6 +211,60 @@ if ($resSantri) {
     </div>
 </div>
 
+<!-- Modal Tambah Santri Manual -->
+<div class="modal-overlay" id="modalAddSantri">
+    <div class="modal-box" style="max-width: 550px; border-radius: 20px;">
+        <form method="POST" action="data_santri.php">
+            <input type="hidden" name="action" value="add_santri">
+            
+            <div class="modal-header" style="border:none; padding: 25px 25px 10px;">
+                <h3 style="font-weight: 800; color: #1e4d2b;"><i class="fas fa-user-plus me-2"></i> Tambah Santri</h3>
+                <button type="button" class="modal-close" onclick="document.getElementById('modalAddSantri').classList.remove('active')"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <div class="modal-body" style="padding: 10px 25px 25px; max-height: 70vh; overflow-y: auto;">
+                <div class="form-group mb-4">
+                    <label class="form-label">Nama Lengkap</label>
+                    <input type="text" name="nama_lengkap" class="form-control" required style="border-radius: 12px; height: 48px;">
+                </div>
+                <div class="form-group mb-4">
+                    <label class="form-label">Jenjang Pendidikan</label>
+                    <select name="jenjang" class="form-control" required style="border-radius: 12px; height: 48px;">
+                        <option value="TPA / TPQ">TPA / TPQ</option>
+                        <option value="Madrasah Diniyah">Madrasah Diniyah</option>
+                        <option value="Majelis Ta'lim">Majelis Ta'lim</option>
+                    </select>
+                </div>
+                <div class="form-group mb-4">
+                    <label class="form-label">Nomor HP</label>
+                    <input type="text" name="nomor_hp" class="form-control" style="border-radius: 12px; height: 48px;">
+                </div>
+                <div class="form-group mb-4">
+                    <label class="form-label">Alamat Lengkap</label>
+                    <textarea name="alamat" class="form-control" style="border-radius: 12px; height: 80px;"></textarea>
+                </div>
+                <div class="form-group mb-4">
+                    <label class="form-label">Tanggal Lahir</label>
+                    <input type="date" name="tanggal_lahir" class="form-control" style="border-radius: 12px; height: 48px;">
+                </div>
+                <div class="form-group mb-4">
+                    <label class="form-label">Status Awal</label>
+                    <select name="status_santri" class="form-control" style="border-radius: 12px; height: 48px;">
+                        <option value="Aktif">Aktif (Sudah Menetap)</option>
+                        <option value="Baru">Baru</option>
+                        <option value="Alumni">Alumni</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="modal-footer" style="border:none; padding: 0 25px 25px; background: transparent;">
+                <button type="button" class="btn-premium" style="background: #f1f5f9; color: #475569; width: 100%; justify-content: center;" onclick="document.getElementById('modalAddSantri').classList.remove('active')">Batal</button>
+                <button type="submit" class="btn-premium" style="background: #1e4d2b; color: white; width: 100%; justify-content: center; margin-top: 10px;">Simpan Santri Baru</button>
+            </div>
+        </form>
+    </div>
+</div>
+
 <div class="dash-wrapper">
     <?php include_once 'includes/dash_sidebar.php'; ?>
 
@@ -206,7 +280,10 @@ if ($resSantri) {
                         <h1>Data Induk Santri</h1>
                         <p>Manajemen data santri aktif dan alumni Ponpes Al-Barokah.</p>
                     </div>
-                    <div class="toolbar-actions">
+                    <div class="toolbar-actions" style="display: flex; gap: 10px;">
+                        <button class="btn-premium" onclick="document.getElementById('modalAddSantri').classList.add('active')" style="background: #1e4d2b; color: white;">
+                            <i class="fas fa-user-plus"></i> Tambah Santri
+                        </button>
                         <button class="btn-premium btn-add-column" onclick="document.getElementById('modalAddCol').classList.add('active')">
                             <i class="fas fa-plus-circle"></i> Tambah Kolom
                         </button>
@@ -223,6 +300,7 @@ if ($resSantri) {
                             elseif($_GET['status']=='col_deleted') echo 'Kolom berhasil dihapus.';
                             elseif($_GET['status']=='data_updated') echo 'Data santri diperbarui.';
                             elseif($_GET['status']=='deleted') echo 'Data santri telah dihapus.';
+                            elseif($_GET['status']=='santri_added') echo 'Santri baru (manual) berhasil ditambahkan dan langsung aktif.';
                         ?>
                     </span>
                 </div>
@@ -360,8 +438,8 @@ if ($resSantri) {
 </div>
 
 <!-- Scripts -->
-<script src="js/dashboard.js"></script>
-<script src="js/data_santri.js"></script>
+<script src="js/dashboard/dashboard.js"></script>
+<script src="js/dashboard/data_santri.js"></script>
 
 </body>
 </html>

@@ -1,6 +1,54 @@
 <?php
 // Home.php — Ponpes Al-Barokah An-Nur Khumairoh
 // Halaman utama website pesantren
+
+require_once __DIR__ . '/koneksi.php';
+
+// --- STATISTIK DINAMIS ---
+// 1. Jumlah Santri (Mengikuti logika dashboard.php, termasuk manual mode)
+$countSantriDb = 0;
+$resSantri = $conn->query("SELECT COUNT(*) FROM data_santri");
+if ($resSantri) {
+    $countSantriDb = $resSantri->fetch_row()[0];
+}
+
+$santriManualFile = __DIR__ . '/santri_manual.json';
+$finalSantriCount = $countSantriDb;
+if (file_exists($santriManualFile)) {
+    $fileData = json_decode(file_get_contents($santriManualFile), true);
+    if ($fileData && isset($fileData['mode']) && $fileData['mode'] === 'manual') {
+        $finalSantriCount = (int)$fileData['count'];
+    }
+}
+
+// 2. Pengajar Pengalaman
+$countPengajar = 0;
+$resPengajar = $conn->query("SELECT COUNT(*) FROM profil_pengajar");
+if ($resPengajar) {
+    $countPengajar = $resPengajar->fetch_row()[0];
+}
+
+// 3. Prestasi
+$countPrestasi = 0;
+$resPrestasi = $conn->query("SELECT COUNT(*) FROM profil_prestasi");
+if ($resPrestasi) {
+    $countPrestasi = $resPrestasi->fetch_row()[0];
+}
+
+// 4. Tahun Berdiri (Misal dari tahun 2011, diset minimal 15)
+$tahunBerdiri = 15;
+
+// --- LOGIKA DINAMIS TAHUN AJARAN ---
+$tahunSekarang = (int)date('Y');
+$bulanSekarang = (int)date('n');
+
+if ($bulanSekarang >= 8) {
+    $tahunAjaranBuka = ($tahunSekarang + 1) . '/' . ($tahunSekarang + 2);
+    $tahunBuka = $tahunSekarang + 1;
+} else {
+    $tahunAjaranBuka = $tahunSekarang . '/' . ($tahunSekarang + 1);
+    $tahunBuka = $tahunSekarang;
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -11,11 +59,11 @@
   <title>Home — Ponpes Al-Barokah An-Nur Khumairoh</title>
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="css/base.css"   />
-  <link rel="stylesheet" href="css/navbar.css" />
-  <link rel="stylesheet" href="css/header.css" />
-  <link rel="stylesheet" href="css/footer.css" />
-  <link rel="stylesheet" href="css/home.css"   />
+  <link rel="stylesheet" href="css/shared/base.css"   />
+  <link rel="stylesheet" href="css/shared/navbar.css" />
+  <link rel="stylesheet" href="css/shared/header.css" />
+  <link rel="stylesheet" href="css/shared/footer.css" />
+  <link rel="stylesheet" href="css/website/home.css"  />
 </head>
 <body>
 
@@ -40,23 +88,23 @@
 <div class="stats" aria-label="Statistik pesantren">
   <div class="stats__item">
     <i class="fas fa-user-graduate stats__icon" aria-hidden="true"></i>
-    <span class="stats__number" data-target="500" data-suffix="+">500+</span>
-    <span class="stats__label">Santri Aktif</span>
+    <span class="stats__number" data-target="<?php echo $finalSantriCount; ?>" data-suffix="+"><?php echo $finalSantriCount; ?>+</span>
+    <span class="stats__label">Jumlah Santri</span>
   </div>
   <div class="stats__item">
     <i class="fas fa-chalkboard-teacher stats__icon" aria-hidden="true"></i>
-    <span class="stats__number" data-target="30" data-suffix="+">30+</span>
-    <span class="stats__label">Pengajar Berpengalaman</span>
+    <span class="stats__number" data-target="<?php echo $countPengajar; ?>" data-suffix="+"><?php echo $countPengajar; ?>+</span>
+    <span class="stats__label">Pengajar Pengalaman</span>
   </div>
   <div class="stats__item">
     <i class="fas fa-mosque stats__icon" aria-hidden="true"></i>
-    <span class="stats__number" data-target="15" data-suffix="+">15+</span>
+    <span class="stats__number" data-target="<?php echo $tahunBerdiri; ?>" data-suffix="+"><?php echo $tahunBerdiri; ?>+</span>
     <span class="stats__label">Tahun Berdiri</span>
   </div>
   <div class="stats__item">
-    <i class="fas fa-star stats__icon" aria-hidden="true"></i>
-    <span class="stats__number" data-target="10" data-suffix="+">10+</span>
-    <span class="stats__label">Program Unggulan</span>
+    <i class="fas fa-trophy stats__icon" aria-hidden="true"></i>
+    <span class="stats__number" data-target="<?php echo $countPrestasi; ?>" data-suffix="+"><?php echo $countPrestasi; ?>+</span>
+    <span class="stats__label">Prestasi</span>
   </div>
 </div>
 
@@ -166,13 +214,9 @@
           </li>
         </ul>
       </article>
-
     </div>
   </div>
-
-
 </section>
-
 
 
 <section class="pendaftaran" id="pendaftaran" aria-label="Pendaftaran santri baru">
@@ -181,7 +225,7 @@
       <span class="pendaftaran__badge">Penerimaan Santri Baru</span>
       <h2 class="pendaftaran__visual-title">
         PonPes Al-Barokah<br>An-Nur Khumairoh
-        <span>Tahun 2026</span>
+        <span>Tahun <?php echo $tahunBuka; ?></span>
       </h2>
     </div>
     <div class="pendaftaran__info-boxes">
@@ -221,7 +265,7 @@
     <h2 class="pendaftaran__cta-title">Pendaftaran <span>santri baru</span></h2>
     <p class="pendaftaran__cta-sub">Pondok Pesantren Modern Al-Barokah</p>
     <div class="pendaftaran__highlight-box">
-      <h3>Penerimaan Santri Baru<br>Al-Barokah TA 2026/2027</h3>
+      <h3>Penerimaan Santri Baru<br>Al-Barokah TA <?php echo $tahunAjaranBuka; ?></h3>
       <p class="tahun">Tahun Ajaran Baru segera dibuka</p>
       <div class="ayo-mondok">
         <span>Ayo daftarkan diri anda</span>
@@ -246,8 +290,8 @@
 <?php include 'includes/footer.php'; ?>
 
 
-<script src="js/navbar.js"></script>
-<script src="js/home.js"></script>
+<script src="js/shared/navbar.js"></script>
+<script src="js/website/home.js"></script>
 
 </body>
 </html>
