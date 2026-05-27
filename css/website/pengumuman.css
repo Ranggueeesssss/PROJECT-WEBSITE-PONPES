@@ -1,4 +1,4 @@
-﻿/* PENGUMUMAN.CSS — Styling untuk Pengumuman Santri Baru */
+/* PENGUMUMAN.CSS — Styling untuk Pengumuman Santri Baru */
 
 .pengumuman-section {
     margin-top: 60px;
@@ -302,5 +302,80 @@
     }
     .pengumuman-title {
         font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .pengumuman-section {
+        margin-top: 20px;
+        padding-top: 10px;
+    }
+    .pengumuman-card {
+        padding: 24px 15px;
+        border-radius: 16px;
+    }
+    .pengumuman-icon-wrapper {
+        width: 54px;
+        height: 54px;
+        margin-bottom: 12px;
+    }
+    .pengumuman-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
+    }
+    .pengumuman-title {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+    .pengumuman-desc {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+    .pengumuman-form {
+        padding: 0;
+        background: transparent;
+        border: none;
+    }
+    .form-row {
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+    .input-wrapper input {
+        padding: 12px 14px 12px 36px;
+        font-size: 0.9rem;
+    }
+    .input-icon {
+        font-size: 1rem;
+        left: 12px;
+    }
+    .btn-cek-pengumuman {
+        padding: 6px 6px 6px 20px;
+        width: 100%;
+        justify-content: space-between;
+    }
+    .btn-cek-pengumuman .btn-text {
+        font-size: 0.9rem;
+    }
+    .btn-icon-circle {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+    .status-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+    .status-title {
+        font-size: 1.3rem;
+    }
+    .status-detail {
+        font-size: 0.9rem;
+    }
+    .result-card {
+        padding: 20px 15px;
     }
 }

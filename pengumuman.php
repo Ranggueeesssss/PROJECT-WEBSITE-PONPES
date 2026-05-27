@@ -61,7 +61,7 @@
                     </div>
                     <div class="pulse-ring"></div>
                 </div>
-                <h3 class="pengumuman-title">Cek Kelulusan Santri Baru</h3>
+                <h3 class="pengumuman-title">Cek Hasil Seleksi Santri Baru</h3>
                 <p class="pengumuman-desc">Silakan masukkan nama lengkap dan tanggal lahir untuk melihat hasil seleksi pendaftaran.</p>
             </div>
             

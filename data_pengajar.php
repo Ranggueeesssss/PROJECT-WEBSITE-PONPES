@@ -255,7 +255,7 @@ if ($res) {
                                             <button class="action-btn" title="Edit" onclick="editPengajar(<?php echo htmlspecialchars(json_encode($p)); ?>)">
                                                 <i class="fas fa-pen"></i>
                                             </button>
-                                            <a href="data_pengajar.php?delete_id=<?php echo $p['id']; ?>" class="action-btn delete" title="Hapus" onclick="return confirm('Yakin ingin menghapus <?php echo addslashes($p['nama']); ?>?');">
+                                            <a href="data_pengajar.php?delete_id=<?php echo $p['id']; ?>" class="action-btn delete" title="Hapus">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </div>

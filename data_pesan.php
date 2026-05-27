@@ -171,7 +171,7 @@ if ($res) {
                                             <button class="action-btn" style="color:var(--dash-primary); background:#eff6ff;" title="Lihat Pesan" onclick="openMsgDetail(<?php echo htmlspecialchars(json_encode($p)); ?>)">
                                                 <i class="fas fa-eye"></i>
                                             </button>
-                                            <a href="data_pesan.php?delete_id=<?php echo $p['id']; ?>" class="action-btn delete" title="Hapus" onclick="return confirm('Hapus pesan dari <?php echo addslashes($p['nama']); ?>?');">
+                                            <a href="data_pesan.php?delete_id=<?php echo $p['id']; ?>" class="action-btn delete" title="Hapus">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </div>

@@ -1,4 +1,4 @@
-﻿/* HUBUNGI-KAMI.CSS — Ponpes Al-Barokah An-Nur Khumairoh
+/* HUBUNGI-KAMI.CSS — Ponpes Al-Barokah An-Nur Khumairoh
    Styles khusus halaman Hubungi Kami */
 
 /* PAGE HERO (Sama dengan halaman Galeri / Prestasi) */
@@ -35,6 +35,7 @@
 .breadcrumb {
   display       : flex;
   align-items   : center;
+  flex-wrap     : wrap;
   gap           : 8px;
   margin-bottom : 20px;
 }
@@ -47,7 +48,7 @@
 
 .page-hero__title {
   font-family   : 'Amiri', serif;
-  font-size     : clamp(2.2rem, 5vw, 3.2rem);
+  font-size     : clamp(1.8rem, 6vw, 3.2rem);
   font-weight   : 700;
   color         : var(--white);
   line-height   : 1.1;
@@ -183,6 +184,7 @@
 
 .social-links {
   display: flex;
+  flex-wrap: wrap;
   gap: 15px;
 }
 
@@ -451,8 +453,43 @@
 }
 
 @media (max-width: 600px) {
-  .contact-main { padding: 30px 20px 50px; }
-  .page-hero    { padding: 30px 20px 28px; }
-  .contact-info-card, .contact-form-card, .contact-map-section { padding: 25px; }
-  .map-container { height: 250px; }
+  .contact-main { padding: 30px 16px 50px; }
+  .page-hero    { padding: 30px 16px 28px; }
+  .contact-info-card, .contact-form-card, .contact-map-section { padding: 24px 16px; border-radius: 14px; }
+  
+  .contact-header h2 { font-size: 1.5rem; }
+  .contact-header p { font-size: 0.85rem; }
+  
+  .contact-list { gap: 20px; }
+  .icon-wrap { width: 38px; height: 38px; font-size: 1rem; }
+  .info-content strong { font-size: 0.9rem; }
+  .info-content p { font-size: 0.82rem; }
+  
+  .form-group input, .form-group select, .form-group textarea { padding: 10px 14px; font-size: 0.85rem; }
+  .btn-submit { padding: 12px; font-size: 0.9rem; }
+  
+  .map-container { height: 250px; border-radius: 10px; }
+  
+  .prayer-times-card { padding: 24px 16px; border-radius: 14px; }
+  .prayer-box { padding: 16px 12px; }
+  .prayer-box__time { font-size: 1.4rem; }
+}
+
+@media (max-width: 380px) {
+  .contact-main { padding: 24px 12px 40px; }
+  .page-hero    { padding: 24px 12px 24px; }
+  .contact-info-card, .contact-form-card, .contact-map-section { padding: 20px 12px; }
+  
+  .contact-header h2 { font-size: 1.35rem; }
+  
+  .icon-wrap { width: 32px; height: 32px; font-size: 0.85rem; }
+  .info-content strong { font-size: 0.85rem; }
+  .info-content p { font-size: 0.78rem; }
+  
+  .map-container { height: 200px; }
+  
+  .prayer-times-card { padding: 20px 12px; }
+  .prayer-box { padding: 14px 10px; }
+  .prayer-box__name { font-size: 0.75rem; }
+  .prayer-box__time { font-size: 1.2rem; }
 }

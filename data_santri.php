@@ -98,6 +98,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+// 4. Hapus Santri (Via GET & Modal Confirm)
+if (isset($_GET['delete_id'])) {
+    $santri_id = (int)$_GET['delete_id'];
+    $conn->query("DELETE FROM data_santri WHERE id = $santri_id");
+    header("Location: data_santri.php?status=deleted");
+    exit;
+}
+
 // --- AMBIL DATA ---
 
 // 1. Ambil daftar kolom kustom
@@ -135,7 +143,7 @@ if ($resSantri) {
     <!-- File CSS spesifik untuk data_santri -->
     <link rel="stylesheet" href="css/dashboard/data_santri.css">
 </head>
-<body style="font-family: 'Plus Jakarta Sans', sans-serif; background: #f9fafb;">
+<body>
 
 <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
@@ -146,12 +154,12 @@ if ($resSantri) {
             <input type="hidden" name="action" value="update_data">
             <input type="hidden" name="santri_id" id="editSantriId">
             
-            <div class="modal-header" style="border:none; padding: 25px 25px 10px;">
-                <h3 style="font-weight: 800; color: #1e4d2b;"><i class="fas fa-user-edit me-2"></i> Update Data Santri</h3>
+            <div class="modal-header">
+                <h3 style="font-weight: 800; color: #1e4d2b; margin: 0;"><i class="fas fa-user-edit me-2"></i> Update Data Santri</h3>
                 <button type="button" class="modal-close" onclick="closeEditSantri()"><i class="fas fa-times"></i></button>
             </div>
             
-            <div class="modal-body" style="padding: 10px 25px 25px; max-height: 70vh; overflow-y: auto;">
+            <div class="modal-body">
                 <div style="background: #f0fdf4; padding: 20px; border-radius: 15px; margin-bottom: 24px; border: 1px solid #dcfce7;">
                     <div id="editNama" style="font-size: 1.25rem; font-weight: 800; color: #166534;">Nama Santri</div>
                     <div id="editJenjang" style="font-size: 0.9rem; color: #15803d; margin-top: 4px; font-weight: 600;">Jenjang</div>
@@ -181,7 +189,7 @@ if ($resSantri) {
                 </div>
             </div>
 
-            <div class="modal-footer" style="border:none; padding: 0 25px 25px; background: transparent;">
+            <div class="modal-footer">
                 <button type="button" class="btn-premium" style="background: #f1f5f9; color: #475569; width: 100%; justify-content: center;" onclick="closeEditSantri()">Batal</button>
                 <button type="submit" class="btn-premium" style="background: #1e4d2b; color: white; width: 100%; justify-content: center; margin-top: 10px;">Simpan Perubahan</button>
             </div>
@@ -194,17 +202,17 @@ if ($resSantri) {
     <div class="modal-box" style="max-width: 400px; border-radius: 20px;">
         <form method="POST" action="data_santri.php">
             <input type="hidden" name="action" value="add_column">
-            <div class="modal-header" style="border:none; padding: 25px 25px 10px;">
-                <h3 style="font-weight: 800;"><i class="fas fa-plus-square me-2"></i> Tambah Kolom</h3>
+            <div class="modal-header">
+                <h3 style="font-weight: 800; margin: 0;"><i class="fas fa-plus-square me-2"></i> Tambah Kolom</h3>
                 <button type="button" class="modal-close" onclick="document.getElementById('modalAddCol').classList.remove('active')"><i class="fas fa-times"></i></button>
             </div>
-            <div class="modal-body" style="padding: 25px;">
+            <div class="modal-body">
                 <div class="form-group">
                     <label class="form-label">Nama Kolom</label>
                     <input type="text" name="col_name" class="form-control" placeholder="Contoh: Kamar, Kelas, No Kamar" required style="border-radius: 12px; height: 48px;">
                 </div>
             </div>
-            <div class="modal-footer" style="border:none; padding: 0 25px 25px;">
+            <div class="modal-footer">
                 <button type="submit" class="btn-premium" style="background: #1e4d2b; color: white; width: 100%; justify-content: center;">Simpan Kolom</button>
             </div>
         </form>
@@ -217,12 +225,12 @@ if ($resSantri) {
         <form method="POST" action="data_santri.php">
             <input type="hidden" name="action" value="add_santri">
             
-            <div class="modal-header" style="border:none; padding: 25px 25px 10px;">
-                <h3 style="font-weight: 800; color: #1e4d2b;"><i class="fas fa-user-plus me-2"></i> Tambah Santri</h3>
+            <div class="modal-header">
+                <h3 style="font-weight: 800; color: #1e4d2b; margin: 0;"><i class="fas fa-user-plus me-2"></i> Tambah Santri</h3>
                 <button type="button" class="modal-close" onclick="document.getElementById('modalAddSantri').classList.remove('active')"><i class="fas fa-times"></i></button>
             </div>
             
-            <div class="modal-body" style="padding: 10px 25px 25px; max-height: 70vh; overflow-y: auto;">
+            <div class="modal-body">
                 <div class="form-group mb-4">
                     <label class="form-label">Nama Lengkap</label>
                     <input type="text" name="nama_lengkap" class="form-control" required style="border-radius: 12px; height: 48px;">
@@ -257,7 +265,7 @@ if ($resSantri) {
                 </div>
             </div>
 
-            <div class="modal-footer" style="border:none; padding: 0 25px 25px; background: transparent;">
+            <div class="modal-footer">
                 <button type="button" class="btn-premium" style="background: #f1f5f9; color: #475569; width: 100%; justify-content: center;" onclick="document.getElementById('modalAddSantri').classList.remove('active')">Batal</button>
                 <button type="submit" class="btn-premium" style="background: #1e4d2b; color: white; width: 100%; justify-content: center; margin-top: 10px;">Simpan Santri Baru</button>
             </div>
@@ -404,9 +412,9 @@ if ($resSantri) {
                                                 <button class="btn-icon" title="Edit & Lengkapi" onclick='openEditSantri(<?php echo htmlspecialchars(json_encode($s), ENT_QUOTES, "UTF-8"); ?>, <?php echo htmlspecialchars(json_encode($customCols), ENT_QUOTES, "UTF-8"); ?>)'>
                                                     <i class="fas fa-edit"></i>
                                                 </button>
-                                                <button class="btn-icon delete" title="Hapus" onclick="deleteSantri(<?php echo $s['id']; ?>, '<?php echo addslashes($s['nama_lengkap']); ?>')">
+                                                <a href="data_santri.php?delete_id=<?php echo $s['id']; ?>" class="btn-icon delete" title="Hapus" onclick="event.preventDefault(); showConfirm('Konfirmasi Hapus', 'Yakin ingin menghapus data santri ini secara permanen?', this.href, 'delete');">
                                                     <i class="fas fa-trash"></i>
-                                                </button>
+                                                </a>
                                             </div>
                                         </td>
                                     </tr>

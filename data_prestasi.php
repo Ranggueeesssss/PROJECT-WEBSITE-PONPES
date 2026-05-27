@@ -73,6 +73,15 @@ if ($res) {
         .rank-bronze { background: #ffedd5; color: #c2410c; border: 1px solid #fdba74; }
         .rank-green { background: #dcfce7; color: #16a34a; border: 1px solid #bbf7d0; }
         .timeline-box { margin-top:15px; padding:15px; border:1px dashed var(--dash-border); border-radius:8px; background:#fafafa; display:none; }
+        
+        /* Mobile Form Flexibility */
+        .form-row-flex { display: flex; gap: 15px; }
+        .checkbox-group { display: flex; flex-direction: row; align-items: center; gap: 10px; margin-top: 10px; }
+        @media (max-width: 576px) {
+            .form-row-flex { flex-direction: column; gap: 10px; }
+            .checkbox-group { align-items: flex-start; }
+            .checkbox-group input { margin-top: 3px; }
+        }
     </style>
 </head>
 <body>
@@ -95,7 +104,7 @@ if ($res) {
                     <input type="text" name="judul" id="formJudul" class="form-control" required placeholder="Contoh: Juara 1 Lomba Kaligrafi Kabupaten">
                 </div>
 
-                <div style="display:flex; gap:15px;">
+                <div class="form-row-flex">
                     <div class="form-group" style="flex:1;">
                         <label>Tingkat</label>
                         <select name="tingkat" id="formTingkat" class="form-control" required>
@@ -113,7 +122,7 @@ if ($res) {
                     </div>
                 </div>
 
-                <div style="display:flex; gap:15px;">
+                <div class="form-row-flex">
                     <div class="form-group" style="flex:1;">
                         <label>Warna Ikon (Medali)</label>
                         <select name="rank_tipe" id="formRankTipe" class="form-control" required>
@@ -129,9 +138,9 @@ if ($res) {
                     </div>
                 </div>
 
-                <div class="form-group" style="flex-direction:row; align-items:center; gap:10px; margin-top:10px;">
-                    <input type="checkbox" id="formTimelineCheck" name="tampilkan_di_timeline" value="1" style="width:18px;height:18px;cursor:pointer;">
-                    <label for="formTimelineCheck" style="cursor:pointer;font-size:0.95rem;">Tampilkan di bagian "Perjalanan Prestasi" (Timeline)</label>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="formTimelineCheck" name="tampilkan_di_timeline" value="1" style="width:18px;height:18px;cursor:pointer;flex-shrink:0;">
+                    <label for="formTimelineCheck" style="cursor:pointer;font-size:0.90rem;line-height:1.4;">Tampilkan di bagian "Perjalanan Prestasi" (Timeline)</label>
                 </div>
 
                 <div class="form-group timeline-box" id="timelineDescBox">
@@ -220,7 +229,7 @@ if ($res) {
                                             <button class="action-btn" title="Edit" onclick='editPrestasi(<?php echo htmlspecialchars(json_encode($p)); ?>)'>
                                                 <i class="fas fa-pen"></i>
                                             </button>
-                                            <a href="data_prestasi.php?delete_id=<?php echo $p['id']; ?>" class="action-btn delete" title="Hapus" onclick="return confirm('Hapus prestasi ini?');">
+                                            <a href="data_prestasi.php?delete_id=<?php echo $p['id']; ?>" class="action-btn delete" title="Hapus">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </div>

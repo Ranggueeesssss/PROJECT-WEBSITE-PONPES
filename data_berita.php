@@ -26,6 +26,24 @@ if (isset($_GET['delete_id'])) {
     exit;
 }
 
+// Proses Duplikasi Berita
+if (isset($_GET['duplikat_id'])) {
+    $id_dup = (int)$_GET['duplikat_id'];
+    $q_dup  = $conn->query("SELECT * FROM berita WHERE id = $id_dup");
+    if ($q_dup && $r_dup = $q_dup->fetch_assoc()) {
+        $judul_baru   = $conn->real_escape_string('[Salinan] ' . $r_dup['judul']);
+        $kat          = $conn->real_escape_string($r_dup['kategori']);
+        $pen          = $conn->real_escape_string($r_dup['penulis']);
+        $isi          = $conn->real_escape_string($r_dup['isi_berita']);
+        $exc          = $conn->real_escape_string($r_dup['excerpt']);
+        $tgl          = date('d M Y');
+        $conn->query("INSERT INTO berita (judul, kategori, penulis, isi_berita, excerpt, tanggal, gambar, featured) VALUES ('$judul_baru', '$kat', '$pen', '$isi', '$exc', '$tgl', NULL, 0)");
+    }
+    header('Location: data_berita.php?status=duplikat');
+    exit;
+}
+
+
 // Proses Jadikan Featured
 if (isset($_GET['featured_id'])) {
     $id_feat = (int)$_GET['featured_id'];
@@ -122,7 +140,14 @@ if ($res) {
         .btn-featured { color: #f59e0b; background: #fef3c7; border: 1px solid #fcd34d; }
         .btn-featured:hover { background: #fde68a; }
         .badge-feat { background: #fef3c7; color: #d97706; padding: 3px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: 700; margin-left: 10px; display: inline-flex; align-items: center; gap: 4px; }
+
+        /* ── Mobile Responsive Modal ── */
+        .form-row-flex { display: flex; gap: 15px; }
+        @media (max-width: 576px) {
+            .form-row-flex { flex-direction: column; gap: 10px; }
+        }
     </style>
+
 </head>
 <body>
 
@@ -145,7 +170,7 @@ if ($res) {
                     <input type="text" name="judul" id="formJudul" class="form-control" required placeholder="Masukkan judul berita yang menarik">
                 </div>
 
-                <div style="display:flex; gap:15px;">
+                <div class="form-row-flex">
                     <div class="form-group" style="flex:1;">
                         <label>Kategori</label>
                         <select name="kategori" id="formKategori" class="form-control" required>
@@ -161,10 +186,12 @@ if ($res) {
                     </div>
                 </div>
 
+
                 <div class="form-group">
                     <label>Isi Berita Lengkap</label>
-                    <textarea name="isi_berita" id="formIsi" class="form-control" rows="8" placeholder="Tuliskan detail berita atau pengumuman di sini..." required></textarea>
+                    <textarea name="isi_berita" id="formIsi" class="form-control" rows="5" placeholder="Tuliskan detail berita atau pengumuman di sini..." required></textarea>
                 </div>
+
 
                 <div class="form-group">
                     <label>Gambar Utama (Thumbnail)</label>
@@ -205,13 +232,15 @@ if ($res) {
             <div style="background:var(--green-50);border:1px solid var(--green-200);color:var(--green-700);padding:15px 20px;border-radius:12px;margin-bottom:25px;display:flex;align-items:center;gap:10px;font-weight:500;">
                 <i class="fas fa-check-circle" style="font-size:1.2rem;"></i>
                 <?php 
-                    if($_GET['status']=='added') echo 'Berita baru berhasil dipublikasikan.';
-                    elseif($_GET['status']=='updated') echo 'Berita berhasil diperbarui.';
-                    elseif($_GET['status']=='deleted') echo 'Berita berhasil dihapus.';
+                    if($_GET['status']=='added')    echo 'Berita baru berhasil dipublikasikan.';
+                    elseif($_GET['status']=='updated')  echo 'Berita berhasil diperbarui.';
+                    elseif($_GET['status']=='deleted')  echo 'Berita berhasil dihapus.';
                     elseif($_GET['status']=='featured') echo 'Artikel berhasil di-set sebagai Unggulan (Sorotan Utama).';
+                    elseif($_GET['status']=='duplikat') echo 'Berita berhasil diduplikasi sebagai salinan baru.';
                 ?>
             </div>
             <?php endif; ?>
+
 
             <div class="data-card fade-in-up d1">
                 <div class="data-card-header">
@@ -225,7 +254,7 @@ if ($res) {
                                 <th>Judul Artikel</th>
                                 <th>Kategori</th>
                                 <th>Tgl Publikasi</th>
-                                <th style="width: 140px; text-align: center;">Aksi</th>
+                                <th style="width: 180px; text-align: center;">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -268,11 +297,15 @@ if ($res) {
                                             <button class="action-btn" title="Edit" onclick='editBerita(<?php echo htmlspecialchars(json_encode($b)); ?>)'>
                                                 <i class="fas fa-pen"></i>
                                             </button>
-                                            <a href="data_berita.php?delete_id=<?php echo $b['id']; ?>" class="action-btn delete" title="Hapus" onclick="return confirm('Hapus berita ini permanen?');">
+                                            <a href="data_berita.php?duplikat_id=<?php echo $b['id']; ?>" class="action-btn" title="Duplikasi Berita" style="color:#3b82f6; background:#eff6ff;">
+                                                <i class="fas fa-copy"></i>
+                                            </a>
+                                            <a href="data_berita.php?delete_id=<?php echo $b['id']; ?>" class="action-btn delete" title="Hapus">
                                                 <i class="fas fa-trash"></i>
                                             </a>
                                         </div>
                                     </td>
+
                                 </tr>
                                 <?php endforeach; ?>
                             <?php else: ?>

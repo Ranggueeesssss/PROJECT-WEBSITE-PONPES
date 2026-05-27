@@ -1,4 +1,4 @@
-﻿/* FORM PENDAFTARAN CSS (Modern Ponpes Theme) */
+/* FORM PENDAFTARAN CSS (Modern Ponpes Theme) */
 
 .form-wrapper {
     background-color: var(--cream);
@@ -552,19 +552,281 @@
     font-size: 0.9rem;
 }
 
-/* Responsive */
+/* ============================================================
+   SUCCESS CARD — Pendaftaran Berhasil
+   ============================================================ */
+.success-card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 56px 48px 48px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--green-mist);
+    text-align: center;
+    animation: fadeUp 0.6s ease forwards;
+    position: relative;
+    overflow: hidden;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.success-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, var(--green-primary), var(--green-accent));
+}
+
+/* Ikon centang */
+.success-icon-wrapper {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.success-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--green-primary), var(--green-dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 1.8rem;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 8px 24px rgba(74, 124, 89, 0.35);
+}
+
+.success-pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: rgba(125, 201, 138, 0.35);
+    animation: pulse 2s infinite ease-out;
+    z-index: 1;
+}
+
+/* Judul & Subtitle */
+.success-title {
+    font-family: 'Amiri', serif;
+    font-size: 2rem;
+    color: var(--green-deep);
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.success-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-soft);
+    line-height: 1.7;
+    max-width: 540px;
+    margin: 0 auto 32px;
+}
+
+/* Steps */
+.success-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+    background: var(--green-foam);
+    border: 1px solid var(--green-mist);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 28px;
+}
+
+.success-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.success-step__icon {
+    width: 40px;
+    height: 40px;
+    background: var(--green-primary);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.success-step__text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.success-step__text strong {
+    font-size: 0.92rem;
+    color: var(--text-dark);
+    font-weight: 700;
+}
+
+.success-step__text span {
+    font-size: 0.83rem;
+    color: var(--text-soft);
+    line-height: 1.55;
+}
+
+/* Kontak Panitia */
+.success-contact {
+    background: #f0faf3;
+    border: 1px solid rgba(74, 124, 89, 0.2);
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+}
+
+.success-contact__label {
+    font-size: 0.85rem;
+    color: var(--text-soft);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+}
+
+.success-contact__label i {
+    color: var(--green-primary);
+}
+
+.success-wa-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #25d366;
+    color: var(--white);
+    padding: 11px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+}
+
+.success-wa-btn i {
+    font-size: 1.3rem;
+}
+
+.success-wa-btn:hover {
+    background: #1db954;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+    color: var(--white);
+}
+
+/* Reminder */
+.success-reminder {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: rgba(74, 124, 89, 0.06);
+    border-left: 4px solid var(--green-primary);
+    border-radius: 0 10px 10px 0;
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 0.84rem;
+    color: var(--text-soft);
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+.success-reminder i {
+    color: var(--green-primary);
+    font-size: 1rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.success-reminder a {
+    color: var(--green-primary);
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.success-reminder a:hover {
+    color: var(--green-dark);
+}
+
+/* Tombol Aksi */
+.success-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-success-primary,
+.btn-success-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 26px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.btn-success-primary {
+    background: linear-gradient(135deg, var(--green-primary), var(--green-dark));
+    color: var(--white);
+    box-shadow: 0 6px 18px rgba(74, 124, 89, 0.3);
+}
+
+.btn-success-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(74, 124, 89, 0.4);
+    color: var(--white);
+}
+
+.btn-success-secondary {
+    background: var(--white);
+    color: var(--green-primary);
+    border: 2px solid var(--green-soft);
+}
+
+.btn-success-secondary:hover {
+    background: var(--green-foam);
+    border-color: var(--green-primary);
+    transform: translateY(-2px);
+}
+
+
+/* TABLET (≤ 768px) */
 @media (max-width: 768px) {
+    .form-wrapper {
+        padding: 40px 16px;
+    }
+
     .input-row {
         grid-template-columns: 1fr;
         gap: 0;
     }
-    
+
     .input-group.full-width {
         grid-column: span 1;
     }
 
     .modern-header-card {
         padding: 40px 20px;
+        margin-bottom: -30px;
     }
 
     .modern-header-card h1 {
@@ -578,4 +840,288 @@
     .options-grid {
         grid-template-columns: 1fr;
     }
+
+    .form-stepper {
+        gap: 12px;
+    }
+
+    .step-line {
+        width: 30px;
+    }
 }
+
+/* MOBILE (≤ 600px) */
+@media (max-width: 600px) {
+    .form-wrapper {
+        padding: 30px 12px;
+    }
+
+    /* Stepper — sembunyikan label teks, tampilkan angka saja */
+    .form-stepper {
+        gap: 8px;
+        margin-bottom: 28px;
+    }
+
+    .step-indicator {
+        gap: 6px;
+        font-size: 0;       /* sembunyikan teks label langkah */
+    }
+
+    .step-indicator.active {
+        font-size: 0;
+    }
+
+    .step-number {
+        width: 30px;
+        height: 30px;
+        font-size: 0.85rem;
+        flex-shrink: 0;
+    }
+
+    .step-line {
+        width: 20px;
+    }
+
+    /* Header Card */
+    .modern-header-card {
+        padding: 30px 16px;
+        border-radius: 16px;
+        margin-bottom: -24px;
+    }
+
+    .modern-header-card i {
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+    }
+
+    .modern-header-card h1 {
+        font-size: 1.5rem;
+    }
+
+    .modern-header-card p {
+        font-size: 0.88rem;
+    }
+
+    /* Form Card */
+    .modern-form-card {
+        padding: 40px 16px 24px;
+        border-radius: 16px;
+    }
+
+    .req-text {
+        font-size: 0.78rem;
+        margin-bottom: 18px;
+    }
+
+    /* Inputs */
+    .modern-input {
+        padding: 12px 16px 12px 40px;
+        font-size: 0.9rem;
+        border-radius: 10px;
+    }
+
+    .input-icon {
+        left: 14px;
+        font-size: 1rem;
+    }
+
+    .input-label {
+        font-size: 0.88rem;
+        margin-bottom: 8px;
+    }
+
+    .input-group {
+        margin-bottom: 18px;
+    }
+
+    /* Options Grid */
+    .options-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .option-card {
+        padding: 12px;
+    }
+
+    .option-text {
+        font-size: 0.85rem;
+    }
+
+    /* File Upload */
+    .file-upload-card {
+        padding: 22px 16px;
+    }
+
+    .file-upload-card i {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .file-upload-title {
+        font-size: 0.9rem;
+    }
+
+    .file-upload-desc {
+        font-size: 0.75rem;
+    }
+
+    /* Section Header (Step 2) */
+    .section-header h2 {
+        font-size: 1.4rem;
+    }
+
+    .section-header p {
+        font-size: 0.82rem;
+    }
+
+    /* Buttons */
+    .form-actions {
+        margin-top: 28px;
+        padding-top: 18px;
+        gap: 10px;
+    }
+
+    .btn-modern {
+        padding: 11px 22px;
+        font-size: 0.88rem;
+        gap: 7px;
+    }
+
+    /* Alert Box */
+    .alert-box {
+        padding: 16px 16px 16px 22px;
+    }
+
+    .alert-box p {
+        font-size: 0.92rem;
+    }
+
+    /* Success Card */
+    .success-card {
+        padding: 36px 18px 32px;
+        border-radius: 18px;
+        text-align: center;
+    }
+
+    .success-icon-wrapper {
+        width: 72px;
+        height: 72px;
+        margin-bottom: 18px;
+    }
+
+    .success-icon {
+        width: 56px;
+        height: 56px;
+        font-size: 1.4rem;
+    }
+
+    .success-title {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .success-subtitle {
+        font-size: 0.88rem;
+        margin-bottom: 22px;
+    }
+
+    .success-steps {
+        padding: 18px 14px;
+        gap: 14px;
+        text-align: left;
+    }
+
+    .success-step {
+        gap: 12px;
+    }
+
+    .success-step__icon {
+        width: 34px;
+        height: 34px;
+        font-size: 0.88rem;
+        border-radius: 8px;
+    }
+
+    .success-step__text strong {
+        font-size: 0.88rem;
+    }
+
+    .success-step__text span {
+        font-size: 0.78rem;
+    }
+
+    .success-contact {
+        padding: 16px;
+    }
+
+    .success-wa-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 10px 20px;
+        font-size: 0.88rem;
+    }
+
+    .success-reminder {
+        font-size: 0.8rem;
+        padding: 12px 14px;
+        margin-bottom: 24px;
+    }
+
+    .success-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .btn-success-primary,
+    .btn-success-secondary {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 20px;
+        font-size: 0.88rem;
+    }
+}
+
+/* HP KECIL (≤ 380px) */
+@media (max-width: 380px) {
+    .form-wrapper {
+        padding: 24px 10px;
+    }
+
+    .modern-header-card h1 {
+        font-size: 1.3rem;
+    }
+
+    .modern-form-card {
+        padding: 36px 12px 20px;
+    }
+
+    .btn-modern {
+        padding: 10px 16px;
+        font-size: 0.82rem;
+    }
+
+    .step-number {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+    }
+
+    .step-line {
+        width: 14px;
+    }
+
+    /* Success Card — HP Sangat Kecil */
+    .success-card {
+        padding: 28px 14px 24px;
+    }
+
+    .success-title {
+        font-size: 1.3rem;
+    }
+
+    .success-subtitle {
+        font-size: 0.82rem;
+    }
+}
+

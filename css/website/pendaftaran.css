@@ -1,4 +1,4 @@
-﻿/* PENDAFTARAN.CSS — Ponpes Al-Barokah An-Nur Khumairoh
+/* PENDAFTARAN.CSS — Ponpes Al-Barokah An-Nur Khumairoh
    Styles khusus halaman Pendaftaran Santri Baru */
 
 /* PAGE HERO */
@@ -436,11 +436,17 @@
 }
 
 @media (max-width: 600px) {
-  .pend-main { padding: 30px 20px 50px; }
-  .page-hero { padding: 30px 20px 28px; }
-  .pend-info-sidebar { grid-template-columns: 1fr; }
-  .guide-box, .action-section { padding: 25px 20px; }
+  .pend-main { padding: 30px 15px 50px; }
+  .page-hero { padding: 30px 15px 28px; }
+  .pend-info-sidebar { grid-template-columns: 1fr; gap: 15px; }
+  .guide-box, .action-section { padding: 25px 16px; }
+  .guide-title { font-size: 1.4rem; margin-bottom: 20px; }
   .step-list::before { left: 16px; }
   .step-num { width: 34px; height: 34px; font-size: 1rem; }
-  .step-list li { gap: 15px; }
+  .step-list li { gap: 12px; }
+  .step-content strong { font-size: 0.95rem; }
+  .btn-text { padding: 12px 16px; font-size: 0.9rem; }
+  .btn-icon { padding: 12px 16px; font-size: 1.1rem; }
+  .action-title { font-size: 1.2rem; }
+  .card-head h3 { font-size: 1rem; }
 }

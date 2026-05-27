@@ -160,6 +160,12 @@ if ($res) {
         }
         .form-control:focus { border-color: var(--dash-primary); box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.1); }
         select.form-control { cursor: pointer; }
+        
+        @media (max-width: 576px) {
+            .galeri-grid { grid-template-columns: 1fr; gap: 15px; }
+            .galeri-card { border-radius: 16px; }
+            .galeri-img { height: 200px; }
+        }
     </style>
 </head>
 <body>
@@ -265,7 +271,7 @@ if ($res) {
                                 <button class="btn-action outline" style="flex:1; padding: 6px; font-size: 0.8rem;" onclick='editGaleri(<?php echo htmlspecialchars(json_encode($g)); ?>)'>
                                     <i class="fas fa-pen"></i> Edit
                                 </button>
-                                <a href="data_galeri.php?delete_id=<?php echo $g['id']; ?>" class="btn-action" style="flex:1; padding: 6px; font-size: 0.8rem; background:#fee2e2; color:#ef4444; text-align:center; border:none;" onclick="return confirm('Yakin ingin menghapus foto ini?');">
+                                <a href="data_galeri.php?delete_id=<?php echo $g['id']; ?>" class="btn-action action-btn delete" style="flex:1; padding: 6px; font-size: 0.8rem; background:#fee2e2; color:#ef4444; text-align:center; border:none; border-radius:6px;">
                                     <i class="fas fa-trash"></i> Hapus
                                 </a>
                             </div>

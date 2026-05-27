@@ -58,9 +58,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 html = `
                     <div class="result-card success">
                         <div class="status-icon"><i class="fas fa-check"></i></div>
-                        <h4 class="status-title">Selamat! Anda Dinyatakan Lulus</h4>
+                        <h4 class="status-title">Selamat! Anda Dinyatakan Sebagai Santri Baru</h4>
                         <p class="status-detail">
-                            Santri atas nama <strong>${escapeHtml(data.nama)}</strong> telah dinyatakan lulus seleksi penerimaan santri baru Pondok Pesantren Al-Barokah An-Nur Khumairoh.
+                            Santri atas nama <strong>${escapeHtml(data.nama)}</strong> telah dinyatakan lolos administrasi penerimaan santri baru Pondok Pesantren Al-Barokah An-Nur Khumairoh.
                         </p>
                         <a href="https://wa.me/6285232375228" target="_blank" class="btn-action" style="max-width: 250px; margin: 0 auto; text-decoration: none; justify-content: center; background: #27ae60; color: #fff; padding: 12px 20px; border-radius: 12px; display: flex; align-items: center; gap: 10px; font-weight: 600; transition: transform 0.3s;">
                             <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i>
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 html = `
                     <div class="result-card failed">
                         <div class="status-icon"><i class="fas fa-times"></i></div>
-                        <h4 class="status-title">Mohon Maaf, Anda Belum Lulus</h4>
+                        <h4 class="status-title">Mohon Maaf, Anda Belum Dinyatakan Sebagai Santri Baru</h4>
                         <p class="status-detail">
                             Santri atas nama <strong>${escapeHtml(data.nama)}</strong> belum memenuhi kriteria kelulusan. Tetap semangat dan jangan menyerah.
                         </p>
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
             html = `
                 <div class="result-card failed">
                     <div class="status-icon"><i class="fas fa-search-minus"></i></div>
-                    <h4 class="status-title">Data Tidak Ditemukan</h4>
+                    <h4 class="status-title">Data Tidak Ditemukan, Silahkan Cek Kembali</h4>
                     <p class="status-detail">${escapeHtml(data.pesan)}</p>
                     <button class="btn-action" style="max-width: 200px; margin: 0 auto; justify-content: center; background: #e74c3c; color: white; padding: 12px 20px; border-radius: 12px; border: none; cursor: pointer; display: flex; align-items: center; gap: 10px; font-weight: 600; font-family: 'Poppins', sans-serif;" onclick="document.getElementById('pengumuman-result').classList.add('hidden')">
                         <i class="fas fa-undo"></i> Cek Ulang

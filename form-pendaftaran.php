@@ -108,13 +108,84 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="form-container">
         
         <?php if($status_pesan != ""): ?>
-            <div class="alert-box <?php echo $tipe_pesan; ?>">
-                <p><?php echo $status_pesan; ?></p>
-                <?php if($tipe_pesan == 'success'): ?>
-                    <a href="pendaftaran.php" class="btn-kembali-home"><i class="fas fa-arrow-left"></i> Kembali ke Panduan</a>
-                <?php endif; ?>
+            <?php if($tipe_pesan == 'success'): ?>
+            <!-- SUCCESS CARD — Pendaftaran Berhasil -->
+            <div class="success-card">
+
+                <!-- Ikon Centang Animasi -->
+                <div class="success-icon-wrapper">
+                    <div class="success-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="success-pulse"></div>
+                </div>
+
+                <!-- Judul & Deskripsi -->
+                <h2 class="success-title">Pendaftaran Berhasil Dikirim!</h2>
+                <p class="success-subtitle">
+                    Terima kasih telah mendaftarkan putra/putri Anda ke <strong>Ponpes Al-Barokah An-Nur Khumairoh</strong>.
+                    Data Anda telah kami terima dan sedang dalam proses verifikasi oleh panitia.
+                </p>
+
+                <!-- Info Steps -->
+                <div class="success-steps">
+                    <div class="success-step">
+                        <div class="success-step__icon"><i class="fas fa-clipboard-check"></i></div>
+                        <div class="success-step__text">
+                            <strong>Verifikasi Berkas</strong>
+                            <span>Panitia akan memeriksa kelengkapan berkas yang telah Anda unggah.</span>
+                        </div>
+                    </div>
+                    <div class="success-step">
+                        <div class="success-step__icon"><i class="fas fa-bell"></i></div>
+                        <div class="success-step__text">
+                            <strong>Pantau Pengumuman Secara Berkala</strong>
+                            <span>Cek halaman pengumuman kami secara rutin untuk melihat perkembangan status pendaftaran Anda.</span>
+                        </div>
+                    </div>
+                    <div class="success-step">
+                        <div class="success-step__icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="success-step__text">
+                            <strong>Dihubungi oleh Panitia</strong>
+                            <span>Panitia akan menghubungi Anda melalui nomor WhatsApp yang telah didaftarkan.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kontak Panitia -->
+                <div class="success-contact">
+                    <p class="success-contact__label"><i class="fas fa-headset"></i> Butuh bantuan? Hubungi Panitia:</p>
+                    <a href="https://wa.me/6285230574234" target="_blank" rel="noopener noreferrer" class="success-wa-btn">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>0852-3057-4234 &mdash; Panitia PPDB</span>
+                    </a>
+                </div>
+
+                <!-- Reminder -->
+                <div class="success-reminder">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Pengumuman hasil seleksi dapat dicek di halaman <a href="pengumuman.php">Pengumuman Santri Baru</a>. Pantau secara berkala agar tidak ketinggalan informasi.</span>
+                </div>
+
+                <!-- Tombol Aksi -->
+                <div class="success-actions">
+                    <a href="pengumuman.php" class="btn-success-secondary">
+                        <i class="fas fa-search"></i> Cek Pengumuman
+                    </a>
+                    <a href="pendaftaran.php" class="btn-success-primary">
+                        <i class="fas fa-home"></i> Kembali ke Panduan
+                    </a>
+                </div>
+
             </div>
+            <?php else: ?>
+            <!-- ERROR ALERT -->
+            <div class="alert-box error">
+                <p><?php echo $status_pesan; ?></p>
+            </div>
+            <?php endif; ?>
         <?php endif; ?>
+
 
         <?php if($tipe_pesan != 'success'): ?>
         

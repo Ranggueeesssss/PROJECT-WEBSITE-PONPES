@@ -1,4 +1,4 @@
-﻿/* Styling khusus widget jadwal pengumuman di dashboard pendaftaran */
+/* Styling khusus widget jadwal pengumuman di dashboard pendaftaran */
 .schedule-widget {
     background: #ffffff;
     border-radius: 12px;
@@ -192,3 +192,48 @@
 .btn-confirm-cancel:hover { background: #cbd5e1; }
 .btn-confirm-yes { padding: 10px 20px; border-radius: 8px; border: none; background: var(--dash-primary); color: white; font-weight: 600; cursor: pointer; transition: 0.2s; flex: 1; }
 .btn-confirm-yes:hover { background: #15803d; }
+
+/* ── Mobile Form Responsiveness ── */
+@media (max-width: 576px) {
+    .modal-box { width: 95%; }
+    .modal-body { padding: 15px !important; }
+    
+    .detail-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+    
+    .validation-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .validation-actions > div:last-child {
+        width: 100%;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .btn-val {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 20px;
+    }
+
+    .toast-schedule {
+        right: auto;
+        left: 50%;
+        transform: translate(-50%, 100px);
+        width: 90%;
+        bottom: 20px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .toast-schedule.show {
+        transform: translate(-50%, 0);
+    }
+}
