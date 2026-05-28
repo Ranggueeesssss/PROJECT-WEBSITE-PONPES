@@ -204,7 +204,7 @@ if ($resSantri) {
             <input type="hidden" name="action" value="add_column">
             <div class="modal-header">
                 <h3 style="font-weight: 800; margin: 0;"><i class="fas fa-plus-square me-2"></i> Tambah Kolom</h3>
-                <button type="button" class="modal-close" onclick="document.getElementById('modalAddCol').classList.remove('active')"><i class="fas fa-times"></i></button>
+                <button type="button" class="modal-close" onclick="closeAddCol()"><i class="fas fa-times"></i></button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
@@ -227,7 +227,7 @@ if ($resSantri) {
             
             <div class="modal-header">
                 <h3 style="font-weight: 800; color: #1e4d2b; margin: 0;"><i class="fas fa-user-plus me-2"></i> Tambah Santri</h3>
-                <button type="button" class="modal-close" onclick="document.getElementById('modalAddSantri').classList.remove('active')"><i class="fas fa-times"></i></button>
+                <button type="button" class="modal-close" onclick="closeAddSantri()"><i class="fas fa-times"></i></button>
             </div>
             
             <div class="modal-body">
@@ -266,7 +266,7 @@ if ($resSantri) {
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn-premium" style="background: #f1f5f9; color: #475569; width: 100%; justify-content: center;" onclick="document.getElementById('modalAddSantri').classList.remove('active')">Batal</button>
+                <button type="button" class="btn-premium" style="background: #f1f5f9; color: #475569; width: 100%; justify-content: center;" onclick="closeAddSantri()">Batal</button>
                 <button type="submit" class="btn-premium" style="background: #1e4d2b; color: white; width: 100%; justify-content: center; margin-top: 10px;">Simpan Santri Baru</button>
             </div>
         </form>
@@ -289,10 +289,10 @@ if ($resSantri) {
                         <p>Manajemen data santri aktif dan alumni Ponpes Al-Barokah.</p>
                     </div>
                     <div class="toolbar-actions" style="display: flex; gap: 10px;">
-                        <button class="btn-premium" onclick="document.getElementById('modalAddSantri').classList.add('active')" style="background: #1e4d2b; color: white;">
+                        <button class="btn-premium" onclick="openAddSantri()" style="background: #1e4d2b; color: white;">
                             <i class="fas fa-user-plus"></i> Tambah Santri
                         </button>
-                        <button class="btn-premium btn-add-column" onclick="document.getElementById('modalAddCol').classList.add('active')">
+                        <button class="btn-premium btn-add-column" onclick="openAddCol()">
                             <i class="fas fa-plus-circle"></i> Tambah Kolom
                         </button>
                     </div>

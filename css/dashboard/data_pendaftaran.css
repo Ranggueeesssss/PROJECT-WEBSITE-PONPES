@@ -147,7 +147,30 @@
 
 /* Styling Modal dan Elemen data_pendaftaran */
 .modal-box { max-width: 800px; width: 90%; }
-.modal-body { max-height: calc(100vh - 120px); overflow-y: auto; padding-bottom: 40px !important; }
+.modal-body { flex: 1; min-height: 0; overflow-y: auto; }
+
+/* Override footer default agar validasi tampil full-width */
+#detailModal .modal-footer {
+    padding: 0;
+    justify-content: flex-start;
+    flex-direction: row;
+    background: #f8fafc;
+    border-top: 1px solid #e5e7eb;
+    flex-shrink: 0;
+}
+
+#detailModal .modal-footer form {
+    width: 100%;
+}
+
+/* Hilangkan border dashed & radius saat berada di dalam footer */
+#detailModal .modal-footer .validation-actions {
+    border: none;
+    border-radius: 0;
+    background: transparent;
+}
+
+.validation-btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
 .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px; }
 .detail-group { display: flex; flex-direction: column; gap: 5px; }
 .detail-label { font-size: 0.8rem; color: var(--dash-text-light); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
@@ -210,8 +233,8 @@
         gap: 15px;
         padding: 15px;
     }
-
-    .validation-actions > div:last-child {
+    
+    .validation-btn-group {
         width: 100%;
         flex-direction: column;
         gap: 8px;

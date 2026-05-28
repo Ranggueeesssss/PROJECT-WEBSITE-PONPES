@@ -76,6 +76,8 @@ if ($res_j && $res_j->num_rows > 0) {
             <h3 id="modalTitle"><i class="fas fa-user-graduate" style="margin-right:8px;"></i><span>Detail Calon Santri</span></h3>
             <button type="button" class="modal-close" onclick="closeDetailModal()"><i class="fas fa-times"></i></button>
         </div>
+
+        <!-- Scrollable body: hanya info & berkas yang bisa di-scroll -->
         <div class="modal-body" style="padding: 25px;">
             <div class="detail-grid">
                 <div class="detail-group">
@@ -157,8 +159,10 @@ if ($res_j && $res_j->num_rows > 0) {
                     <a href="#" target="_blank" class="btn-view-doc" id="btnSPJM"><i class="fas fa-eye"></i> Lihat</a>
                 </div>
             </div>
+        </div>
 
-            <!-- Validation Form -->
+        <!-- Tombol validasi di modal-footer: selalu terlihat, tidak ikut scroll -->
+        <div class="modal-footer">
             <form method="POST" action="data_pendaftaran.php" id="formValidasi">
                 <input type="hidden" name="id" id="valId">
                 <div class="validation-actions">
@@ -169,7 +173,7 @@ if ($res_j && $res_j->num_rows > 0) {
                             <div style="font-size:0.8rem; color:#64748b; font-weight:400;">Ubah status calon santri ini</div>
                         </div>
                     </div>
-                    <div style="display:flex; gap:10px;">
+                    <div class="validation-btn-group">
                         <button type="button" class="btn-val btn-val-tolak" onclick="validateForm('Tidak Lolos', 'Anda yakin ingin menolak calon santri ini?', 'reject')"><i class="fas fa-times"></i> Tidak Lolos</button>
                         <button type="button" class="btn-val btn-val-pending" onclick="validateForm('Pending', 'Ubah status kembali menjadi Pending?', 'info')"><i class="fas fa-clock"></i> Pending</button>
                         <button type="button" class="btn-val btn-val-lolos" onclick="validateForm('Lolos', 'Anda yakin ingin menerima calon santri ini (Lolos)?', 'accept')"><i class="fas fa-check"></i> Lolos</button>

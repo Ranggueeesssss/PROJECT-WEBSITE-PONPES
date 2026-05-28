@@ -107,6 +107,50 @@ function closeEditSantri() {
 }
 
 /**
+ * Open Modal to Add Student
+ */
+function openAddSantri() {
+    const modal = document.getElementById('modalAddSantri');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+/**
+ * Close Modal to Add Student
+ */
+function closeAddSantri() {
+    const modal = document.getElementById('modalAddSantri');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+/**
+ * Open Modal to Add Column
+ */
+function openAddCol() {
+    const modal = document.getElementById('modalAddCol');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+/**
+ * Close Modal to Add Column
+ */
+function closeAddCol() {
+    const modal = document.getElementById('modalAddCol');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+/**
  * Helper to submit post actions
  */
 function submitAction(action, params) {

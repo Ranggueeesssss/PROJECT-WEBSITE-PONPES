@@ -938,6 +938,14 @@ table.table tbody tr:hover {
     max-height: 90vh;
 }
 
+.modal-box form {
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
 .modal-overlay.active .modal-box {
     transform: translateY(0) scale(1);
 }
@@ -985,6 +993,8 @@ table.table tbody tr:hover {
     flex-direction: column;
     gap: 15px;
     overflow-y: auto;
+    flex: 1;
+    min-height: 0;
 }
 
 .modal-field {
