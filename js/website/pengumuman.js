@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
             formData.append('tgl_lahir', tglLahir);
 
             // Fetch ke API Backend
-            fetch('api_cek_pengumuman.php', {
+            fetch('api/api_cek_pengumuman.php', {
                 method: 'POST',
                 body: formData
             })

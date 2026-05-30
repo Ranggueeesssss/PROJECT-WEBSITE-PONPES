@@ -199,12 +199,14 @@ if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') {
                                 <td>
                                     <div class="action-btns">
                                         <?php if($u['id'] == $_SESSION['user_id']): ?>
-                                            <button class="action-btn" title="Edit Profil" onclick="openEditPassword(<?php echo $u['id']; ?>, '<?php echo addslashes($u['username']); ?>')">
+                                            <!-- Edit Profil Sendiri (bisa edit) -->
+                                            <button class="action-btn" title="Edit Profil" onclick="openGlobalProfileEdit()">
                                                 <i class="fas fa-user-edit"></i>
                                             </button>
                                         <?php else: ?>
-                                            <button class="action-btn" style="opacity:0.3;cursor:not-allowed;" title="Hanya bisa mengedit akun sendiri">
-                                                <i class="fas fa-user-edit"></i>
+                                            <!-- Lihat Profil Orang Lain (hanya lihat) -->
+                                            <button class="action-btn" title="Lihat Info Akun" onclick="openViewAkun('<?php echo addslashes($u['nama']); ?>', '<?php echo addslashes($u['username']); ?>', '<?php echo $u['role']; ?>')">
+                                                <i class="fas fa-eye"></i>
                                             </button>
                                         <?php endif; ?>
 
@@ -348,5 +350,47 @@ if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') {
 
 <script src="js/dashboard/dashboard.js"></script>
 <script src="js/dashboard/kelola_login.js"></script>
+<!-- Modal Lihat Akun (Admin) -->
+<div class="modal-overlay" id="modalViewAkun">
+    <div class="modal-box">
+        <div class="modal-header">
+            <h3><i class="fas fa-info-circle"></i> Info Akun</h3>
+            <button class="modal-close" onclick="closeModal('modalViewAkun')"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body form-layout" style="padding: 25px;">
+            <div class="form-group">
+                <label>Nama Lengkap</label>
+                <div class="form-control" style="background:#f8fafc; color:#64748b;" id="viewNama"></div>
+            </div>
+            <div class="form-group">
+                <label>Username</label>
+                <div class="form-control" style="background:#f8fafc; color:#64748b;" id="viewUsername"></div>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <div class="form-control" style="background:#f8fafc; color:#64748b; font-family:monospace;">
+                    <i class="fas fa-lock" style="margin-right:8px;"></i> [Password Terenkripsi]
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Role</label>
+                <div class="form-control" style="background:#f8fafc; color:#64748b;" id="viewRole"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-action" onclick="closeModal('modalViewAkun')" style="background:#e2e8f0;color:#475569;border:none;">Tutup</button>
+        </div>
+    </div>
+</div>
+
+
+<script>
+function openViewAkun(nama, username, role) {
+    document.getElementById('viewNama').textContent = nama;
+    document.getElementById('viewUsername').textContent = username;
+    document.getElementById('viewRole').textContent = role === 'admin' ? 'Admin' : 'Guru';
+    openModal('modalViewAkun');
+}
+</script>
 </body>
 </html>

@@ -67,6 +67,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             </ul>
         </div>
 
+        <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
         <div class="menu-section">
             <div class="menu-label">Pengaturan Sistem</div>
             <ul>
@@ -78,6 +79,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 </li>
             </ul>
         </div>
+        <?php endif; ?>
 
         <div class="menu-section">
             <div class="menu-label">Manajemen Santri</div>
@@ -100,7 +102,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
     </div>
 
     <!-- User Info Card -->
-    <div class="sidebar-user-card">
+    <div class="sidebar-user-card" onclick="openGlobalProfileEdit()" style="cursor: pointer;" title="Edit Profil Anda">
         <div class="sidebar-avatar">
             <i class="fas fa-user"></i>
         </div>

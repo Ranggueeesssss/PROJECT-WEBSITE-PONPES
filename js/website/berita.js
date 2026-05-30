@@ -230,7 +230,7 @@
       return '<div class="recent-item">'
         + '<div class="recent-item__thumb">'
         +   (a.gambar
-              ? '<img src="' + a.gambar + '" alt="' + a.judul + '" />'
+              ? '<img src="' + a.gambar + '" alt="' + a.judul + '" loading="lazy" />'
               : '<i class="fas fa-newspaper"></i>')
         + '</div>'
         + '<div class="recent-item__info">'

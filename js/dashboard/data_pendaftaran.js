@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const formData = new FormData();
             formData.append('jadwal_pengumuman', jadwalVal);
 
-            fetch('api_save_jadwal.php', {
+            fetch('api/api_save_jadwal.php', {
                 method: 'POST',
                 body: formData
             })

@@ -1,6 +1,8 @@
 <?php
 header('Content-Type: application/json');
-require_once __DIR__ . '/koneksi.php';
+
+// Path koneksi naik 1 level karena file ada di folder api/
+require_once __DIR__ . '/../koneksi.php';
 
 // Validasi Metode Request
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -47,7 +49,7 @@ if ($res_jadwal && $res_jadwal->num_rows > 0) {
 }
 
 // 2. Waktu sudah lewat (pengumuman dibuka), maka cek data kelulusan santri
-// Gunakan Prepared Statement untuk keamanan (mencegah SQL Injection) dan Index Database untuk kecepatan
+// menggunakan prepared Statement untuk keamanan (mencegah SQL Injection) dan Index Database untuk kecepatan
 $stmt = $conn->prepare("SELECT nama_lengkap, status FROM pendaftaran WHERE nik = ? AND tanggal_lahir = ? LIMIT 1");
 
 if ($stmt) {

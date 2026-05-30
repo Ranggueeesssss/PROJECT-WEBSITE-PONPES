@@ -64,15 +64,6 @@ if ($res) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/dashboard/dashboard_pro.css?v=3">
     <style>
-        .modal-body.form-layout { gap: 20px; }
-        .form-group { display: flex; flex-direction: column; gap: 8px; }
-        .form-group label { font-size: 0.85rem; font-weight: 600; color: var(--dash-text); }
-        .form-control {
-            padding: 10px 15px; border: 1px solid var(--dash-border); border-radius: 8px;
-            font-family: inherit; font-size: 0.95rem; outline: none; transition: 0.2s;
-        }
-        .form-control:focus { border-color: var(--dash-primary); box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.1); }
-        select.form-control { cursor: pointer; }
         .rank-badge { padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; display: inline-block; }
         .rank-gold { background: #fef3c7; color: #d97706; border: 1px solid #fcd34d; }
         .rank-silver { background: #f3f4f6; color: #4b5563; border: 1px solid #d1d5db; }

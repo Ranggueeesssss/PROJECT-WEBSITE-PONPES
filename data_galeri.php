@@ -157,16 +157,6 @@ if ($res) {
             padding-top: 12px;
         }
         
-        .modal-body.form-layout { gap: 20px; }
-        .form-group { display: flex; flex-direction: column; gap: 8px; }
-        .form-group label { font-size: 0.85rem; font-weight: 600; color: var(--dash-text); }
-        .form-control {
-            padding: 10px 15px; border: 1px solid var(--dash-border); border-radius: 8px;
-            font-family: inherit; font-size: 0.95rem; outline: none; transition: 0.2s;
-        }
-        .form-control:focus { border-color: var(--dash-primary); box-shadow: 0 0 0 3px rgba(74, 124, 89, 0.1); }
-        select.form-control { cursor: pointer; }
-        
         @media (max-width: 576px) {
             .galeri-grid { grid-template-columns: 1fr; gap: 15px; }
             .galeri-card { border-radius: 16px; }

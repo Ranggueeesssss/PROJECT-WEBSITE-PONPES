@@ -98,10 +98,10 @@ if ($result && $result->num_rows > 0) {
             <div class="card-inner">
                 <div class="card-badge"><?php echo htmlspecialchars($p['jabatan']); ?></div>
                 <div class="card-img-wrap">
-                    <?php if ($p['foto'] && file_exists('uploads/' . $p['foto'])): ?>
-                        <img src="uploads/<?php echo $p['foto']; ?>" alt="<?php echo htmlspecialchars($p['nama']); ?>" class="profile-img">
+                    <?php if(!empty($p['foto']) && file_exists('uploads/' . $p['foto'])): ?>
+                        <img src="uploads/<?php echo $p['foto']; ?>" alt="<?php echo htmlspecialchars($p['nama']); ?>" class="profile-img" loading="lazy">
                     <?php else: ?>
-                        <img src="https://ui-avatars.com/api/?name=<?php echo urlencode($p['nama']); ?>&background=2d5a3d&color=fff&size=300" alt="<?php echo htmlspecialchars($p['nama']); ?>" class="profile-img">
+                        <img src="https://ui-avatars.com/api/?name=<?php echo urlencode($p['nama']); ?>&background=2d5a3d&color=fff&size=300" alt="<?php echo htmlspecialchars($p['nama']); ?>" class="profile-img" loading="lazy">
                     <?php endif; ?>
                 </div>
                 <div class="card-info">
@@ -118,10 +118,10 @@ if ($result && $result->num_rows > 0) {
         <div class="pengajar-card guru fade-up-element" data-category="guru">
             <div class="card-inner">
                 <div class="card-img-wrap">
-                    <?php if ($g['foto'] && file_exists('uploads/' . $g['foto'])): ?>
-                        <img src="uploads/<?php echo $g['foto']; ?>" alt="<?php echo htmlspecialchars($g['nama']); ?>" class="profile-img">
+                    <?php if(!empty($g['foto']) && file_exists('uploads/' . $g['foto'])): ?>
+                        <img src="uploads/<?php echo $g['foto']; ?>" alt="<?php echo htmlspecialchars($g['nama']); ?>" class="profile-img" loading="lazy">
                     <?php else: ?>
-                        <img src="https://ui-avatars.com/api/?name=<?php echo urlencode($g['nama']); ?>&background=f2f7f4&color=3d5c4a&size=300" alt="<?php echo htmlspecialchars($g['nama']); ?>" class="profile-img">
+                        <img src="https://ui-avatars.com/api/?name=<?php echo urlencode($g['nama']); ?>&background=f2f7f4&color=3d5c4a&size=300" alt="<?php echo htmlspecialchars($g['nama']); ?>" class="profile-img" loading="lazy">
                     <?php endif; ?>
                 </div>
                 <div class="card-info">
