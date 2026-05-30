@@ -7,11 +7,15 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 require_once __DIR__ . '/koneksi.php';
+require_once __DIR__ . '/includes/simple_log.php';
 
 // Proses Hapus Data
 if (isset($_GET['delete_id'])) {
     $id_del = (int)$_GET['delete_id'];
+    $q_p = $conn->query("SELECT judul FROM profil_prestasi WHERE id = $id_del");
+    $judul_del_pr = ($q_p && $r_p = $q_p->fetch_assoc()) ? $r_p['judul'] : 'ID '.$id_del;
     $conn->query("DELETE FROM profil_prestasi WHERE id = $id_del");
+    catat_log($conn, "Menghapus data prestasi: $judul_del_pr");
     header('Location: data_prestasi.php?status=deleted');
     exit;
 }
@@ -31,10 +35,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($id > 0) {
         $sql = "UPDATE profil_prestasi SET judul='$judul', tingkat='$tingkat', tahun=$tahun, rank_tipe='$rank_tipe', rank_label='$rank_label', deskripsi=" . ($tampilkan_di_timeline ? "'$deskripsi'" : "NULL") . ", tampilkan_di_timeline=$tampilkan_di_timeline WHERE id=$id";
         $conn->query($sql);
+        catat_log($conn, "Memperbarui data prestasi: $judul");
         header('Location: data_prestasi.php?status=updated');
     } else {
         $sql = "INSERT INTO profil_prestasi (judul, tingkat, tahun, rank_tipe, rank_label, deskripsi, tampilkan_di_timeline) VALUES ('$judul', '$tingkat', $tahun, '$rank_tipe', '$rank_label', " . ($tampilkan_di_timeline ? "'$deskripsi'" : "NULL") . ", $tampilkan_di_timeline)";
         $conn->query($sql);
+        catat_log($conn, "Menambahkan data prestasi baru: $judul");
         header('Location: data_prestasi.php?status=added');
     }
     exit;

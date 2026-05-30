@@ -8,11 +8,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$nama = isset($_POST['nama']) ? trim($_POST['nama']) : '';
+$nik = isset($_POST['nik']) ? trim($_POST['nik']) : '';
 $tgl_lahir = isset($_POST['tgl_lahir']) ? trim($_POST['tgl_lahir']) : '';
 
-if (empty($nama) || empty($tgl_lahir)) {
-    echo json_encode(['status' => 'error', 'pesan' => 'Data Nama dan Tanggal Lahir tidak lengkap.']);
+if (empty($nik) || empty($tgl_lahir)) {
+    echo json_encode(['status' => 'error', 'pesan' => 'Data NIK dan Tanggal Lahir tidak lengkap.']);
     exit;
 }
 
@@ -48,11 +48,10 @@ if ($res_jadwal && $res_jadwal->num_rows > 0) {
 
 // 2. Waktu sudah lewat (pengumuman dibuka), maka cek data kelulusan santri
 // Gunakan Prepared Statement untuk keamanan (mencegah SQL Injection) dan Index Database untuk kecepatan
-$stmt = $conn->prepare("SELECT nama_lengkap, status FROM pendaftaran WHERE nama_lengkap LIKE ? AND tanggal_lahir = ? LIMIT 1");
+$stmt = $conn->prepare("SELECT nama_lengkap, status FROM pendaftaran WHERE nik = ? AND tanggal_lahir = ? LIMIT 1");
 
 if ($stmt) {
-    $search_nama = '%' . $nama . '%'; // Pencarian LIKE untuk sedikit toleransi typo spasi di akhir/awal
-    $stmt->bind_param("ss", $search_nama, $tgl_lahir);
+    $stmt->bind_param("ss", $nik, $tgl_lahir);
     $stmt->execute();
     $res = $stmt->get_result();
     
@@ -85,7 +84,7 @@ if ($stmt) {
         // Data nama & tgl lahir tidak cocok/tidak ada di database
         echo json_encode([
             'status' => 'not_found',
-            'pesan' => 'Data tidak ditemukan. Pastikan penulisan Nama Lengkap dan Tanggal Lahir persis seperti saat mendaftar.'
+            'pesan' => 'Data tidak ditemukan. Pastikan penulisan NIK dan Tanggal Lahir persis seperti saat mendaftar.'
         ]);
     }
     $stmt->close();

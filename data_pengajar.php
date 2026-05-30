@@ -7,21 +7,25 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 require_once __DIR__ . '/koneksi.php';
+require_once __DIR__ . '/includes/simple_log.php';
 
 // Proses Hapus Data
 if (isset($_GET['delete_id'])) {
     $id_del = (int)$_GET['delete_id'];
     
-    // Get foto to delete
-    $q_foto = $conn->query("SELECT foto FROM profil_pengajar WHERE id = $id_del");
+    // Get nama & foto to delete
+    $q_foto = $conn->query("SELECT nama, foto FROM profil_pengajar WHERE id = $id_del");
+    $nama_del_p = 'ID ' . $id_del;
     if ($q_foto && $q_foto->num_rows > 0) {
         $r_foto = $q_foto->fetch_assoc();
+        $nama_del_p = $r_foto['nama'];
         if ($r_foto['foto'] && file_exists('uploads/' . $r_foto['foto'])) {
             unlink('uploads/' . $r_foto['foto']);
         }
     }
     
     $conn->query("DELETE FROM profil_pengajar WHERE id = $id_del");
+    catat_log($conn, "Menghapus data pengajar: $nama_del_p");
     header('Location: data_pengajar.php?status=deleted');
     exit;
 }
@@ -74,11 +78,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sql = "UPDATE profil_pengajar SET nama='$nama', kategori='$kategori', jabatan='$jabatan', deskripsi='$deskripsi' WHERE id=$id";
         }
         $conn->query($sql);
+        catat_log($conn, "Memperbarui data pengajar: $nama");
         header('Location: data_pengajar.php?status=updated');
     } else {
         // Insert
         $sql = "INSERT INTO profil_pengajar (nama, kategori, jabatan, deskripsi, foto) VALUES ('$nama', '$kategori', '$jabatan', '$deskripsi', '$foto_name')";
         $conn->query($sql);
+        catat_log($conn, "Menambahkan pengajar baru: $nama");
         header('Location: data_pengajar.php?status=added');
     }
     exit;

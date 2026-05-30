@@ -7,21 +7,25 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 require_once __DIR__ . '/koneksi.php';
+require_once __DIR__ . '/includes/simple_log.php';
 
 // Proses Hapus Data
 if (isset($_GET['delete_id'])) {
     $id_del = (int)$_GET['delete_id'];
     
-    // Get image to delete
-    $q_img = $conn->query("SELECT gambar FROM berita WHERE id = $id_del");
+    // Get judul & image to delete
+    $q_img = $conn->query("SELECT judul, gambar FROM berita WHERE id = $id_del");
+    $judul_del = 'ID ' . $id_del;
     if ($q_img && $q_img->num_rows > 0) {
         $r_img = $q_img->fetch_assoc();
+        $judul_del = $r_img['judul'];
         if ($r_img['gambar'] && file_exists($r_img['gambar'])) {
             unlink($r_img['gambar']);
         }
     }
     
     $conn->query("DELETE FROM berita WHERE id = $id_del");
+    catat_log($conn, "Menghapus berita: $judul_del");
     header('Location: data_berita.php?status=deleted');
     exit;
 }
@@ -38,6 +42,7 @@ if (isset($_GET['duplikat_id'])) {
         $exc          = $conn->real_escape_string($r_dup['excerpt']);
         $tgl          = date('d M Y');
         $conn->query("INSERT INTO berita (judul, kategori, penulis, isi_berita, excerpt, tanggal, gambar, featured) VALUES ('$judul_baru', '$kat', '$pen', '$isi', '$exc', '$tgl', NULL, 0)");
+        catat_log($conn, "Menduplikasi berita: {$r_dup['judul']}");
     }
     header('Location: data_berita.php?status=duplikat');
     exit;
@@ -47,8 +52,11 @@ if (isset($_GET['duplikat_id'])) {
 // Proses Jadikan Featured
 if (isset($_GET['featured_id'])) {
     $id_feat = (int)$_GET['featured_id'];
-    $conn->query("UPDATE berita SET featured=0"); // Reset all to 0
-    $conn->query("UPDATE berita SET featured=1 WHERE id=$id_feat"); // Set requested to 1
+    $q_feat_info = $conn->query("SELECT judul FROM berita WHERE id=$id_feat");
+    $judul_feat = ($q_feat_info && $r_feat = $q_feat_info->fetch_assoc()) ? $r_feat['judul'] : 'ID '.$id_feat;
+    $conn->query("UPDATE berita SET featured=0");
+    $conn->query("UPDATE berita SET featured=1 WHERE id=$id_feat");
+    catat_log($conn, "Menjadikan berita unggulan: $judul_feat");
     header('Location: data_berita.php?status=featured');
     exit;
 }
@@ -100,11 +108,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sql = "UPDATE berita SET judul='$judul', kategori='$kategori', penulis='$penulis', isi_berita='$isi_berita', excerpt='$excerpt' WHERE id=$id";
         }
         $conn->query($sql);
+        catat_log($conn, "Memperbarui berita: $judul");
         header('Location: data_berita.php?status=updated');
     } else {
         // Insert
         $sql = "INSERT INTO berita (judul, kategori, penulis, isi_berita, excerpt, tanggal, gambar) VALUES ('$judul', '$kategori', '$penulis', '$isi_berita', '$excerpt', '$tanggal', " . ($gambar_name ? "'$gambar_name'" : "NULL") . ")";
         $conn->query($sql);
+        catat_log($conn, "Mempublikasikan berita baru: $judul");
         header('Location: data_berita.php?status=added');
     }
     exit;

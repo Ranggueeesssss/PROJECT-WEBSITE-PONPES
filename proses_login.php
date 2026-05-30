@@ -78,6 +78,9 @@ $_SESSION['user_nama'] = $user['nama'];
 $_SESSION['user_role'] = $user['role'];
 $_SESSION['login_at']  = time();
 
+require_once __DIR__ . '/includes/simple_log.php';
+catat_log($conn, 'Melakukan login ke sistem', $user['id'], $user['nama']);
+
 // Tentukan Halaman Tujuan Berdasarkan Role
 $redirectUrl = '';
 switch ($user['role']) {

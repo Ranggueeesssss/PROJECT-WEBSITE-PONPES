@@ -3,14 +3,28 @@ document.addEventListener('DOMContentLoaded', function() {
     const resultContainer = document.getElementById('pengumuman-result');
 
     if(formPengumuman) {
+        // Tambahkan filter angka real-time
+        const inputNik = document.getElementById('cek_nik');
+        if (inputNik) {
+            inputNik.addEventListener('input', function() {
+                this.value = this.value.replace(/\D/g, '');
+            });
+        }
+
         formPengumuman.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const nama = document.getElementById('cek_nama').value.trim();
+            const nik = document.getElementById('cek_nik').value.trim();
             const tglLahir = document.getElementById('cek_tgl_lahir').value;
             
-            if(!nama || !tglLahir) {
-                alert('Silakan lengkapi nama dan tanggal lahir.');
+            if(!nik || !tglLahir) {
+                alert('Silakan lengkapi NIK dan tanggal lahir.');
+                return;
+            }
+
+            const nikClean = nik.replace(/\D/g, '');
+            if (nikClean.length !== 16) {
+                alert('Gagal: NIK harus berupa 16 digit angka.');
                 return;
             }
 
@@ -20,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Siapkan Form Data
             const formData = new FormData();
-            formData.append('nama', nama);
+            formData.append('nik', nikClean);
             formData.append('tgl_lahir', tglLahir);
 
             // Fetch ke API Backend

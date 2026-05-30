@@ -62,16 +62,16 @@
                     <div class="pulse-ring"></div>
                 </div>
                 <h3 class="pengumuman-title">Cek Hasil Seleksi Santri Baru</h3>
-                <p class="pengumuman-desc">Silakan masukkan nama lengkap dan tanggal lahir untuk melihat hasil seleksi pendaftaran.</p>
+                <p class="pengumuman-desc">Silakan masukkan NIK dan tanggal lahir untuk melihat hasil seleksi pendaftaran.</p>
             </div>
             
             <form id="form-pengumuman" class="pengumuman-form">
                 <div class="form-row">
                     <div class="form-group input-effect">
-                        <label for="cek_nama">Nama Lengkap</label>
+                        <label for="cek_nik">NIK (Nomor Induk Kependudukan)</label>
                         <div class="input-wrapper">
-                            <i class="fas fa-user input-icon"></i>
-                            <input type="text" id="cek_nama" name="cek_nama" placeholder="Masukkan nama pendaftar..." required autocomplete="off">
+                            <i class="fas fa-id-card input-icon"></i>
+                            <input type="text" id="cek_nik" name="cek_nik" placeholder="Masukkan 16 digit NIK..." required autocomplete="off" maxlength="16" inputmode="numeric" pattern="\d{16}">
                             <span class="focus-border"></span>
                         </div>
                     </div>

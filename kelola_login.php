@@ -1,13 +1,14 @@
 <?php
 session_start();
 
-// Cek login & Hak Akses Admin
-if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
-    header('Location: dashboard.php');
+// Cek login
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
     exit;
 }
 
 require_once __DIR__ . '/koneksi.php';
+require_once __DIR__ . '/includes/simple_log.php';
 
 $response = ['status' => '', 'message' => ''];
 
@@ -16,55 +17,85 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     $action = $_POST['action'];
 
     if ($action === 'add_guru') {
-        $nama = $conn->real_escape_string($_POST['nama']);
-        $username = $conn->real_escape_string($_POST['username']);
-        $password = $_POST['password'];
-
-        // Cek username
-        $cek = $conn->query("SELECT id FROM user WHERE username='$username'");
-        if ($cek->num_rows > 0) {
-            $response = ['status' => 'error', 'message' => 'Username sudah terdaftar!'];
+        if ($_SESSION['user_role'] !== 'admin') {
+            $response = ['status' => 'error', 'message' => 'Akses ditolak! Hanya Admin yang bisa menambahkan guru.'];
         } else {
-            $hashed = password_hash($password, PASSWORD_BCRYPT);
-            $q = "INSERT INTO user (nama, username, password, role) VALUES ('$nama', '$username', '$hashed', 'guru')";
-            if ($conn->query($q)) {
-                $response = ['status' => 'success', 'message' => 'Akun Guru berhasil ditambahkan.'];
+            $nama = $conn->real_escape_string($_POST['nama']);
+            $username = $conn->real_escape_string($_POST['username']);
+            $password = $_POST['password'];
+
+            $cek = $conn->query("SELECT id FROM user WHERE username='$username'");
+            if ($cek->num_rows > 0) {
+                $response = ['status' => 'error', 'message' => 'Username sudah terdaftar!'];
             } else {
-                $response = ['status' => 'error', 'message' => 'Gagal menambahkan akun.'];
+                $hashed = password_hash($password, PASSWORD_BCRYPT);
+                $q = "INSERT INTO user (nama, username, password, role) VALUES ('$nama', '$username', '$hashed', 'guru')";
+                if ($conn->query($q)) {
+                    catat_log($conn, "Menambahkan guru baru: $nama");
+                    $response = ['status' => 'success', 'message' => 'Akun Guru berhasil ditambahkan.'];
+                } else {
+                    $response = ['status' => 'error', 'message' => 'Gagal menambahkan akun.'];
+                }
             }
         }
     } 
     elseif ($action === 'edit_password') {
         $id = (int)$_POST['user_id'];
-        $new_password = $_POST['new_password'];
-        $hashed = password_hash($new_password, PASSWORD_BCRYPT);
-
-        // Hanya boleh edit password akun yang valid
-        $q = "UPDATE user SET password='$hashed' WHERE id=$id";
-        if ($conn->query($q)) {
-            $response = ['status' => 'success', 'message' => 'Password berhasil diperbarui.'];
+        
+        // Aturan: Hanya boleh mengedit profilnya sendiri
+        if ($id !== (int)$_SESSION['user_id']) {
+            $response = ['status' => 'error', 'message' => 'Anda hanya bisa mengubah akun milik Anda sendiri!'];
         } else {
-            $response = ['status' => 'error', 'message' => 'Gagal memperbarui password.'];
+            $new_username = $conn->real_escape_string($_POST['new_username']);
+            
+            // Cek apakah username sudah ada dan bukan miliknya
+            $cek = $conn->query("SELECT id FROM user WHERE username='$new_username' AND id != $id");
+            if ($cek->num_rows > 0) {
+                $response = ['status' => 'error', 'message' => 'Username sudah digunakan. Silakan pilih yang lain!'];
+            } else {
+                if (!empty($_POST['new_password'])) {
+                    $new_password = $_POST['new_password'];
+                    $hashed = password_hash($new_password, PASSWORD_BCRYPT);
+                    $q = "UPDATE user SET username='$new_username', password='$hashed' WHERE id=$id";
+                } else {
+                    $q = "UPDATE user SET username='$new_username' WHERE id=$id";
+                }
+
+                if ($conn->query($q)) {
+                    catat_log($conn, "Memperbarui profil diri sendiri");
+                    $response = ['status' => 'success', 'message' => 'Profil berhasil diperbarui.'];
+                } else {
+                    $response = ['status' => 'error', 'message' => 'Gagal memperbarui profil.'];
+                }
+            }
         }
     }
     elseif ($action === 'delete_guru') {
-        $id = (int)$_POST['user_id'];
+        if ($_SESSION['user_role'] !== 'admin') {
+            $response = ['status' => 'error', 'message' => 'Akses ditolak! Anda tidak memiliki izin untuk menghapus akun.'];
+        } else {
+            $id = (int)$_POST['user_id'];
 
-        // Pastikan bukan akun admin dan jumlah guru lebih dari 1
-        $q_cek = $conn->query("SELECT role FROM user WHERE id=$id");
-        if ($q_cek && $q_cek->num_rows > 0) {
-            $row = $q_cek->fetch_assoc();
-            if ($row['role'] === 'admin') {
-                $response = ['status' => 'error', 'message' => 'Akun Admin tidak bisa dihapus!'];
-            } else {
-                // Cek jumlah guru
-                $q_count = $conn->query("SELECT count(*) as total FROM user WHERE role='guru'");
-                $count = $q_count->fetch_assoc()['total'];
-                if ($count <= 1) {
-                    $response = ['status' => 'error', 'message' => 'Tidak bisa menghapus akun Guru karena harus tersisa minimal 1 akun!'];
+            // Pastikan bukan akun admin dan jumlah guru lebih dari 1
+            $q_cek = $conn->query("SELECT role FROM user WHERE id=$id");
+            if ($q_cek && $q_cek->num_rows > 0) {
+                $row = $q_cek->fetch_assoc();
+                if ($row['role'] === 'admin') {
+                    $response = ['status' => 'error', 'message' => 'Akun Admin tidak bisa dihapus!'];
                 } else {
-                    $conn->query("DELETE FROM user WHERE id=$id");
-                    $response = ['status' => 'success', 'message' => 'Akun Guru berhasil dihapus.'];
+                    // Cek jumlah guru
+                    $q_count = $conn->query("SELECT count(*) as total FROM user WHERE role='guru'");
+                    $count = $q_count->fetch_assoc()['total'];
+                    if ($count <= 1) {
+                        $response = ['status' => 'error', 'message' => 'Tidak bisa menghapus akun Guru karena harus tersisa minimal 1 akun!'];
+                    } else {
+                        $q_nama_del = $conn->query("SELECT nama FROM user WHERE id=$id");
+                        $nama_del = ($q_nama_del && $q_nama_del->num_rows > 0) ? $q_nama_del->fetch_assoc()['nama'] : "ID $id";
+                        
+                        $conn->query("DELETE FROM user WHERE id=$id");
+                        catat_log($conn, "Menghapus akun guru: $nama_del");
+                        $response = ['status' => 'success', 'message' => 'Akun Guru berhasil dihapus.'];
+                    }
                 }
             }
         }
@@ -77,6 +108,17 @@ $q_users = $conn->query("SELECT id, nama, username, role FROM user ORDER BY role
 if ($q_users) {
     while ($r = $q_users->fetch_assoc()) {
         $users[] = $r;
+    }
+}
+
+// Ambil data log jika admin
+$logs = [];
+if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin') {
+    $q_log = $conn->query("SELECT * FROM log_login ORDER BY id DESC LIMIT 30");
+    if ($q_log) {
+        while ($r = $q_log->fetch_assoc()) {
+            $logs[] = $r;
+        }
     }
 }
 ?>
@@ -117,11 +159,16 @@ if ($q_users) {
                     <h1>Kelola Akses Login</h1>
                     <p>Manajemen akun admin dan guru untuk mengakses dashboard sistem.</p>
                 </div>
-                <div class="action-top">
+                <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
+                <div class="action-top" style="display: flex; gap: 10px;">
+                    <button class="btn-action" onclick="openModal('modalLogSistem')" style="background:#f59e0b; color:#fff; border:none;">
+                        <i class="fas fa-history"></i> Riwayat Sistem
+                    </button>
                     <button class="btn-action primary" onclick="openModal('modalAddGuru')">
                         <i class="fas fa-user-plus"></i> Tambah Akun Guru
                     </button>
                 </div>
+                <?php endif; ?>
             </div>
 
             <div class="data-card fade-in-up" style="animation-delay: 0.1s;">
@@ -151,15 +198,22 @@ if ($q_users) {
                                 </td>
                                 <td>
                                     <div class="action-btns">
-                                        <button class="action-btn" title="Edit Password" onclick="openEditPassword(<?php echo $u['id']; ?>, '<?php echo addslashes($u['username']); ?>')">
-                                            <i class="fas fa-key"></i>
-                                        </button>
-                                        <?php if($u['role'] !== 'admin'): ?>
+                                        <?php if($u['id'] == $_SESSION['user_id']): ?>
+                                            <button class="action-btn" title="Edit Profil" onclick="openEditPassword(<?php echo $u['id']; ?>, '<?php echo addslashes($u['username']); ?>')">
+                                                <i class="fas fa-user-edit"></i>
+                                            </button>
+                                        <?php else: ?>
+                                            <button class="action-btn" style="opacity:0.3;cursor:not-allowed;" title="Hanya bisa mengedit akun sendiri">
+                                                <i class="fas fa-user-edit"></i>
+                                            </button>
+                                        <?php endif; ?>
+
+                                        <?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin' && $u['role'] === 'guru'): ?>
                                             <button class="action-btn delete" title="Hapus Akun" onclick="confirmDelete(<?php echo $u['id']; ?>, '<?php echo addslashes($u['username']); ?>')">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         <?php else: ?>
-                                            <button class="action-btn" style="opacity:0.3;cursor:not-allowed;" title="Admin tidak bisa dihapus">
+                                            <button class="action-btn delete" style="opacity:0.3;cursor:not-allowed;" title="Tidak bisa dihapus">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         <?php endif; ?>
@@ -214,7 +268,7 @@ if ($q_users) {
 <div class="modal-overlay" id="modalEditPassword">
     <div class="modal-box">
         <div class="modal-header">
-            <h3><i class="fas fa-key"></i> Edit Password</h3>
+            <h3><i class="fas fa-user-edit"></i> Edit Profil</h3>
             <button class="modal-close" onclick="closeModal('modalEditPassword')"><i class="fas fa-times"></i></button>
         </div>
         <form action="kelola_login.php" method="POST">
@@ -223,11 +277,11 @@ if ($q_users) {
             <div class="modal-body">
                 <div class="form-group">
                     <label>Username</label>
-                    <input type="text" id="edit_username" class="form-control" readonly style="background:#f1f5f9;">
+                    <input type="text" id="edit_username" name="new_username" class="form-control" required placeholder="Masukkan username">
                 </div>
                 <div class="form-group">
-                    <label>Password Baru</label>
-                    <input type="password" name="new_password" class="form-control" required minlength="6" placeholder="Masukkan password baru">
+                    <label>Password Baru (Opsional)</label>
+                    <input type="password" name="new_password" class="form-control" minlength="6" placeholder="Kosongkan jika tidak ingin mengubah">
                 </div>
             </div>
             <div class="modal-footer">
@@ -257,6 +311,38 @@ if ($q_users) {
                 <button type="submit" class="btn-action" style="background:#dc2626;color:#fff;"><i class="fas fa-trash"></i> Hapus Akun</button>
             </div>
         </form>
+    </div>
+</div>
+
+<!-- Modal Log Sistem -->
+<div class="modal-overlay" id="modalLogSistem">
+    <div class="modal-box" style="max-width: 500px;">
+        <div class="modal-header" style="justify-content: flex-start; gap: 10px;">
+            <h3 style="margin: 0; display: flex; align-items: center;"><i class="fas fa-history" style="margin-right: 8px;"></i> Riwayat Sistem</h3>
+            <button class="modal-close" onclick="closeModal('modalLogSistem')" style="margin-left: auto;"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="modal-body" style="max-height: 400px; overflow-y: auto; padding: 20px;">
+            <?php if (empty($logs)): ?>
+                <div style="text-align:center; color:var(--dash-text-light); padding: 30px;">
+                    <i class="fas fa-history" style="font-size:2rem; color:#cbd5e1; margin-bottom:10px; display:block;"></i>
+                    Belum ada riwayat tercatat.
+                </div>
+            <?php else: ?>
+                <div style="position:relative; border-left:2px solid #e2e8f0; padding-left:20px; margin-left:8px;">
+                    <?php foreach ($logs as $l): ?>
+                    <div style="margin-bottom: 20px; position:relative;">
+                        <span style="position:absolute; left:-29px; top:3px; width:16px; height:16px; background:#fff; border:3px solid var(--dash-primary); border-radius:50%;"></span>
+                        <div style="font-size: 0.8rem; color: var(--dash-text-light); margin-bottom: 4px;">
+                            <i class="fas fa-clock"></i> <?php echo date('d M Y, H:i', strtotime($l['tanggal'])); ?>
+                        </div>
+                        <div style="font-size: 0.95rem; color: #1e293b;">
+                            <strong><?php echo htmlspecialchars($l['nama_user']); ?></strong> <?php echo htmlspecialchars($l['aksi']); ?>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
+        </div>
     </div>
 </div>
 

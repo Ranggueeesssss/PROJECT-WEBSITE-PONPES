@@ -7,21 +7,25 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 require_once __DIR__ . '/koneksi.php';
+require_once __DIR__ . '/includes/simple_log.php';
 
 // Proses Hapus Data
 if (isset($_GET['delete_id'])) {
     $id_del = (int)$_GET['delete_id'];
     
-    // Get foto to delete
-    $q_foto = $conn->query("SELECT src FROM media_galeri WHERE id = $id_del");
+    // Get judul & foto to delete
+    $q_foto = $conn->query("SELECT judul, src FROM media_galeri WHERE id = $id_del");
+    $judul_del_g = 'ID ' . $id_del;
     if ($q_foto && $q_foto->num_rows > 0) {
         $r_foto = $q_foto->fetch_assoc();
+        $judul_del_g = $r_foto['judul'];
         if ($r_foto['src'] && file_exists($r_foto['src'])) {
             unlink($r_foto['src']);
         }
     }
     
     $conn->query("DELETE FROM media_galeri WHERE id = $id_del");
+    catat_log($conn, "Menghapus foto galeri: $judul_del_g");
     header('Location: data_galeri.php?status=deleted');
     exit;
 }
@@ -67,11 +71,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sql = "UPDATE media_galeri SET judul='$judul', kategori='$kategori', tanggal='$tanggal' WHERE id=$id";
         }
         $conn->query($sql);
+        catat_log($conn, "Memperbarui foto galeri: $judul");
         header('Location: data_galeri.php?status=updated');
     } else {
         // Insert
         $sql = "INSERT INTO media_galeri (judul, kategori, tanggal, src) VALUES ('$judul', '$kategori', '$tanggal', " . ($src_name ? "'$src_name'" : "NULL") . ")";
         $conn->query($sql);
+        catat_log($conn, "Menambahkan foto galeri: $judul");
         header('Location: data_galeri.php?status=added');
     }
     exit;

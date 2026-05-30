@@ -1,6 +1,12 @@
 <?php
 session_start();
 
+if (isset($_SESSION['user_id'])) {
+    require_once __DIR__ . '/koneksi.php';
+    require_once __DIR__ . '/includes/simple_log.php';
+    catat_log($conn, 'Melakukan logout dari sistem');
+}
+
 // Hapus semua data sesi
 $_SESSION = [];
 

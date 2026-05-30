@@ -7,13 +7,14 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 require_once __DIR__ . '/koneksi.php';
+require_once __DIR__ . '/includes/simple_log.php';
 
 // --- AUTO-SYNC: Masukkan santri yang 'Lolos' pendaftaran ke tabel induk santri ---
 // Menggunakan single query untuk performa yang jauh lebih baik (menghindari N+1 Query problem)
 $user_id_sync = (int)$_SESSION['user_id'];
 $syncQuery = "
-    INSERT INTO data_santri (pendaftaran_id, user_id, nama_lengkap, jenjang, tanggal_lahir, nomor_hp, alamat, status_santri)
-    SELECT p.id, $user_id_sync, p.nama_lengkap, p.jenjang_pendaftaran, p.tanggal_lahir, p.nomor_handphone, p.alamat_lengkap, 'Baru'
+    INSERT INTO data_santri (pendaftaran_id, user_id, nik, nama_lengkap, jenjang, tanggal_lahir, nomor_hp, alamat, status_santri)
+    SELECT p.id, $user_id_sync, p.nik, p.nama_lengkap, p.jenjang_pendaftaran, p.tanggal_lahir, p.nomor_handphone, p.alamat_lengkap, 'Baru'
     FROM pendaftaran p
     LEFT JOIN data_santri s ON p.id = s.pendaftaran_id
     WHERE p.status = 'Lolos' AND s.id IS NULL
@@ -25,6 +26,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     // 0. Tambah Santri Manual
     if (isset($_POST['action']) && $_POST['action'] === 'add_santri') {
+        $nik = $conn->real_escape_string($_POST['nik']);
+        
+        // Cek duplikasi NIK
+        $cekNik = $conn->query("SELECT id FROM data_santri WHERE nik = '$nik'");
+        if ($cekNik && $cekNik->num_rows > 0) {
+            header("Location: data_santri.php?status=error_nik&nik=" . urlencode($nik));
+            exit;
+        }
+
         $nama_lengkap = $conn->real_escape_string($_POST['nama_lengkap']);
         $jenjang = $conn->real_escape_string($_POST['jenjang']);
         $nomor_hp = $conn->real_escape_string($_POST['nomor_hp']);
@@ -33,10 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $status_santri = $conn->real_escape_string($_POST['status_santri']);
         $user_id = (int)$_SESSION['user_id'];
         
-        $stmtAdd = $conn->prepare("INSERT INTO data_santri (user_id, nama_lengkap, jenjang, nomor_hp, alamat, tanggal_lahir, status_santri) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmtAdd->bind_param("issssss", $user_id, $nama_lengkap, $jenjang, $nomor_hp, $alamat, $tanggal_lahir, $status_santri);
+        $stmtAdd = $conn->prepare("INSERT INTO data_santri (user_id, nik, nama_lengkap, jenjang, nomor_hp, alamat, tanggal_lahir, status_santri) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmtAdd->bind_param("isssssss", $user_id, $nik, $nama_lengkap, $jenjang, $nomor_hp, $alamat, $tanggal_lahir, $status_santri);
         $stmtAdd->execute();
-        
+        catat_log($conn, "Menambahkan santri baru: $nama_lengkap (NIK: $nik)");
         header("Location: data_santri.php?status=santri_added");
         exit;
     }
@@ -85,6 +95,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmtUpdate->bind_param("ssii", $status_santri, $newJson, $user_id, $santri_id);
         $stmtUpdate->execute();
         
+        // Ambil nama santri untuk log
+        $q_ns = $conn->query("SELECT nama_lengkap FROM data_santri WHERE id = $santri_id");
+        $nama_s = ($q_ns && $r_ns = $q_ns->fetch_assoc()) ? $r_ns['nama_lengkap'] : 'ID '.$santri_id;
+        catat_log($conn, "Memperbarui data santri: $nama_s (status: $status_santri)");
+        
         header("Location: data_santri.php?status=data_updated");
         exit;
     }
@@ -92,7 +107,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // 4. Hapus Santri
     if (isset($_POST['action']) && $_POST['action'] === 'delete_santri') {
         $santri_id = (int)$_POST['santri_id'];
+        $q_ds = $conn->query("SELECT nama_lengkap FROM data_santri WHERE id = $santri_id");
+        $nama_ds = ($q_ds && $r_ds = $q_ds->fetch_assoc()) ? $r_ds['nama_lengkap'] : 'ID '.$santri_id;
         $conn->query("DELETE FROM data_santri WHERE id = $santri_id");
+        catat_log($conn, "Menghapus data santri: $nama_ds");
         header("Location: data_santri.php?status=deleted");
         exit;
     }
@@ -101,7 +119,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // 4. Hapus Santri (Via GET & Modal Confirm)
 if (isset($_GET['delete_id'])) {
     $santri_id = (int)$_GET['delete_id'];
+    $q_dsg = $conn->query("SELECT nama_lengkap FROM data_santri WHERE id = $santri_id");
+    $nama_dsg = ($q_dsg && $r_dsg = $q_dsg->fetch_assoc()) ? $r_dsg['nama_lengkap'] : 'ID '.$santri_id;
     $conn->query("DELETE FROM data_santri WHERE id = $santri_id");
+    catat_log($conn, "Menghapus data santri: $nama_dsg");
     header("Location: data_santri.php?status=deleted");
     exit;
 }
@@ -232,6 +253,10 @@ if ($resSantri) {
             
             <div class="modal-body">
                 <div class="form-group mb-4">
+                    <label class="form-label">NIK (16 Digit)</label>
+                    <input type="text" name="nik" class="form-control" maxlength="16" pattern="\d{16}" title="Harus 16 digit angka" required style="border-radius: 12px; height: 48px;">
+                </div>
+                <div class="form-group mb-4">
                     <label class="form-label">Nama Lengkap</label>
                     <input type="text" name="nama_lengkap" class="form-control" required style="border-radius: 12px; height: 48px;">
                 </div>
@@ -272,6 +297,28 @@ if ($resSantri) {
         </form>
     </div>
 </div>
+
+<!-- Modal Error NIK Duplikat -->
+<?php if(isset($_GET['status']) && $_GET['status'] == 'error_nik'): ?>
+<div class="modal-overlay active" id="modalErrorNik">
+    <div class="modal-box" style="max-width: 400px; border-radius: 20px; text-align: center; padding: 30px 20px;">
+        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: #ef4444; margin-bottom: 15px;"></i>
+        <h3 style="font-weight: 800; color: #1f2937; margin: 0 0 10px 0;">NIK Sudah Terdaftar!</h3>
+        <p style="color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px;">
+            NIK <strong><?php echo isset($_GET['nik']) ? htmlspecialchars($_GET['nik']) : 'yang Anda masukkan'; ?></strong> sudah terdaftar dalam sistem untuk santri lain. NIK bersifat unik dan tidak boleh sama. Silakan periksa kembali dan ganti dengan NIK yang benar.
+        </p>
+        <button class="btn-premium" style="background: #ef4444; color: white; width: 100%; justify-content: center;" onclick="document.getElementById('modalErrorNik').classList.remove('active');">Mengerti, Saya Akan Ganti</button>
+    </div>
+</div>
+<script>
+    // Pastikan scroll dinonaktifkan saat modal error muncul
+    document.body.style.overflow = 'hidden';
+    // Dan kembalikan scroll saat modal ditutup
+    document.querySelector('#modalErrorNik .btn-premium').addEventListener('click', function() {
+        document.body.style.overflow = '';
+    });
+</script>
+<?php endif; ?>
 
 <div class="dash-wrapper">
     <?php include_once 'includes/dash_sidebar.php'; ?>
@@ -338,6 +385,7 @@ if ($resSantri) {
                             <thead>
                                 <tr>
                                     <th style="width: 60px; text-align: center;">No</th>
+                                    <th>NIK</th>
                                     <th>Nama Santri</th>
                                     <th>Status</th>
                                     <th>Tanggal Lahir</th>
@@ -360,6 +408,9 @@ if ($resSantri) {
                                     <?php foreach($santriList as $index => $s): ?>
                                     <tr <?php echo $s['status_santri'] == 'Baru' ? 'style="background-color: #fffbeb;"' : ''; ?>>
                                         <td style="text-align: center; color: #9ca3af; font-weight: 700;"><?php echo $index + 1; ?></td>
+                                        <td style="font-family: monospace; font-weight: 600; color: #4b5563;">
+                                            <?php echo htmlspecialchars($s['nik'] ?: '-'); ?>
+                                        </td>
                                         <td>
                                             <div style="font-weight: 700; color: #1f2937;">
                                                 <?php if($s['status_santri'] == 'Baru'): ?>

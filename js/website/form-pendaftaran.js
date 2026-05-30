@@ -1,4 +1,4 @@
-﻿/* FORM PENDAFTARAN JS — Interactive Form Behavior (Modern Theme) */
+/* FORM PENDAFTARAN JS — Interactive Form Behavior (Modern Theme) */
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -11,6 +11,25 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const indicator1 = document.getElementById('indicator-1');
     const indicator2 = document.getElementById('indicator-2');
+
+    // --- Custom Validation Modal ---
+    function showValidationModal(message) {
+        const overlay = document.getElementById('valModalOverlay');
+        const msgEl = document.getElementById('valModalMsg');
+        if (overlay && msgEl) {
+            msgEl.textContent = message;
+            overlay.classList.add('active');
+        } else {
+            alert(message);
+        }
+    }
+
+    const valModalBtn = document.getElementById('valModalBtn');
+    if (valModalBtn) {
+        valModalBtn.addEventListener('click', () => {
+            document.getElementById('valModalOverlay').classList.remove('active');
+        });
+    }
 
     // Function to check if required fields in step 1 are filled
     function validateStep1() {
@@ -60,8 +79,32 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // Validasi NIK: harus tepat 16 digit angka
+        const nikInput = document.getElementById('inputNIK');
+        if (nikInput) {
+            const nikVal = nikInput.value.replace(/\D/g, '');
+            if (nikVal.length !== 16) {
+                isValid = false;
+                nikInput.classList.add('error-border');
+                showValidationModal("Gagal: NIK harus berupa 16 digit angka sesuai KTP/KK.");
+                return false;
+            }
+        }
+
+        // Validasi HP: 10-13 digit
+        const hpInput = document.getElementById('inputHP');
+        if (hpInput) {
+            const hpVal = hpInput.value.replace(/\D/g, '');
+            if (hpVal.length < 10 || hpVal.length > 13) {
+                isValid = false;
+                hpInput.classList.add('error-border');
+                showValidationModal("Gagal: Nomor Handphone harus berjumlah antara 10 hingga 13 digit angka.");
+                return false;
+            }
+        }
+
         if(!isValid) {
-            alert("Harap isi semua kolom yang wajib (*) sebelum melanjutkan.");
+            showValidationModal("Harap isi semua kolom yang wajib (*) sebelum melanjutkan.");
         }
         return isValid;
     }
@@ -144,11 +187,52 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Remove red borders on input focus/input
-    if(form) {
-        form.addEventListener('input', (e) => {
-            if(e.target.tagName === 'INPUT' && e.target.type !== 'radio' && e.target.type !== 'checkbox') {
-                e.target.classList.remove('error-border');
+    // --- Validasi Real-time NIK ---
+    const nikInput = document.getElementById('inputNIK');
+    const nikHint  = document.getElementById('nikHint');
+
+    if (nikInput && nikHint) {
+        // Hanya izinkan angka saat mengetik
+        nikInput.addEventListener('input', function () {
+            // Hapus karakter non-angka
+            this.value = this.value.replace(/\D/g, '');
+
+            const len = this.value.length;
+            if (len === 0) {
+                nikHint.style.color = '#6b7280'; // abu default
+                nikHint.textContent = 'Hanya angka, tepat 16 digit sesuai KTP/KK.';
+            } else if (len < 16) {
+                nikHint.style.color = '#e67e22'; // oranye
+                nikHint.textContent = `${len}/16 digit — kurang ${16 - len} digit lagi.`;
+            } else {
+                nikHint.style.color = '#16a34a'; // hijau
+                nikHint.textContent = '✓ NIK valid (16 digit).';
+                this.classList.remove('error-border');
+            }
+        });
+    }
+
+    // --- Validasi Real-time HP ---
+    const hpInput = document.getElementById('inputHP');
+    const hpHint  = document.getElementById('hpHint');
+
+    if (hpInput && hpHint) {
+        hpInput.addEventListener('input', function () {
+            this.value = this.value.replace(/\D/g, '');
+            const len = this.value.length;
+            if (len === 0) {
+                hpHint.style.color = '#6b7280';
+                hpHint.textContent = 'Hanya angka, 10-13 digit.';
+            } else if (len < 10) {
+                hpHint.style.color = '#e67e22';
+                hpHint.textContent = `${len}/10 digit — kurang ${10 - len} digit lagi.`;
+            } else if (len > 13) {
+                hpHint.style.color = '#e74c3c';
+                hpHint.textContent = `Maksimal 13 digit (kelebihan ${len - 13} digit).`;
+            } else {
+                hpHint.style.color = '#16a34a';
+                hpHint.textContent = '✓ Nomor Handphone valid.';
+                this.classList.remove('error-border');
             }
         });
     }

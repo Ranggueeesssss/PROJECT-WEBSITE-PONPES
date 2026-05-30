@@ -1,16 +1,10 @@
 <?php
 // FILE KONEKSI DATABASE — db_ponpes
-// Sertakan file ini di semua file PHP yang membutuhkan koneksi database
-// menggunakan:
 //   require_once __DIR__ . '/koneksi.php';
-//
-// Jika file PHP kamu berada di sub-folder (misal: admin/halaman.php):
+// file PHP kamu berada di sub-folder (misal: admin/halaman.php):
 //   require_once __DIR__ . '/../koneksi.php';
 
 
-// --- Cegah akses langsung ke file ini melalui browser ---
-// Pola "defined sentinel": file lain harus mendefinisikan konstanta ini
-// sebelum memanggil require_once, ATAU kita cukup cek script yang berjalan.
 if (realpath($_SERVER['SCRIPT_FILENAME']) === __FILE__) {
     http_response_code(403);
     exit('Akses langsung tidak diizinkan.');
@@ -18,7 +12,7 @@ if (realpath($_SERVER['SCRIPT_FILENAME']) === __FILE__) {
 
 // --- Cegah definisi ulang jika di-include lebih dari sekali ---
 if (defined('DB_CONNECTED')) {
-    return; // Sudah terhubung, lewati
+    return;
 }
 define('DB_CONNECTED', true);
 

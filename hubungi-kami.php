@@ -11,13 +11,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $subjek  = $conn->real_escape_string($_POST['subjek']);
     $pesan   = $conn->real_escape_string($_POST['pesan']);
 
-    $sql = "INSERT INTO pesan_masuk (nama, email, no_hp, subjek, pesan) 
-            VALUES ('$nama', '$email', '$telepon', '$subjek', '$pesan')";
-
-    if ($conn->query($sql) === TRUE) {
-        $success_msg = "Pesan Anda berhasil dikirim! Admin kami akan segera membalasnya.";
+    // Validasi No. HP (Hanya angka, diawali 08, 10-13 digit)
+    if (!preg_match('/^08[0-9]{8,11}$/', $telepon)) {
+        $error_msg = "Gagal mengirim pesan. Nomor HP/WA harus berupa angka, diawali dengan 08, dan panjang 10 hingga 13 digit.";
     } else {
-        $error_msg = "Terjadi kesalahan saat mengirim pesan. Silakan coba lagi.";
+        $sql = "INSERT INTO pesan_masuk (nama, email, no_hp, subjek, pesan) 
+                VALUES ('$nama', '$email', '$telepon', '$subjek', '$pesan')";
+
+        if ($conn->query($sql) === TRUE) {
+            $success_msg = "Pesan Anda berhasil dikirim! Admin kami akan segera membalasnya.";
+        } else {
+            $error_msg = "Terjadi kesalahan saat mengirim pesan. Silakan coba lagi.";
+        }
     }
 }
 ?>
@@ -147,7 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="form-group">
               <label for="telepon"><i class="fas fa-phone"></i> No. HP / WA</label>
-              <input type="tel" id="telepon" name="telepon" placeholder="Contoh: 0812..." required>
+              <input type="text" id="telepon" name="telepon" placeholder="Contoh: 081234567890" pattern="08[0-9]{8,11}" minlength="10" maxlength="13" title="Harap masukkan 10 hingga 13 digit angka yang diawali dengan 08" oninput="this.value = this.value.replace(/[^0-9]/g, '');" required>
             </div>
           </div>
 

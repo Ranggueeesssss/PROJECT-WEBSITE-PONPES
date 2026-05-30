@@ -28,7 +28,11 @@ function openAddColumnModal() {
  */
 function deleteColumn(colId, colName) {
     const msg = `Apakah Anda yakin ingin menghapus kolom "${colName}"? Data yang sudah diisi pada kolom ini akan hilang.`;
-    if (confirm(msg)) {
+    if (typeof showConfirm === 'function') {
+        showConfirm('Konfirmasi Hapus Kolom', msg, function() {
+            submitAction('del_column', { col_id: colId });
+        }, 'delete');
+    } else if (confirm(msg)) {
         submitAction('del_column', { col_id: colId });
     }
 }
@@ -38,7 +42,11 @@ function deleteColumn(colId, colName) {
  */
 function deleteSantri(id, name) {
     const msg = `Apakah Anda yakin ingin menghapus data santri "${name}" secara permanen?`;
-    if (confirm(msg)) {
+    if (typeof showConfirm === 'function') {
+        showConfirm('Konfirmasi Hapus', msg, function() {
+            submitAction('delete_santri', { santri_id: id });
+        }, 'delete');
+    } else if (confirm(msg)) {
         submitAction('delete_santri', { santri_id: id });
     }
 }
@@ -61,7 +69,12 @@ function openEditSantri(santri, columns) {
     const emptyMsg = document.getElementById('emptyFieldsMsg');
     container.innerHTML = '';
     
-    const parsedData = santri.custom_data || {};
+    let parsedData = santri.parsed_custom || {};
+    // Fallback jika berupa string
+    if (typeof parsedData === 'string') {
+        try { parsedData = JSON.parse(parsedData); } catch(e) { parsedData = {}; }
+    }
+
 
     if (columns.length === 0) {
         if(emptyMsg) emptyMsg.style.display = 'block';

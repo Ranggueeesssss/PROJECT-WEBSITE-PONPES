@@ -7,10 +7,15 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 require_once __DIR__ . '/koneksi.php';
+require_once __DIR__ . '/includes/simple_log.php';
 
 // Proses Hapus Data
 if (isset($_GET['delete_id'])) {
     $id_del = (int)$_GET['delete_id'];
+    
+    // Ambil nama pendaftar sebelum dihapus
+    $q_nama = $conn->query("SELECT nama_lengkap FROM pendaftaran WHERE id = $id_del");
+    $nama_del_pend = ($q_nama && $r_nama = $q_nama->fetch_assoc()) ? $r_nama['nama_lengkap'] : 'ID '.$id_del;
     
     // Hapus file-file terkait
     $resFiles = $conn->query("SELECT file_ijazah, file_kk, file_akta, file_ktp_ortu, file_surat_tjm FROM pendaftaran WHERE id = $id_del");
@@ -24,6 +29,7 @@ if (isset($_GET['delete_id'])) {
     }
     
     $conn->query("DELETE FROM pendaftaran WHERE id = $id_del");
+    catat_log($conn, "Menghapus data pendaftaran: $nama_del_pend");
     header('Location: data_pendaftaran.php?status=deleted');
     exit;
 }
@@ -33,8 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id']) && isset($_POST
     $id = (int)$_POST['id'];
     $status = $conn->real_escape_string($_POST['status']);
     
-    $conn->query("UPDATE pendaftaran SET status = '$status' WHERE id = $id");
-    header("Location: data_pendaftaran.php?status=updated");
+    // Ambil nama pendaftar untuk log
+    $q_np = $conn->query("SELECT nama_lengkap FROM pendaftaran WHERE id = $id");
+    $nama_pend = ($q_np && $r_np = $q_np->fetch_assoc()) ? $r_np['nama_lengkap'] : 'ID '.$id;
+    
+    $conn->query("UPDATE pendaftaran SET status='$status' WHERE id=$id");
+    catat_log($conn, "Mengubah status pendaftaran '$nama_pend' menjadi: $status");
+    header('Location: data_pendaftaran.php?status=updated');
     exit;
 }
 
@@ -83,6 +94,10 @@ if ($res_j && $res_j->num_rows > 0) {
                 <div class="detail-group">
                     <span class="detail-label">Nama Lengkap</span>
                     <div class="detail-value" id="detNama"></div>
+                </div>
+                <div class="detail-group">
+                    <span class="detail-label">NIK</span>
+                    <div class="detail-value" id="detNIK" style="font-family: monospace; letter-spacing: 1px;"></div>
                 </div>
                 <div class="detail-group">
                     <span class="detail-label">Jenjang Pendaftaran</span>

@@ -292,35 +292,44 @@ if ($pesanResult) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($pendaftar as $idx => $p): ?>
+                                    <?php if (empty($pendaftar)): ?>
                                     <tr>
-                                        <td style="color:var(--dash-text-light);font-weight:600;"><?php echo $idx + 1; ?></td>
-                                        <td>
-                                            <div style="font-weight:700;"><?php echo htmlspecialchars($p['nama']); ?></div>
-                                        </td>
-                                        <td>
-                                            <span style="background:var(--green-50);border:1px solid var(--green-200);color:var(--green-600);padding:3px 9px;border-radius:20px;font-size:0.72rem;font-weight:700;">
-                                                <?php echo $p['jenjang']; ?>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <?php 
-                                                $st = $p['status'];
-                                                if ($st === 'Lolos'): ?>
-                                                <span class="status-badge" style="background:#dcfce7;color:#16a34a;border:1px solid #bbf7d0;"><i class="fas fa-check-circle"></i> Lolos</span>
-                                            <?php elseif ($st === 'Tidak Lolos'): ?>
-                                                <span class="status-badge" style="background:#fee2e2;color:#dc2626;border:1px solid #fecaca;"><i class="fas fa-times-circle"></i> Ditolak</span>
-                                            <?php else: ?>
-                                                <span class="status-badge" style="background:#fef3c7;color:#d97706;border:1px solid #fcd34d;"><i class="fas fa-clock"></i> Pending</span>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td>
-                                            <div class="action-btns">
-                                                <a href="data_pendaftaran.php" class="action-btn" title="Lihat Detail & Validasi" style="color:var(--dash-primary);background:var(--dash-primary-light);"><i class="fas fa-search"></i></a>
-                                            </div>
+                                        <td colspan="5" style="text-align:center; color:var(--dash-text-light); padding: 30px 10px;">
+                                            <i class="fas fa-inbox" style="font-size:2.5rem; color:#cbd5e1; margin-bottom:10px; display:block;"></i>
+                                            Belum ada data pendaftaran terbaru.
                                         </td>
                                     </tr>
-                                    <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <?php foreach ($pendaftar as $idx => $p): ?>
+                                        <tr>
+                                            <td style="color:var(--dash-text-light);font-weight:600;"><?php echo $idx + 1; ?></td>
+                                            <td>
+                                                <div style="font-weight:700;"><?php echo htmlspecialchars($p['nama']); ?></div>
+                                            </td>
+                                            <td>
+                                                <span style="background:var(--green-50);border:1px solid var(--green-200);color:var(--green-600);padding:3px 9px;border-radius:20px;font-size:0.72rem;font-weight:700;">
+                                                    <?php echo $p['jenjang']; ?>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <?php 
+                                                    $st = $p['status'];
+                                                    if ($st === 'Lolos'): ?>
+                                                    <span class="status-badge" style="background:#dcfce7;color:#16a34a;border:1px solid #bbf7d0;"><i class="fas fa-check-circle"></i> Lolos</span>
+                                                <?php elseif ($st === 'Tidak Lolos'): ?>
+                                                    <span class="status-badge" style="background:#fee2e2;color:#dc2626;border:1px solid #fecaca;"><i class="fas fa-times-circle"></i> Ditolak</span>
+                                                <?php else: ?>
+                                                    <span class="status-badge" style="background:#fef3c7;color:#d97706;border:1px solid #fcd34d;"><i class="fas fa-clock"></i> Pending</span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <div class="action-btns">
+                                                    <a href="data_pendaftaran.php" class="action-btn" title="Lihat Detail & Validasi" style="color:var(--dash-primary);background:var(--dash-primary-light);"><i class="fas fa-search"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -345,27 +354,36 @@ if ($pesanResult) {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($berita as $b): ?>
+                                    <?php if (empty($berita)): ?>
                                     <tr>
-                                        <td style="font-weight:600;max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
-                                            <?php echo htmlspecialchars($b['judul']); ?>
-                                        </td>
-                                        <td style="color:var(--dash-text-light);font-size:0.82rem;white-space:nowrap;">
-                                            <i class="fas fa-calendar-alt" style="margin-right:4px;color:var(--gold-400);"></i>
-                                            <?php echo htmlspecialchars($b['tanggal']); ?>
-                                        </td>
-                                        <td>
-                                            <span class="status-badge" style="background:var(--green-50); color:var(--green-600); border:1px solid var(--green-100);">
-                                                <?php echo htmlspecialchars($b['kategori']); ?>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <div class="action-btns">
-                                                <a href="data_berita.php" class="action-btn" title="Edit & Update Berita" style="color:var(--dash-primary);background:var(--dash-primary-light);"><i class="fas fa-search"></i></a>
-                                            </div>
+                                        <td colspan="4" style="text-align:center; color:var(--dash-text-light); padding: 30px 10px;">
+                                            <i class="fas fa-newspaper" style="font-size:2.5rem; color:#cbd5e1; margin-bottom:10px; display:block;"></i>
+                                            Belum ada berita terbaru.
                                         </td>
                                     </tr>
-                                    <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <?php foreach ($berita as $b): ?>
+                                        <tr>
+                                            <td style="font-weight:600;max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                                                <?php echo htmlspecialchars($b['judul']); ?>
+                                            </td>
+                                            <td style="color:var(--dash-text-light);font-size:0.82rem;white-space:nowrap;">
+                                                <i class="fas fa-calendar-alt" style="margin-right:4px;color:var(--gold-400);"></i>
+                                                <?php echo htmlspecialchars($b['tanggal']); ?>
+                                            </td>
+                                            <td>
+                                                <span class="status-badge" style="background:var(--green-50); color:var(--green-600); border:1px solid var(--green-100);">
+                                                    <?php echo htmlspecialchars($b['kategori']); ?>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <div class="action-btns">
+                                                    <a href="data_berita.php" class="action-btn" title="Edit & Update Berita" style="color:var(--dash-primary);background:var(--dash-primary-light);"><i class="fas fa-search"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -383,30 +401,37 @@ if ($pesanResult) {
                                 <span class="card-icon"><i class="fas fa-inbox"></i></span>
                                 Pesan Masuk
                             </h2>
-                            <a href="#" class="card-header-link">Semua <i class="fas fa-arrow-right" style="font-size:0.65rem;"></i></a>
+                            <a href="data_pesan.php" class="card-header-link">Semua <i class="fas fa-arrow-right" style="font-size:0.65rem;"></i></a>
                         </div>
-                        <?php foreach ($pesanKontak as $pk): ?>
-                        <div class="msg-item" onclick="openMsgModal(
-                            '<?php echo addslashes(htmlspecialchars($pk['nama'])); ?>',
-                            '<?php echo addslashes(htmlspecialchars($pk['email'])); ?>',
-                            '<?php echo addslashes(htmlspecialchars($pk['subjek'])); ?>',
-                            '<?php echo addslashes(htmlspecialchars($pk['tanggal'])); ?>',
-                            '<?php echo addslashes(htmlspecialchars($pk['pesan'])); ?>'
-                        )">
-                            <div class="msg-avatar">
-                                <?php echo strtoupper(mb_substr($pk['nama'], 0, 1)); ?>
+                        <?php if (empty($pesanKontak)): ?>
+                            <div style="text-align:center; color:var(--dash-text-light); padding: 40px 20px;">
+                                <i class="fas fa-envelope-open" style="font-size:2.5rem; color:#cbd5e1; margin-bottom:10px; display:block;"></i>
+                                Belum ada pesan masuk.
                             </div>
-                            <div class="msg-body">
-                                <div class="msg-name"><?php echo htmlspecialchars($pk['nama']); ?></div>
-                                <div class="msg-subject"><?php echo htmlspecialchars($pk['subjek']); ?></div>
-                                <div class="msg-preview"><?php echo htmlspecialchars(mb_substr($pk['pesan'], 0, 50)) . '...'; ?></div>
+                        <?php else: ?>
+                            <?php foreach ($pesanKontak as $pk): ?>
+                            <div class="msg-item" onclick="openMsgModal(
+                                '<?php echo addslashes(htmlspecialchars($pk['nama'])); ?>',
+                                '<?php echo addslashes(htmlspecialchars($pk['email'])); ?>',
+                                '<?php echo addslashes(htmlspecialchars($pk['subjek'])); ?>',
+                                '<?php echo addslashes(htmlspecialchars($pk['tanggal'])); ?>',
+                                '<?php echo addslashes(htmlspecialchars($pk['pesan'])); ?>'
+                            )">
+                                <div class="msg-avatar">
+                                    <?php echo strtoupper(mb_substr($pk['nama'], 0, 1)); ?>
+                                </div>
+                                <div class="msg-body">
+                                    <div class="msg-name"><?php echo htmlspecialchars($pk['nama']); ?></div>
+                                    <div class="msg-subject"><?php echo htmlspecialchars($pk['subjek']); ?></div>
+                                    <div class="msg-preview"><?php echo htmlspecialchars(mb_substr($pk['pesan'], 0, 50)) . '...'; ?></div>
+                                </div>
+                                <div class="msg-meta">
+                                    <span class="msg-date"><?php echo $pk['tanggal']; ?></span>
+                                    <span class="msg-unread-dot"></span>
+                                </div>
                             </div>
-                            <div class="msg-meta">
-                                <span class="msg-date"><?php echo $pk['tanggal']; ?></span>
-                                <span class="msg-unread-dot"></span>
-                            </div>
-                        </div>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
 
                     <!-- Akses Login -->

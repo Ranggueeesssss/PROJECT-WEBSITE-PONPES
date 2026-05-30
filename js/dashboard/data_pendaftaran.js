@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
     /* Fungsi Jadwal Pengumuman */
     const formSchedule = document.getElementById('formJadwalPengumuman');
     const btnSave = document.getElementById('btnSaveSchedule');
@@ -123,6 +123,7 @@ function checkDoc(val, stId, btnId) {
 
 function openDetailModal(data) {
     document.getElementById('detNama').textContent = data.nama_lengkap;
+    document.getElementById('detNIK').textContent  = data.nik || '-';
     document.getElementById('detJenjang').textContent = data.jenjang_pendaftaran;
     
     // Format Date

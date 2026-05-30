@@ -8,6 +8,7 @@ $tipe_pesan = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Ambil Data Teks
     $nama_lengkap        = $conn->real_escape_string($_POST['nama_lengkap']);
+    $nik                 = $conn->real_escape_string(trim($_POST['nik'] ?? ''));
     $tempat_lahir        = $conn->real_escape_string($_POST['tempat_lahir']);
     $tanggal_lahir       = $conn->real_escape_string($_POST['tanggal_lahir']);
     $alamat_lengkap      = $conn->real_escape_string($_POST['alamat_lengkap']);
@@ -56,7 +57,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $upload_errors = [$file_ijazah, $file_kk, $file_akta, $file_ktp_ortu, $file_surat_tjm];
     
-    if (in_array("ERROR_SIZE", $upload_errors)) {
+    // Validasi NIK: harus tepat 16 digit angka
+    if (!preg_match('/^\d{16}$/', $nik)) {
+        $status_pesan = "Gagal: NIK harus berupa 16 digit angka.";
+        $tipe_pesan = "error";
+    } elseif (in_array("ERROR_SIZE", $upload_errors)) {
         $status_pesan = "Gagal: Ukuran file maksimal 10MB.";
         $tipe_pesan = "error";
     } elseif ($file_kk === "" || $file_ktp_ortu === "" || $file_surat_tjm === "") {
@@ -65,9 +70,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // Query Insert
         $sql = "INSERT INTO pendaftaran 
-                (nama_lengkap, tempat_lahir, tanggal_lahir, alamat_lengkap, nomor_handphone, jenjang_pendaftaran, tahu_ponpes, nama_informan, file_ijazah, file_kk, file_akta, file_ktp_ortu, file_surat_tjm) 
+                (nama_lengkap, nik, tempat_lahir, tanggal_lahir, alamat_lengkap, nomor_handphone, jenjang_pendaftaran, tahu_ponpes, nama_informan, file_ijazah, file_kk, file_akta, file_ktp_ortu, file_surat_tjm) 
                 VALUES 
-                ('$nama_lengkap', '$tempat_lahir', '$tanggal_lahir', '$alamat_lengkap', '$nomor_handphone', '$jenjang_pendaftaran', '$tahu_ponpes_str', '$nama_informan', '$file_ijazah', '$file_kk', '$file_akta', '$file_ktp_ortu', '$file_surat_tjm')";
+                ('$nama_lengkap', '$nik', '$tempat_lahir', '$tanggal_lahir', '$alamat_lengkap', '$nomor_handphone', '$jenjang_pendaftaran', '$tahu_ponpes_str', '$nama_informan', '$file_ijazah', '$file_kk', '$file_akta', '$file_ktp_ortu', '$file_surat_tjm')";
                 
         if ($conn->query($sql) === TRUE) {
             $status_pesan = "Pendaftaran berhasil dikirim! Kami akan segera menghubungi Anda.";
@@ -228,6 +233,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                         </div>
 
+                        <!-- Input: NIK -->
+                        <div class="input-group full-width">
+                            <label class="input-label">NIK (Nomor Induk Kependudukan) <span class="req">*</span></label>
+                            <div class="input-wrapper">
+                                <input type="text" name="nik" id="inputNIK" class="modern-input" placeholder="Masukkan 16 digit NIK" maxlength="16" inputmode="numeric" pattern="\d{16}" required>
+                                <i class="fas fa-id-card input-icon"></i>
+                            </div>
+                            <small id="nikHint" style="font-size:0.78rem; color:var(--color-text-light, #6b7280); margin-top:4px; display:block;">Hanya angka, tepat 16 digit sesuai KTP/KK.</small>
+                        </div>
+
                         <!-- Input: Tempat Lahir -->
                         <div class="input-group">
                             <label class="input-label">Tempat Lahir <span class="req">*</span></label>
@@ -259,9 +274,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="input-group full-width">
                             <label class="input-label">Nomor Handphone (WhatsApp aktif) <span class="req">*</span></label>
                             <div class="input-wrapper">
-                                <input type="number" name="nomor_handphone" class="modern-input" placeholder="Contoh: 08123456789" required>
+                                <input type="text" name="nomor_handphone" id="inputHP" class="modern-input" placeholder="Contoh: 08123456789" maxlength="13" inputmode="numeric" required>
                                 <i class="fas fa-phone-alt input-icon"></i>
                             </div>
+                            <small id="hpHint" style="font-size:0.78rem; color:var(--color-text-light, #6b7280); margin-top:4px; display:block;">Hanya angka, 10-13 digit.</small>
                         </div>
 
                         <!-- Input: Jenjang -->
@@ -441,6 +457,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     </div>
 </main>
+
+<!-- Custom Validation Modal -->
+<div class="custom-val-overlay" id="valModalOverlay">
+    <div class="custom-val-modal">
+        <div class="custom-val-icon"><i class="fas fa-exclamation-circle"></i></div>
+        <div class="custom-val-title">Gagal Melanjutkan</div>
+        <div class="custom-val-msg" id="valModalMsg">Harap lengkapi semua kolom dengan benar.</div>
+        <button type="button" class="custom-val-btn" id="valModalBtn">Mengerti</button>
+    </div>
+</div>
 
 <!-- Footer -->
 <?php include 'includes/footer.php'; ?>
